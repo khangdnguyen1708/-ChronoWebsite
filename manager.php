@@ -6,7 +6,11 @@
 <body>
 
 <php? 
+  require_once("settings.php");
 
+  if(!$conn) {
+    
+  }
 ?>
 
 </body>
