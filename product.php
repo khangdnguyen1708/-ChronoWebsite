@@ -15,11 +15,13 @@
 </head>
 
 <body>
-
+    <!--The header section starts-->
     <?php
         include("header.html");
     ?>
-    
+    <!--The header section ends-->
+
+
     <!-- The banner section starts -->
     <section id="banner">
         <h4 class="product_h4">Our Collection</h4>
@@ -316,15 +318,9 @@
     <!-- The small banner section ends -->
 
     <!--The footer section starts-->
-    <footer>
-        <h4 class="contact">CONTACT</h4>
-        <div class="footer_content">
-            <p>Address: A35 Bach Dang St, Ho Chi Minh city</p>
-            <p>Phone: (+84) 38-748-2345</p>
-            <p>Hours: 8:00 - 22:00, Mon - Sun</p>
-        </div>
-        <p class="copyright">© 2023 CHRONO</p>
-    </footer>
+    <?php
+        include("footer.html");
+    ?>
     <!--The footer section ends-->
 
 </body>
