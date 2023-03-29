@@ -9,9 +9,8 @@
     <meta name="keywords" content="HTML5/CSS">
     <meta name="author" content="Duy Khang Nguyen">
     <title>Enquiry page</title>
-    <link href="styles/enquire.css" rel="stylesheet">
-    <!-- <link href="styles/enquire_style.css" rel="stylesheet"> -->
 
+    <link href="styles/enquire.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 </head>
 
@@ -70,13 +69,11 @@
             <div class="form_line">
                 <div class="form_box">
                     <label for="firstname" class="main_label">FIRST NAME</label>
-                    <input required id="firstname" name="firstname" type="text" pattern="[A-Za-z]{1,25}"
-                        title="maximum 25 alphabetical characters">
+                    <input required id="firstname" name="firstname" type="text" pattern="[A-Za-z]{1,25}" title="maximum 25 alphabetical characters">
                 </div>
                 <div class="form_box">
                     <label for="lastname" class="main_label">LAST NAME</label>
-                    <input required id="lastname" name="lastname" type="text" pattern="[A-Za-z]{1,25}"
-                        title="maximum 25 alphabetical characters">
+                    <input required id="lastname" name="lastname" type="text" pattern="[A-Za-z]{1,25}" title="maximum 25 alphabetical characters">
                 </div>
             </div>
 
@@ -87,8 +84,7 @@
                 </div>
                 <div class="form_box">
                     <label for="phonenumber" class="main_label">PHONE NUMBER</label>
-                    <input required id="phonenumber" name="phonenumber" type="text" pattern="\d{1,10}]"
-                        title="maximum 10 digits" placeholder="038 748 2345">
+                    <input required id="phonenumber" name="phonenumber" type="text" pattern="\d{1,10}]" title="maximum 10 digits" placeholder="038 748 2345">
                 </div>
             </div>
         </fieldset>
@@ -98,8 +94,7 @@
             <div class="form_line">
                 <div class="form_box">
                     <label for="street" class="main_label">STREET ADDRESS</label>
-                    <input required id="street" name="street" type="text" pattern=".{1,40}"
-                        title="maximum 40 characters">
+                    <input required id="street" name="street" type="text" pattern=".{1,40}" title="maximum 40 characters">
                 </div>
                 <div class="form_box">
                     <label for="town" class="main_label">SUBURB/ TOWN</label>
@@ -193,8 +188,7 @@
             <div class="form_line">
                 <div class="form_box">
                     <label id="comment_label" for="comment">COMMENT</label>
-                    <textarea id="comment" name="comment"
-                        placeholder="Write description of your problem here..."></textarea>
+                    <textarea id="comment" name="comment" placeholder="Write description of your problem here..."></textarea>
                 </div>
             </div>
         </fieldset>
