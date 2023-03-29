@@ -1,5 +1,6 @@
 /* enquire.html starts */
 #enquire_intro h1 {
+    border: 1px solid red;
     text-align: center;
     padding: 1em auto;
     margin-top: 1em;
