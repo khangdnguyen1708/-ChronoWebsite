@@ -11,7 +11,7 @@
 <?php include("header.html"); ?>
 
 <h1>Welcome ... to manager page</h1>
-<form method="post" action="cars_search.php">
+<form method="post" action="manager.php">
   <fieldset>
     <legend><h3>How is the car you want? Please enter: ..</h3></legend>
     <table id="form">

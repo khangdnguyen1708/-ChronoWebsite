@@ -1,6 +1,10 @@
+h1 {
+  margin: 10px;
+}
 fieldset {
   display: inline;
   width: auto;
+  margin: 10px;
 }
 .label {
   text-align: right;
