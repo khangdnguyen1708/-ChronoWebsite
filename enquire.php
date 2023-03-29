@@ -17,7 +17,7 @@
 <body>
     <!--The header section starts-->
     <header>
-        <a class="logo" href="#">CHRONOSSS</a>
+        <a class="logo" href="#">CHRONO</a>
         <nav>
             <input id="check" type="checkbox">
             <label class="checkbtn" for="check">
