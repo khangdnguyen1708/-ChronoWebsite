@@ -8,7 +8,7 @@
     <meta name="description" content="Enquiry page">
     <meta name="keywords" content="HTML5/CSS/PHP">
     <meta name="author" content="Duy Khang Nguyen">
-    <title>Enquiry page</title>
+    <title>Payment page</title>
 
     <link href="styles/enquire.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
@@ -17,17 +17,16 @@
 <body>
     <!--The header section starts-->
     <?php
-        include ("header.inc");
+        include ("header.html");
     ?>
     <!--The header section ends-->
 
     <!--The form heading section starts-->
     <section id="enquire_intro">
-        <h1>ENQUIRY PAGE</h1>
+        <h1>ORDER PAGE</h1>
         <div id="enquiry_text">
-            <p>Time is valuable. We strive to bring best quality pieces for you to tell time. We bring you the best
-                value.
-                We are more than happy to answer any questions you may have about our products.</p>
+            <p>Time is valuable. We strive to bring best quality pieces for you to tell time.
+                We are happy to answer any questions you may have about our products.</p>
         </div>
         <div id="red_line"></div>
     </section>
@@ -184,7 +183,7 @@
 
     <!--The footer section starts-->
     <?php
-        include ("footer.inc");
+        include ("footer.html");
     ?>
     <!--The footer section ends-->
 </body>

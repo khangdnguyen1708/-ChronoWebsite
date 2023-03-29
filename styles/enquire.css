@@ -1,6 +1,5 @@
 /* enquire.html starts */
 #enquire_intro h1 {
-    border: 1px solid red;
     text-align: center;
     padding: 1em auto;
     margin-top: 1em;
@@ -13,7 +12,7 @@
 #enquire_intro p {
     text-align: center;
     margin: 1em auto;
-    width: 50vw;
+    width: 54vw;
     max-width: 620px;
     font-family: serif;
     font-size: large;
