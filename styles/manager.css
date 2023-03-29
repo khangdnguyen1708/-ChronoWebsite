@@ -1,0 +1,17 @@
+h1 {
+  margin: 10px;
+}
+fieldset {
+  display: inline;
+  width: auto;
+  margin: 10px;
+}
+.label {
+  text-align: right;
+}
+#submit {
+  display: block;
+  width: auto;
+  float: center;
+  margin: 3% auto;
+}
