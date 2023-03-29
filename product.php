@@ -9,7 +9,7 @@
     <title>Watches page</title>
 
     <!-- Link to style.css file -->
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/product.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 </head>
