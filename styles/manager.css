@@ -1,0 +1,13 @@
+fieldset {
+  display: inline;
+  width: auto;
+}
+.label {
+  text-align: right;
+}
+#submit {
+  display: block;
+  width: auto;
+  float: center;
+  margin: 3% auto;
+}
