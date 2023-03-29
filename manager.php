@@ -5,11 +5,13 @@
 </head>
 <body>
 
-<php? 
+<?php 
   require_once("settings.php");
-
+  
   if(!$conn) {
-    
+    echo "<p>Database connection failure</p>";
+  } else {
+    $sql_table = "";
   }
 ?>
 
