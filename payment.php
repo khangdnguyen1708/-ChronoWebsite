@@ -33,7 +33,7 @@
     <!--The form heading section ends-->
 
     <!--The form section starts-->
-    <form method="post" action="https://mercury.swin.edu.au/it000000/formtest.php">
+    <form novalidate method="post" action="https://mercury.swin.edu.au/it000000/formtest.php">
         <fieldset>
             <legend>PERSONAL INFORMATION</legend>
             <div class="form_line">
