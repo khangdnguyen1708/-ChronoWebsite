@@ -183,6 +183,14 @@ textarea {
     transform: scaleX(1);
 }
 
+#testing {
+    text-align: right;
+}
+
+#product {
+    border: 1px solid red;
+}
+
 /* enquire.html ends */
 
 /* enquire's responsive starts*/

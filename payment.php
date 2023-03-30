@@ -49,12 +49,12 @@
 
             <div class="form_line">
                 <div class="form_box">
-                    <label for="firstname" class="main_label">FIRST NAME</label>
-                    <input required id="firstname" name="firstname" type="text" pattern="[A-Za-z]{1,25}" title="maximum 25 alphabetical characters">
+                    <label for="first_name" class="main_label">FIRST NAME</label>
+                    <input required id="first_name" name="first_name" type="text" pattern="[A-Za-z]{1,25}" title="maximum 25 alphabetical characters">
                 </div>
                 <div class="form_box">
-                    <label for="lastname" class="main_label">LAST NAME</label>
-                    <input required id="lastname" name="lastname" type="text" pattern="[A-Za-z]{1,25}" title="maximum 25 alphabetical characters">
+                    <label for="last_name" class="main_label">LAST NAME</label>
+                    <input required id="last_name" name="last_name" type="text" pattern="[A-Za-z]{1,25}" title="maximum 25 alphabetical characters">
                 </div>
             </div>
 
@@ -64,8 +64,8 @@
                     <input required id="email" name="email" type="email">
                 </div>
                 <div class="form_box">
-                    <label for="phonenumber" class="main_label">PHONE NUMBER</label>
-                    <input required id="phonenumber" name="phonenumber" type="text" pattern="\d{1,10}]" title="maximum 10 digits" placeholder="038 748 2345">
+                    <label for="phone_number" class="main_label">PHONE NUMBER</label>
+                    <input required id="phone_number" name="phone_number" type="text" pattern="\d{1,10}]" title="maximum 10 digits" placeholder="038 748 2345">
                 </div>
             </div>
         </fieldset>
@@ -74,12 +74,12 @@
             <legend>ADDRESS INFORMATION</legend>
             <div class="form_line">
                 <div class="form_box">
-                    <label for="street" class="main_label">STREET ADDRESS</label>
-                    <input required id="street" name="street" type="text" pattern=".{1,40}" title="maximum 40 characters">
+                    <label for="street_addr" class="main_label">STREET ADDRESS</label>
+                    <input required id="street_addr" name="street_addr" type="text" pattern=".{1,40}" title="maximum 40 characters">
                 </div>
                 <div class="form_box">
-                    <label for="town" class="main_label">SUBURB/ TOWN</label>
-                    <input required id="town" name="town" type="text" pattern=".{1,20}" title="maximum 20 characters">
+                    <label for="city" class="main_label">CITY</label>
+                    <input required id="city" name="city" type="text" pattern=".{1,20}" title="maximum 20 characters">
                 </div>
             </div>
 
@@ -104,7 +104,7 @@
                 </div>
             </div>
 
-            <div class="form_line">
+            <!-- <div class="form_line">
                 <div class="form_box">
                     <label class="main_label">PREFERRED CONTACT</label>
                     <div id="radio_box">
@@ -122,25 +122,29 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </fieldset>
 
         <fieldset>
-            <legend>ENQUIRY</legend>
+            <legend>PRODUCT & PAYMENT</legend>
             <div class="form_line">
                 <div class="form_box">
                     <label for="product" class="main_label">PRODUCT</label>
                     <select required id="product" name="product">
                         <option value="" disabled selected>Please select</option>
-                        <option value="">Novelties</option>
-                        <option value="">Apex</option>
-                        <option value="">Zenith</option>
-                        <option value="">Radiance</option>
-                        <option value="">Empyrean</option>
-                        <option value="">Horizon</option>
-                        <option value="">Luminary</option>
-                        <option value="">Odyssey</option>
+                        <option value="">Novelties, $45,000</option>
+                        <option value="">Apex, $50,000</option>
+                        <option value="">Zenith, $47,000</option>
+                        <option value="">Radiance, $49,000</option>
+                        <option value="">Empyrean, $58,000</option>
+                        <option value="">Horizon, $55,000</option>
+                        <option value="">Luminary, $46,000</option>
+                        <option value="">Odyssey, $51,000</option>
                     </select>
+                </div>
+                <div class="form_box">
+                    <label for="quantity" class="main_label">QUANTITY</label>
+                    <input required id="quantity" name="quantity" type="text" pattern="">
                 </div>
             </div>
 
