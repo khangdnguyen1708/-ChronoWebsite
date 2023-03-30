@@ -36,7 +36,7 @@
 
 
 <?php 
-  require_once("settings2.php");
+  require_once("settings.php");
   
   if(!$conn) {
     echo "connection failed";
