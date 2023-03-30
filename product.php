@@ -23,7 +23,7 @@
 
 
     <!-- The banner section starts -->
-    <section id="banner">
+    <section id="banner" style="background-image: url(images/home.jpeg)">
         <h4 class="product_h4">Our Collection</h4>
         <h2 id="product_h2">Timeless style</h2>
         <h1 id="product_h1">at your fingertips</h1>
@@ -303,13 +303,13 @@
 
     <!-- The small banner section starts -->
     <section id="sm-banner">
-        <div class="banner-box">
+        <div class="banner-box" style="background-image: url(images/sm-banner1.jpeg)">
             <h4 class="product_h4">Kylian</h4>
             <p>Mbappé</p>
             <button>Buy Now</button>
         </div>
 
-        <div class="banner-box banner-box2">
+        <div class="banner-box banner-box2" style="background-image: url(images/sm-banner2.jpeg)">
             <h4 class="product_h4">Dina </h4>
             <p>Asher-Smith</p>
             <button>Buy Now</button>
