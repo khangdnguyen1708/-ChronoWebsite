@@ -87,14 +87,20 @@
     } else {
         header ("location: payment.php");
     }
-    // Check if table exists
+
+    // Check if table exist
     $check_table = "carsd";
     $result = mysqli_query($conn, "SHOW TABLES LIKE '$check_table'");
     if ($result->num_rows != 0){
         echo "<p>table exists</p>";
     } else {
+        // Create table if not --MANH NGUYEN--
         echo "<p>table not found</p>";
     }
+
+    // Sanitise all inputs --MANH NGUYEN--
+
+    //
 
     echo "<p>end</p>";
     ?>
