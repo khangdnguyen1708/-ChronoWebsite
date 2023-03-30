@@ -17,7 +17,7 @@
 <body>
     <!--The header section starts-->
     <?php
-        include ("header.html");
+    include("header.html");
     ?>
     <!--The header section ends-->
 
@@ -126,7 +126,7 @@
         </fieldset>
 
         <fieldset>
-            <legend>PRODUCT & PAYMENT</legend>
+            <legend>PRODUCT</legend>
             <div class="form_line">
                 <div class="form_box">
                     <label for="product" class="main_label">PRODUCT</label>
@@ -147,47 +147,64 @@
                     <input required id="quantity" name="quantity" type="text" pattern="">
                 </div>
             </div>
-
-            <!-- <div class="form_line">
-                <label class="main_label">PRODUCT FEATURES</label>
-                <div id="checkbox_box">
-                    <div>
-                        <input checked="checked" type="checkbox" id="material" name="features[]" value="material">
-                        <label>Material</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="water" name="features[]" value="water">
-                        <label>Water resistance</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="strap" name="features[]" value="strap">
-                        <label>Strap</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="movement" name="features[]" value="movement">
-                        <label>Watch movement</label>
-                    </div>
-                </div>
-            </div> -->
-
-            <!-- <div class="form_line">
-                <div class="form_box">
-                    <label id="comment_label" for="comment">COMMENT</label>
-                    <textarea id="comment" name="comment" placeholder="Write description of your problem here..."></textarea>
-                </div>
-            </div> -->
         </fieldset>
+
+        <fieldset>
+            <legend>PAYMENT</legend>
+            <div class="form_line">
+                <div class="form_box">
+                    <label for="card_type" class="main_label">CARD TYPE</label>
+                    <select required id="card_type" name="card_type">
+                        <option value="" disabled selected>Please select</option>
+                        <option value="">Visa</option>
+                        <option value="">Mastercard</option>
+                        <option value="">American Express</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form_line">
+                <div class="form_box">
+                    <label for="card_name" class="main_label">CARDHOLDER NAME</label>
+                    <input required id="card_name" name="card_name" type="text" pattern="">
+                </div>
+                <div class="form_box">
+                    <label for="card_name" class="main_label">CARD NUMBER</label>
+                    <input required id="card_name" name="card_name" type="text" pattern="">
+                </div>
+            </div>
+        </fieldset>
+        <!-- <div class="form_line">
+            <label class="main_label">PRODUCT FEATURES</label>
+            <div id="checkbox_box">
+                <div>
+                    <input checked="checked" type="checkbox" id="material" name="features[]" value="material">
+                    <label>Material</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="water" name="features[]" value="water">
+                    <label>Water resistance</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="strap" name="features[]" value="strap">
+                    <label>Strap</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="movement" name="features[]" value="movement">
+                    <label>Watch movement</label>
+                </div>
+            </div>
+        </div>
 
         <div id="button_container">
             <button class="form_button" type="submit" value="book">SUBMIT</button>
             <button class="form_button" type="reset" value="reset">RESET</button>
-        </div>
+        </div> -->
     </form>
     <!--The form section ends-->
 
     <!--The footer section starts-->
     <?php
-        include ("footer.html");
+    include("footer.html");
     ?>
     <!--The footer section ends-->
 </body>
