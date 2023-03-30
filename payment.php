@@ -129,8 +129,8 @@
             <legend>PRODUCT</legend>
             <div class="form_line">
                 <div class="form_box">
-                    <label for="product" class="main_label">PRODUCT</label>
-                    <select required id="product" name="product">
+                    <label for="order_product" class="main_label">PRODUCT</label>
+                    <select required id="order_product" name="order_product">
                         <option value="" disabled selected>Please select</option>
                         <option value="">Novelties, $45,000</option>
                         <option value="">Apex, $50,000</option>
@@ -143,8 +143,8 @@
                     </select>
                 </div>
                 <div class="form_box">
-                    <label for="quantity" class="main_label">QUANTITY</label>
-                    <input required id="quantity" name="quantity" type="text" pattern="">
+                    <label for="order_quantity" class="main_label">QUANTITY</label>
+                    <input required id="order_quantity" name="order_quantity" type="text" pattern="">
                 </div>
             </div>
         </fieldset>
@@ -172,7 +172,21 @@
                     <input required id="card_name" name="card_name" type="text" pattern="">
                 </div>
             </div>
+            <div class="form_line">
+                <div class="form_box">
+                    <label for="card_expire" class="main_label">CARD EXPIRY DATE</label>
+                    <input required id="card_expire" name="card_expire" type="text" pattern="">
+                </div>
+                <div class="form_box">
+                    <label for="card_cvv" class="main_label">CVV CODE</label>
+                    <input required id="card_cvv" name="card_cvv" type="text" pattern="">
+                </div>
+            </div>
         </fieldset>
+
+        <div id="button_container">
+            <button class="form_button" type="submit" value="book">CHECK OUT</button>
+        </div>
         <!-- <div class="form_line">
             <label class="main_label">PRODUCT FEATURES</label>
             <div id="checkbox_box">

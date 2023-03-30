@@ -16,7 +16,7 @@
 
 <body>
     <?php
-    require_once("settings2.php");
+    require_once("settingslocal.php");
     $conn = @mysqli_connect(
         $host,
         $user,
@@ -89,13 +89,14 @@
     }
 
     // Check if table exist
-    $check_table = "carsd";
+    $check_table = "cars";
     $result = mysqli_query($conn, "SHOW TABLES LIKE '$check_table'");
     if ($result->num_rows != 0){
         echo "<p>table exists</p>";
     } else {
         // Create table if not --KHANG NGUYEN--
         echo "<p>table not found</p>";
+        $create_table_query = "create table orders (id int(";
     }
 
     // Sanitise all inputs --MANH NGUYEN--
