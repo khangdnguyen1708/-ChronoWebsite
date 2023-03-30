@@ -148,7 +148,7 @@
                 </div>
             </div>
 
-            <div class="form_line">
+            <!-- <div class="form_line">
                 <label class="main_label">PRODUCT FEATURES</label>
                 <div id="checkbox_box">
                     <div>
@@ -168,14 +168,14 @@
                         <label>Watch movement</label>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="form_line">
+            <!-- <div class="form_line">
                 <div class="form_box">
                     <label id="comment_label" for="comment">COMMENT</label>
                     <textarea id="comment" name="comment" placeholder="Write description of your problem here..."></textarea>
                 </div>
-            </div>
+            </div> -->
         </fieldset>
 
         <div id="button_container">
