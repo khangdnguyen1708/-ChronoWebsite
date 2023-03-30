@@ -36,7 +36,7 @@
 
 
 <?php 
-  require_once("settings.php");
+  require_once("settings2.php");
   
   if(!$conn) {
     echo "connection failed";
@@ -75,6 +75,8 @@
   }
 
 ?>
+
+<?php include("footer.html"); ?>
 
 </body>
 </html>
