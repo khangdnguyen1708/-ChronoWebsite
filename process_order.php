@@ -94,13 +94,40 @@
     if ($result->num_rows != 0){
         echo "<p>table exists</p>";
     } else {
-        // Create table if not --MANH NGUYEN--
+        // Create table if not --KHANG NGUYEN--
         echo "<p>table not found</p>";
     }
 
     // Sanitise all inputs --MANH NGUYEN--
 
-    //
+    // Check input format using Regex (need to check) --MANH NGUYEN--
+    $errMsg = "";
+    if ($first_name == "") {
+        $errMsg .= "<p>You must enter your first name.</p>";
+    }
+    if (!preg_match("/^[a-zA-Z]*$/", $first_name)) {
+        $errMsg .= "<p>Only alpha letters allowed in your first name.</p>";
+    }
+    if ($lastname == "") {
+        $errMsg .= "<p>You must enter your last name.</p>";
+    }
+    if (!preg_match("/^[a-zA-Z-]*$/", $lastname)) {
+        $errMsg .= "<p>Only alpha letters and hyphen are allowed in your first name.</p>";
+    }
+    if (!is_numeric($age)) {
+        $errMsg .= "<p>Age must be a numeric number.</p>";
+    } 
+    if ($age < 18 || $age > 10000) {
+        $errMsg .= "<p>Age must be between 18 and 10,000.</p>";
+    }
+
+    if ($errMsg != "") {
+        echo "<p>$errMsg</p>";
+    } else {
+        echo "<p>all inputs are good</p>";
+    }
+
+    // Add all inputs to tables --KHANG NGUYEN--
 
     echo "<p>end</p>";
     ?>
