@@ -1,5 +1,5 @@
 <?php
-    session_start();
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -44,58 +44,64 @@
     }
 
     // Checks if process was triggered by a form submit, if not return to payment.php
-    /* if (isset($_POST["first_name"])) {
+    if (isset($_POST["first_name"])) {
         $firstname = $_POST["first_name"];
     } else {
-        header ("location: payment.php");
+        header("location: payment.php");
     }
 
     if (isset($_POST["last_name"])) {
         $firstname = $_POST["last_name"];
     } else {
-        header ("location: payment.php");
+        header("location: payment.php");
     }
 
     if (isset($_POST["email"])) {
         $firstname = $_POST["email"];
     } else {
-        header ("location: payment.php");
+        header("location: payment.php");
     }
 
     if (isset($_POST["phone_number"])) {
         $firstname = $_POST["phone_number"];
     } else {
-        header ("location: payment.php");
+        header("location: payment.php");
     }
 
     if (isset($_POST["street_addr"])) {
         $firstname = $_POST["street_addr"];
     } else {
-        header ("location: payment.php");
+        header("location: payment.php");
     }
 
     if (isset($_POST["city"])) {
         $firstname = $_POST["city"];
     } else {
-        header ("location: payment.php");
+        header("location: payment.php");
     }
 
     if (isset($_POST["state"])) {
         $firstname = $_POST["state"];
     } else {
-        header ("location: payment.php");
+        header("location: payment.php");
     }
 
     if (isset($_POST["postcode"])) {
         $firstname = $_POST["postcode"];
     } else {
-        header ("location: payment.php");
-    } */
+        header("location: payment.php");
+    }
+
+    if (isset($_POST["postcode"])) {
+        $firstname = $_POST["postcode"];
+    } else {
+        header("location: payment.php");
+    }
 
     // Check if table orders exist
     $check_table = "cars";
     $result = mysqli_query($conn, "SHOW TABLES LIKE '$check_table'");
-    if ($result->num_rows != 0){
+    if ($result->num_rows != 0) {
         echo "<p>table exists</p>";
     } else {
         echo "<p>table not found</p>";
@@ -106,7 +112,7 @@
     // Check if table personal exist
     $check_table = "cars";
     $result = mysqli_query($conn, "SHOW TABLES LIKE '$check_table'");
-    if ($result->num_rows != 0){
+    if ($result->num_rows != 0) {
         echo "<p>table exists</p>";
     } else {
         echo "<p>table not found</p>";
@@ -132,7 +138,7 @@
     }
     if (!is_numeric($age)) {
         $errMsg .= "<p>Age must be a numeric number.</p>";
-    } 
+    }
     if ($age < 18 || $age > 10000) {
         $errMsg .= "<p>Age must be between 18 and 10,000.</p>";
     }
