@@ -89,7 +89,7 @@
     } */
 
     // Check if table orders exist
-    $check_table = "cars3";
+    $check_table = "cars";
     $result = mysqli_query($conn, "SHOW TABLES LIKE '$check_table'");
     if ($result->num_rows != 0){
         echo "<p>table exists</p>";
@@ -100,13 +100,13 @@
     }
 
     // Check if table personal exist
-    $check_table = "cars3";
+    $check_table = "cars";
     $result = mysqli_query($conn, "SHOW TABLES LIKE '$check_table'");
     if ($result->num_rows != 0){
         echo "<p>table exists</p>";
     } else {
         echo "<p>table not found</p>";
-        $create_table_query = "create table personal (customer_id int(3) not null AUTO_INCREMENT, title varchar(255) not null, first_name varchar(255) not null, last_name varchar(255) not null, email varchar(255) not null, phone_number int(10) not null PRIMARY KEY, street_addr varchar(255) not null, city varchar(255) not null, state varchar(255) not null, postcode int(9) not null);";
+        $create_table_query = "create table cars3 (customer_id int(3) not null AUTO_INCREMENT, title varchar(255) not null, first_name varchar(255) not null, last_name varchar(255) not null, email varchar(255) not null, phone_number int(10) not null PRIMARY KEY, street_addr varchar(255) not null, city varchar(255) not null, state varchar(255) not null, postcode int(9) not null);";
         $result = mysqli_query($conn, $create_table_query);
     }
 
