@@ -3,12 +3,13 @@
 <head>
   <meta charset="utf-8">
   <title>Order searching engine</title>
+  
   <link href="styles/manager.css" rel="stylesheet">
 </head>
 
 <body>
 
-<?php include("header.html"); ?>
+<?php include("includes/header.html"); ?>
 
 <h1>Welcome ... to manager page</h1>
 <form method="post" action="manager.php">
@@ -76,7 +77,7 @@
 
 ?>
 
-<?php include("footer.html"); ?>
+<?php include("includes/footer.html"); ?>
 
 </body>
 </html>
