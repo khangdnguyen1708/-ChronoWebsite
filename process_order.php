@@ -201,7 +201,7 @@ session_start();
     if ($email == "") {
         $errMsg .= "<p>You must enter your email.</p>";
     }
-    elseif (!preg_match("/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/", $email)) {
+    elseif (!preg_match("/^\\S+@\\S+\\.\\S+$/", $email)) {
         $errMsg .= "<p>Your email must follow the following form: chrono@gmail.com</p>";
     }
 
