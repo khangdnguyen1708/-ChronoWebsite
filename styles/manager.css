@@ -1,9 +1,13 @@
 h1 {
-  margin: 0;
+  padding: 100px;
+  text-align: center;
+  font-size: 4em;
+  color: tomato;
+  background-color: aliceblue;
 }
 fieldset {
   display: inline;
-  width: 20%;
+  width: 60%;
   margin: 20px;
 }
 .label {
@@ -14,4 +18,7 @@ fieldset {
   width: auto;
   float: center;
   margin: 3% auto;
+}
+#add_order {
+  margin: 10%;
 }

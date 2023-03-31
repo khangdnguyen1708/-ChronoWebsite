@@ -12,6 +12,11 @@
 <?php include("includes/header.html"); ?>
 
 <h1>Welcome ... to manager page</h1>
+
+<form action="add_order.php">
+  <input id="add_order" type="submit" name="add_order" value="add_order">
+</form>
+
 <form method="post" action="manager.php">
   <fieldset>
     <legend><h3>How is the car you want? Please enter: ..</h3></legend>
