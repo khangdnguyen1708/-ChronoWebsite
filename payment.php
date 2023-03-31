@@ -1,5 +1,6 @@
 <?php
     session_start();
+    $_SESSION['username'] = "KHANGNGUYENDUY";
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +38,8 @@
     <!--The form heading section ends-->
 
     <!--The form section starts-->
-    <form novalidate method="post" action="https://mercury.swin.edu.au/it000000/formtest.php">
+    <!-- <form novalidate method="post" action="https://mercury.swin.edu.au/it000000/formtest.php"> -->
+    <form novalidate method="post" action="process_order.php">
         <fieldset>
             <legend>PERSONAL INFORMATION</legend>
             <div class="form_line">
