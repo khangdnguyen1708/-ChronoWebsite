@@ -57,25 +57,29 @@ session_start();
     }
     
     if (isset($_POST["last_name"])) {
-        $email = $_POST["last_name"];
+        $last_name = $_POST["last_name"];
+        $last_name = sanitise_input($last_name);
     } else {
         header("location: payment.php");
     }
 
     if (isset($_POST["email"])) {
         $email = $_POST["email"];
+        $email = sanitise_input($email);
     } else {
         header("location: payment.php");
     }
 
     if (isset($_POST["phone_number"])) {
         $phone_number = $_POST["phone_number"];
+        $phone_number = sanitise_input($phone_number);
     } else {
         header("location: payment.php");
     }
     
     if (isset($_POST["street_addr"])) {
         $street_addr = $_POST["street_addr"];
+        $street_addr = sanitise_input($street_addr);
     } else {
         header("location: payment.php");
     }
@@ -84,6 +88,7 @@ session_start();
         $citycheck = isset($_POST["city"]);
         echo "<p>City is $citycheck</p>";
         $city = $_POST["city"];
+        $city = sanitise_input($city);
     } else {
         header("location: payment.php");
     }
@@ -107,48 +112,56 @@ session_start();
 
     if (isset($_POST["postcode"])) {
         $postcode = $_POST["postcode"];
+        $firstpostcodename = sanitise_input($postcode);
     } else {
         header("location: payment.php");
     }
     
     /*if (isset($_POST["order_product"])) {
         $order_product = $_POST["order_product"];
+        $order_product = sanitise_input($order_product);
     } else {
         header("location: payment.php");
     }*/
 
     if (isset($_POST["order_quantity"])) {
         $order_quantity = $_POST["order_quantity"];
+        $order_quantity = sanitise_input($order_quantity);
     } else {
         header("location: payment.php");
     }
 
     /*if (isset($_POST["card_type"])) {
         $card_type = $_POST["card_type"];
+        $card_type = sanitise_input($card_type);
     } else {
         header("location: payment.php");
     }*/
 
     if (isset($_POST["card_name"])) {
         $card_name = $_POST["card_name"];
+        $card_name = sanitise_input($card_name);
     } else {
         header("location: payment.php");
     }
 
     if (isset($_POST["card_number"])) {
         $card_number = $_POST["card_number"];
+        $card_number = sanitise_input($card_number);
     } else {
         header("location: payment.php");
     }
 
     if (isset($_POST["card_expire"])) {
         $card_expire = $_POST["card_expire"];
+        $card_expire = sanitise_input($card_expire);
     } else {
         header("location: payment.php");
     }
 
     if (isset($_POST["card_cvv"])) {
         $card_cvv = $_POST["card_cvv"];
+        $card_cvv = sanitise_input($card_cvv);
     } else {
         header("location: payment.php");
     }
@@ -184,21 +197,68 @@ session_start();
     if ($first_name == "") {
         $errMsg .= "<p>You must enter your first name.</p>";
     }
-    if (!preg_match("/^[a-zA-Z]*$/", $first_name)) {
+    elseif (!preg_match("/^[a-zA-Z]*$/", $first_name)) {
         $errMsg .= "<p>Only alpha letters allowed in your first name.</p>";
     }
-    if ($lastname == "") {
+
+
+    if ($last_name == "") {
         $errMsg .= "<p>You must enter your last name.</p>";
     }
-    if (!preg_match("/^[a-zA-Z-]*$/", $lastname)) {
+    elseif (!preg_match("/^[a-zA-Z-]*$/", $last_name)) {
         $errMsg .= "<p>Only alpha letters and hyphen are allowed in your first name.</p>";
     }
-    if (!is_numeric($age)) {
-        $errMsg .= "<p>Age must be a numeric number.</p>";
+
+
+    if ($email == "") {
+        $errMsg .= "<p>You must enter your email.</p>";
     }
-    if ($age < 18 || $age > 10000) {
-        $errMsg .= "<p>Age must be between 18 and 10,000.</p>";
+    elseif (!preg_match("/^\\S+@\\S+\\.\\S+$/", $email)) {
+        $errMsg .= "<p>Your email must follow the following form: chrono@gmail.com</p>";
     }
+
+    if ($phone_number == "") {
+        $errMsg .= "<p>You must enter your phone number.</p>";
+    }
+    elseif (!preg_match("/^[0-9]{10}$/", $phone_number)) {
+        $errMsg .= "<p>Your phone number must have 10 digits.</p>";
+    }
+
+    if ($street_addr == "") {
+        $errMsg .= "<p>You must enter your street address.</p>";
+    }
+    elseif (!preg_match("/^[a-zA-Z0-9 _]*$/", $street_addr)) {
+        $errMsg .= "<p>Only your house number and street name.</p>";
+    }
+
+    if ($city == "") {
+        $errMsg .= "<p>You must enter your city name.</p>";
+    }
+    elseif (!preg_match("/^[a-zA-Z ]*$/", $city)) {
+        $errMsg .= "<p>Only your city name.</p>";
+    }
+
+    if ($postcode == "") {
+        $errMsg .= "<p>You must enter the post code of your city.</p>";
+    }
+    elseif (!preg_match("/^[0-9]{5}$/", $postcode)) {
+        $errMsg .= "<p>Your must enter 5 digits</p>";
+    }
+
+    if ($order_quantity == "") {
+        $errMsg .= "<p>You must enter the quantity of the product you want to buy.</p>";
+    }
+    elseif (!preg_match("/^[0-9]$/", $order_quantity)) {
+        $errMsg .= "<p>Quantity should not exceed 10</p>";
+    }
+
+    if ($card_name == "") {
+        $errMsg .= "<p>You must enter the cardholder name.</p>";
+    }
+    elseif (!preg_match("/^[a-zA-Z ]*$/", $card_name)) {
+        $errMsg .= "<p>Only alpha letters allowed in the cardholder name.</p>";
+    }
+
 
     if ($errMsg != "") {
         echo "<p>$errMsg</p>";

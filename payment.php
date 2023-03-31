@@ -163,9 +163,9 @@
                     <label for="card_type" class="main_label">CARD TYPE</label>
                     <select required id="card_type" name="card_type">
                         <option value="" disabled selected>Please select</option>
-                        <option value="">Visa</option>
-                        <option value="">Mastercard</option>
-                        <option value="">American Express</option>
+                        <option value="Visa">Visa</option>
+                        <option value="Master">Mastercard</option>
+                        <option value="AE">American Express</option>
                     </select>
                 </div>
             </div>
