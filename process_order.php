@@ -110,7 +110,17 @@
         echo "<p>table exists</p>";
     } else {
         echo "<p>table not found</p>";
-        $create_table_query = "create table cars3 (customer_id int(3) not null AUTO_INCREMENT, title varchar(255) not null, first_name varchar(255) not null, last_name varchar(255) not null, email varchar(255) not null, phone_number int(10) not null PRIMARY KEY, street_addr varchar(255) not null, city varchar(255) not null, state varchar(255) not null, postcode int(9) not null);";
+        $create_table_query = "create table cars3 (
+            customer_id int(3) not null AUTO_INCREMENT, 
+            title varchar(255) not null, 
+            first_name varchar(255) not null, 
+            last_name varchar(255) not null, 
+            email varchar(255) not null, 
+            phone_number int(10) not null PRIMARY KEY, 
+            street_addr varchar(255) not null, 
+            city varchar(255) not null, 
+            state varchar(255) not null, 
+            postcode int(9) not null);";
         $result = mysqli_query($conn, $create_table_query);
     }
 
