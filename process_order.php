@@ -16,7 +16,7 @@
 
 <body>
     <?php
-    require_once("settings2.php");
+    require_once("settingslocal.php");
     $conn = @mysqli_connect(
         $host,
         $user,
@@ -40,7 +40,7 @@
     }
 
     // Checks if process was triggered by a form submit, if not return to payment.php
-    if (isset($_POST["first_name"])) {
+    /* if (isset($_POST["first_name"])) {
         $firstname = $_POST["first_name"];
     } else {
         header ("location: payment.php");
@@ -86,16 +86,28 @@
         $firstname = $_POST["postcode"];
     } else {
         header ("location: payment.php");
-    }
+    } */
 
-    // Check if table exist
-    $check_table = "carsd";
+    // Check if table orders exist
+    $check_table = "cars";
     $result = mysqli_query($conn, "SHOW TABLES LIKE '$check_table'");
     if ($result->num_rows != 0){
         echo "<p>table exists</p>";
     } else {
-        // Create table if not --KHANG NGUYEN--
         echo "<p>table not found</p>";
+        $create_table_query = "create table cars2 (order_id int(3) not null PRIMARY KEY AUTO_INCREMENT, order_time datetime not null, order_status varchar(255) DEFAULT 'PENDING', order_product varchar(255) not null, order_quantity int(11) not null, order_cost int(20) not null, card_type varchar(255) not null, card_name varchar(255) not null, card_number int(16) not null, card_expire varchar(5) not null, card_cvv int(3) not null, order_phone_number int(10);";
+        $result = mysqli_query($conn, $create_table_query);
+    }
+
+    // Check if table personal exist
+    $check_table = "cars";
+    $result = mysqli_query($conn, "SHOW TABLES LIKE '$check_table'");
+    if ($result->num_rows != 0){
+        echo "<p>table exists</p>";
+    } else {
+        echo "<p>table not found</p>";
+        $create_table_query = "create table cars3 (customer_id int(3) not null AUTO_INCREMENT, title varchar(255) not null, first_name varchar(255) not null, last_name varchar(255) not null, email varchar(255) not null, phone_number int(10) not null PRIMARY KEY, street_addr varchar(255) not null, city varchar(255) not null, state varchar(255) not null, postcode int(9) not null);";
+        $result = mysqli_query($conn, $create_table_query);
     }
 
     // Sanitise all inputs --MANH NGUYEN--
