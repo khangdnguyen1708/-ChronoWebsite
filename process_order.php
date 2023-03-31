@@ -190,10 +190,10 @@ session_start();
     }
 
 
-    if ($lastname == "") {
+    if ($last_name == "") {
         $errMsg .= "<p>You must enter your last name.</p>";
     }
-    elseif (!preg_match("/^[a-zA-Z-]*$/", $lastname)) {
+    elseif (!preg_match("/^[a-zA-Z-]*$/", $last_name)) {
         $errMsg .= "<p>Only alpha letters and hyphen are allowed in your first name.</p>";
     }
 
@@ -243,7 +243,7 @@ session_start();
     if ($card_name == "") {
         $errMsg .= "<p>You must enter the cardholder name.</p>";
     }
-    elseif (!preg_match("/^[a-zA-Z ]*$/", $order_quantity)) {
+    elseif (!preg_match("/^[a-zA-Z ]*$/", $card_name)) {
         $errMsg .= "<p>Only alpha letters allowed in the cardholder name.</p>";
     }
 
