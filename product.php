@@ -17,7 +17,7 @@
 <body>
     <!--The header section starts-->
     <?php
-        include("header.html");
+        include("includes/header.html");
     ?>
     <!--The header section ends-->
 
@@ -319,7 +319,7 @@
 
     <!--The footer section starts-->
     <?php
-        include("footer.html");
+        include("includes/footer.html");
     ?>
     <!--The footer section ends-->
 
