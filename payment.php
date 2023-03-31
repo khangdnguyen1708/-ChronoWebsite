@@ -46,9 +46,9 @@
                 <div class="form_box">
                     <label for="title" class="main_label">TITLE</label>
                     <select required id="title" name="title">
-                        <option value="">Mr.</option>
-                        <option value="ms">Ms.</option>
-                        <option value="mrs">Mrs.</option>
+                        <option value="Mr.">Mr.</option>
+                        <option value="Ms.">Ms.</option>
+                        <option value="Mrs.">Mrs.</option>
                     </select>
                 </div>
             </div>
@@ -91,8 +91,9 @@
 
             <div class="form_line">
                 <div class="form_box">
-                    <label for="state" class="main_label">STATE</label>
-                    <select required id="state" name="state">
+                    <label for="customer_state" class="main_label">STATE</label>
+                    <select required id="customer_state" name="customer_state">
+                        <!-- disabled so that 'Please select' cannot be choose if select another option -->
                         <option value="" disabled selected>Please select</option>
                         <option value="vic">VIC</option>
                         <option value="nsw">NSW</option>
