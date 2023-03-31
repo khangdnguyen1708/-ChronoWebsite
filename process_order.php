@@ -44,65 +44,101 @@ session_start();
     }
 
     // Checks if process was triggered by a form submit, if not return to payment.php
-    /*if (isset($_POST["title"])) {
-        $firstname = $_POST["title"];
+    if (isset($_POST["title"])) {
+        $title = $_POST["title"];
     } else {
         header("location: payment.php");
-    }*/
+    }
     
-    /*if (isset($_POST["first_name"])) {
-        $firstname = $_POST["first_name"];
+    if (isset($_POST["first_name"])) {
+        $first_name = $_POST["first_name"];
     } else {
         header("location: payment.php");
     }
 
     if (isset($_POST["last_name"])) {
-        $firstname = $_POST["last_name"];
+        $email = $_POST["last_name"];
     } else {
         header("location: payment.php");
     }
 
     if (isset($_POST["email"])) {
-        $firstname = $_POST["email"];
+        $email = $_POST["email"];
     } else {
         header("location: payment.php");
     }
 
     if (isset($_POST["phone_number"])) {
-        $firstname = $_POST["phone_number"];
+        $phone_number = $_POST["phone_number"];
     } else {
         header("location: payment.php");
     }
 
     if (isset($_POST["street_addr"])) {
-        $firstname = $_POST["street_addr"];
+        $street_addr = $_POST["street_addr"];
     } else {
         header("location: payment.php");
     }
 
     if (isset($_POST["city"])) {
-        $firstname = $_POST["city"];
+        $city = $_POST["city"];
     } else {
         header("location: payment.php");
     }
 
     if (isset($_POST["state"])) {
-        $firstname = $_POST["state"];
+        $state = $_POST["state"];
     } else {
         header("location: payment.php");
     }
 
     if (isset($_POST["postcode"])) {
-        $firstname = $_POST["postcode"];
+        $postcode = $_POST["postcode"];
     } else {
         header("location: payment.php");
     }
 
-    if (isset($_POST["postcode"])) {
-        $firstname = $_POST["postcode"];
+    if (isset($_POST["order_product"])) {
+        $order_product = $_POST["order_product"];
     } else {
         header("location: payment.php");
-    }*/
+    }
+
+    if (isset($_POST["order_quantity"])) {
+        $order_quantity = $_POST["order_quantity"];
+    } else {
+        header("location: payment.php");
+    }
+
+    if (isset($_POST["card_type"])) {
+        $card_type = $_POST["card_type"];
+    } else {
+        header("location: payment.php");
+    }
+
+    if (isset($_POST["card_name"])) {
+        $card_name = $_POST["card_name"];
+    } else {
+        header("location: payment.php");
+    }
+
+    if (isset($_POST["card_number"])) {
+        $card_number = $_POST["card_number"];
+    } else {
+        header("location: payment.php");
+    }
+
+    if (isset($_POST["card_expire"])) {
+        $card_expire = $_POST["card_expire"];
+    } else {
+        header("location: payment.php");
+    }
+
+    if (isset($_POST["card_cvv"])) {
+        $card_cvv = $_POST["card_cvv"];
+    } else {
+        header("location: payment.php");
+    }
 
     // Check if table orders exist
     $check_table = "orderstest";

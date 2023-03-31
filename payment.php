@@ -174,8 +174,8 @@
                     <input required id="card_name" name="card_name" type="text" pattern="">
                 </div>
                 <div class="form_box">
-                    <label for="card_name" class="main_label">CARD NUMBER</label>
-                    <input required id="card_name" name="card_name" type="text" pattern="">
+                    <label for="card_number" class="main_label">CARD NUMBER</label>
+                    <input required id="card_number" name="card_number" type="text" pattern="">
                 </div>
             </div>
             <div class="form_line">
