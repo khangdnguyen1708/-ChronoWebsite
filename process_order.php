@@ -235,7 +235,7 @@ session_start();
         $errMsg .= "<p>You must enter the post code of your city.</p>";
     }
     elseif (!preg_match("/^[0-9]{5}$/", $postcode)) {
-        $errMsg .= "<p>Your must enter 5 digits</p>";
+        $errMsg .= "<p>Post code must have 5 digits</p>";
     }
 
     if ($order_quantity == "") {
@@ -250,6 +250,39 @@ session_start();
     }
     elseif (!preg_match("/^[a-zA-Z ]*$/", $card_name)) {
         $errMsg .= "<p>Only alpha letters allowed in the cardholder name.</p>";
+    }
+
+    if ($card_number == "") {
+        $errMsg .= "<p>You must enter card number.</p>";
+    }
+    if ($card_type === "Visa"){
+        if (!preg_match("/^(4)([0-9]{15})$/", $card_number)){
+            $errMsg .= "<p>Visa number must have 16 digits and starts with number 4</p>";
+        }
+    }
+    if ($card_type === "Master"){
+        if (!preg_match("/^(5[1-5])([0-9]{14})$/", $card_number)){
+            $errMsg .= "<p>Master number must have 16 digits and starts with number 51 through to 55</p>";
+        }
+    }
+    if ($card_type === "AE"){
+        if (!preg_match("/^(3[4]|3[7])([0-9]{13})$/", $card_number)){
+            $errMsg .= "<p>American Express number must have 15 digits and starts with number 34 or 37</p>";
+        }
+    }
+
+    if ($card_expire == "") {
+        $errMsg .= "<p>You must enter card expire.</p>";
+    }
+    elseif(!preg_match("/^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$/", $card_expire)){
+        echo"Card expire uses the wrong format.";
+    }
+
+    if ($card_cvv == "") {
+        $errMsg .= "<p>You must enter card cvv.</p>";
+    }
+    elseif(!preg_match("/^[0-9]{3, 4}$/", $card_cvv)){
+        echo"Card cvv must have 3 or 4 digits.";
     }
 
 
