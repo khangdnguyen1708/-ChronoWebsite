@@ -45,19 +45,19 @@ session_start();
 
     // Checks if process was triggered by a form submit, if not return to payment.php
     if (isset($_POST["title"])) {
-        $title = sanitise_input($_POST["title"]);
+        $_SESSION['title'] = sanitise_input($_POST["title"]);
     } else {
         header("location: payment.php");
     }
     
     if (isset($_POST["first_name"])) {
-        $first_name = sanitise_input($_POST["first_name"]);
+        $_SESSION['first_name'] = sanitise_input($_POST["first_name"]);
     } else {
         header("location: payment.php");
     }
     
     if (isset($_POST["last_name"])) {
-        $last_name = sanitise_input($_POST["last_name"]);
+        $_SESSION['$last_name'] = sanitise_input($_POST["last_name"]);
     } else {
         header("location: payment.php");
     }
@@ -82,8 +82,6 @@ session_start();
 
     if (isset($_POST["city"])) {
         $citycheck = isset($_POST["city"]);
-        echo "<p>City is $citycheck</p>";
-        $city = $_POST["city"];
         $city = sanitise_input($city);
     } else {
         header("location: payment.php");
@@ -119,6 +117,8 @@ session_start();
         header("location: payment.php");
     }*/
 
+    $order_product = sanitise_input($_POST["order_product"]);
+
     if (isset($_POST["order_quantity"])) {
         $order_quantity = sanitise_input($_POST["order_quantity"]);
     } else {
@@ -131,6 +131,8 @@ session_start();
     } else {
         header("location: payment.php");
     }*/
+
+    $card_type = sanitise_input($_POST["card_type"]);
 
     if (isset($_POST["card_name"])) {
         $card_name = sanitise_input($_POST["card_name"]);
@@ -181,6 +183,7 @@ session_start();
     // Sanitise all inputs --MANH NGUYEN--
 
     // Check input format using Regex (need to check) --MANH NGUYEN--
+    echo "<p><br>start</p>";
     $errMsg = "";
 
     echo "<p>Title is $title</p>";
@@ -260,6 +263,7 @@ session_start();
 
     echo "<p>end</p>";
     ?>
+    <a href="fix_order.php">link to fix_order</a>
 </body>
 
 </html>

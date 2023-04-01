@@ -1,5 +1,5 @@
 <?php
-    session_start();
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -37,16 +37,17 @@
     <!--The form heading section ends-->
 
     <!--The form section starts-->
-    <form novalidate method="post" action="https://mercury.swin.edu.au/it000000/formtest.php">
+    <!-- <form novalidate method="post" action="https://mercury.swin.edu.au/it000000/formtest.php"> -->
+    <form novalidate method="post" action="process_order.php">
         <fieldset>
             <legend>PERSONAL INFORMATION</legend>
             <div class="form_line">
                 <div class="form_box">
                     <label for="title" class="main_label">TITLE</label>
                     <select required id="title" name="title">
-                        <option value="">Mr.</option>
-                        <option value="ms">Ms.</option>
-                        <option value="mrs">Mrs.</option>
+                        <option value="Mr." <?php if ($_SESSION['title'] == 'Mr.') echo ' selected="selected"'; ?>>Mr.</option>
+                        <option value="Ms." <?php if ($_SESSION['title'] == 'Ms.') echo ' selected="selected"'; ?>>Ms.</option>
+                        <option value="Mrs." <?php if ($_SESSION['title'] == 'Mrs.') echo ' selected="selected"'; ?>>Mrs.</option>
                     </select>
                 </div>
             </div>
@@ -54,7 +55,7 @@
             <div class="form_line">
                 <div class="form_box">
                     <label for="first_name" class="main_label">FIRST NAME</label>
-                    <input required id="first_name" name="first_name" type="text" pattern="[A-Za-z]{1,25}" title="maximum 25 alphabetical characters">
+                    <input required id="first_name" name="first_name" type="text" pattern="[A-Za-z]{1,25}" title="maximum 25 alphabetical characters" <?php echo 'value=""'; ?>>
                 </div>
                 <div class="form_box">
                     <label for="last_name" class="main_label">LAST NAME</label>
@@ -89,8 +90,9 @@
 
             <div class="form_line">
                 <div class="form_box">
-                    <label for="state" class="main_label">STATE</label>
-                    <select required id="state" name="state">
+                    <label for="customer_state" class="main_label">STATE</label>
+                    <select required id="customer_state" name="customer_state">
+                        <!-- disabled so that 'Please select' cannot be choose if select another option -->
                         <option value="" disabled selected>Please select</option>
                         <option value="vic">VIC</option>
                         <option value="nsw">NSW</option>
@@ -160,9 +162,9 @@
                     <label for="card_type" class="main_label">CARD TYPE</label>
                     <select required id="card_type" name="card_type">
                         <option value="" disabled selected>Please select</option>
-                        <option value="">Visa</option>
-                        <option value="">Mastercard</option>
-                        <option value="">American Express</option>
+                        <option value="Visa">Visa</option>
+                        <option value="Master">Mastercard</option>
+                        <option value="AE">American Express</option>
                     </select>
                 </div>
             </div>
@@ -172,8 +174,8 @@
                     <input required id="card_name" name="card_name" type="text" pattern="">
                 </div>
                 <div class="form_box">
-                    <label for="card_name" class="main_label">CARD NUMBER</label>
-                    <input required id="card_name" name="card_name" type="text" pattern="">
+                    <label for="card_number" class="main_label">CARD NUMBER</label>
+                    <input required id="card_number" name="card_number" type="text" pattern="">
                 </div>
             </div>
             <div class="form_line">
