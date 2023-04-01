@@ -182,7 +182,7 @@
             <div class="form_line">
                 <div class="form_box">
                     <label for="card_expire" class="main_label">CARD EXPIRY DATE</label>
-                    <input required id="card_expire" name="card_expire" type="date" pattern="">
+                    <input required id="card_expire" name="card_expire" type="text" pattern="">
                 </div>
                 <div class="form_box">
                     <label for="card_cvv" class="main_label">CVV CODE</label>
