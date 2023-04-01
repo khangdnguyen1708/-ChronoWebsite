@@ -95,14 +95,13 @@
                     <select required id="customer_state" name="customer_state">
                         <!-- disabled so that 'Please select' cannot be choose if select another option -->
                         <option value="" disabled selected>Please select</option>
-                        <option value="vic">VIC</option>
-                        <option value="nsw">NSW</option>
-                        <option value="qld">QLD</option>
-                        <option value="nt">NT</option>
-                        <option value="wa">WA</option>
-                        <option value="sa">SA</option>
-                        <option value="tas">TAS</option>
-                        <option value="act">ACT</option>
+                        <option value="alabama">Alabama</option>
+                        <option value="alaska">Alaska</option>
+                        <option value="california">California</option>
+                        <option value="florida">Florida</option>
+                        <option value="hawaii">Hawaii</option>
+                        <option value="illinois">Illinios</option>
+                        <option value="newyork">New York</option>
                     </select>
                 </div>
                 <div class="form_box">

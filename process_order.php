@@ -57,32 +57,31 @@ session_start();
     }
     
     if (isset($_POST["last_name"])) {
-        $_SESSION['$last_name'] = sanitise_input($_POST["last_name"]);
+        $_SESSION['last_name'] = sanitise_input($_POST["last_name"]);
     } else {
         header("location: payment.php");
     }
 
     if (isset($_POST["email"])) {
-        $email = sanitise_input($_POST["email"]);
+        $_SESSION['email'] = sanitise_input($_POST["email"]);
     } else {
         header("location: payment.php");
     }
 
     if (isset($_POST["phone_number"])) {
-        $phone_number = sanitise_input($_POST["phone_number"]);
+        $_SESSION['phone_number'] = sanitise_input($_POST["phone_number"]);
     } else {
         header("location: payment.php");
     }
     
     if (isset($_POST["street_addr"])) {
-        $street_addr = sanitise_input($_POST["street_addr"]);
+        $_SESSION['street_addr'] = sanitise_input($_POST["street_addr"]);
     } else {
         header("location: payment.php");
     }
 
     if (isset($_POST["city"])) {
-        $citycheck = isset($_POST["city"]);
-        $city = sanitise_input($city);
+        $_SESSION['city'] = sanitise_input($_POST["city"]);
     } else {
         header("location: payment.php");
     }
@@ -102,10 +101,10 @@ session_start();
         header("location: payment.php");
     }*/
 
-    $customer_state = sanitise_input($_POST["customer_state"]);
+    $_SESSION['customer_state'] = sanitise_input($_POST["customer_state"]);
 
     if (isset($_POST["postcode"])) {
-        $postcode = sanitise_input($_POST["postcode"]);
+        $_SESSION['postcode'] = sanitise_input($_POST["postcode"]);
     } else {
         header("location: payment.php");
     }
@@ -117,10 +116,10 @@ session_start();
         header("location: payment.php");
     }*/
 
-    $order_product = sanitise_input($_POST["order_product"]);
+    $_SESSION['order_product'] = sanitise_input($_POST["order_product"]);
 
     if (isset($_POST["order_quantity"])) {
-        $order_quantity = sanitise_input($_POST["order_quantity"]);
+        $_SESSION['order_quantity'] = sanitise_input($_POST["order_quantity"]);
     } else {
         header("location: payment.php");
     }
@@ -132,28 +131,28 @@ session_start();
         header("location: payment.php");
     }*/
 
-    $card_type = sanitise_input($_POST["card_type"]);
+    $_SESSION['card_type'] = sanitise_input($_POST["card_type"]);
 
     if (isset($_POST["card_name"])) {
-        $card_name = sanitise_input($_POST["card_name"]);
+        $_SESSION['card_name'] = sanitise_input($_POST["card_name"]);
     } else {
         header("location: payment.php");
     }
 
     if (isset($_POST["card_number"])) {
-        $card_number = sanitise_input($_POST["card_number"]);
+        $_SESSION['card_number'] = sanitise_input($_POST["card_number"]);
     } else {
         header("location: payment.php");
     }
 
     if (isset($_POST["card_expire"])) {
-        $card_expire = sanitise_input($_POST["card_expire"]);
+        $_SESSION['card_expire'] = sanitise_input($_POST["card_expire"]);
     } else {
         header("location: payment.php");
     }
 
     if (isset($_POST["card_cvv"])) {
-        $card_cvv = sanitise_input($_POST["card_cvv"]);
+        $_SESSION['card_cvv'] = sanitise_input($_POST["card_cvv"]);
     } else {
         header("location: payment.php");
     }

@@ -55,22 +55,22 @@ session_start();
             <div class="form_line">
                 <div class="form_box">
                     <label for="first_name" class="main_label">FIRST NAME</label>
-                    <input required id="first_name" name="first_name" type="text" pattern="[A-Za-z]{1,25}" title="maximum 25 alphabetical characters" <?php echo 'value=""'; ?>>
+                    <input required id="first_name" name="first_name" type="text" pattern="[A-Za-z]{1,25}" title="maximum 25 alphabetical characters" value="<?php echo $_SESSION['first_name'] ?>">
                 </div>
                 <div class="form_box">
                     <label for="last_name" class="main_label">LAST NAME</label>
-                    <input required id="last_name" name="last_name" type="text" pattern="[A-Za-z]{1,25}" title="maximum 25 alphabetical characters">
+                    <input required id="last_name" name="last_name" type="text" pattern="[A-Za-z]{1,25}" title="maximum 25 alphabetical characters" value="<?php echo $_SESSION['last_name'] ?>">
                 </div>
             </div>
 
             <div class="form_line">
                 <div class="form_box">
                     <label for="email" class="main_label">EMAIL ADDRESS</label>
-                    <input required id="email" name="email" type="email">
+                    <input required id="email" name="email" type="email" value="<?php echo $_SESSION['email'] ?>">
                 </div>
                 <div class="form_box">
                     <label for="phone_number" class="main_label">PHONE NUMBER</label>
-                    <input required id="phone_number" name="phone_number" type="text" pattern="\d{1,10}]" title="maximum 10 digits" placeholder="038 748 2345">
+                    <input required id="phone_number" name="phone_number" type="text" pattern="\d{1,10}]" title="maximum 10 digits" placeholder="038 748 2345" value="<?php echo $_SESSION['phone_number'] ?>">
                 </div>
             </div>
         </fieldset>
@@ -80,11 +80,11 @@ session_start();
             <div class="form_line">
                 <div class="form_box">
                     <label for="street_addr" class="main_label">STREET ADDRESS</label>
-                    <input required id="street_addr" name="street_addr" type="text" pattern=".{1,40}" title="maximum 40 characters">
+                    <input required id="street_addr" name="street_addr" type="text" pattern=".{1,40}" title="maximum 40 characters"  value="<?php echo $_SESSION['street_addr'] ?>">
                 </div>
                 <div class="form_box">
                     <label for="city" class="main_label">CITY</label>
-                    <input required id="city" name="city" type="text" pattern=".{1,20}" title="maximum 20 characters">
+                    <input required id="city" name="city" type="text" pattern=".{1,20}" title="maximum 20 characters"  value="<?php echo $_SESSION['city'] ?>">
                 </div>
             </div>
 
@@ -94,14 +94,13 @@ session_start();
                     <select required id="customer_state" name="customer_state">
                         <!-- disabled so that 'Please select' cannot be choose if select another option -->
                         <option value="" disabled selected>Please select</option>
-                        <option value="vic">VIC</option>
-                        <option value="nsw">NSW</option>
-                        <option value="qld">QLD</option>
-                        <option value="nt">NT</option>
-                        <option value="wa">WA</option>
-                        <option value="sa">SA</option>
-                        <option value="tas">TAS</option>
-                        <option value="act">ACT</option>
+                        <option value="alabama">Alabama</option>
+                        <option value="alaska">Alaska</option>
+                        <option value="california">California</option>
+                        <option value="florida">Florida</option>
+                        <option value="hawaii">Hawaii</option>
+                        <option value="illinois">Illinios</option>
+                        <option value="newyork">New York</option>
                     </select>
                 </div>
                 <div class="form_box">
