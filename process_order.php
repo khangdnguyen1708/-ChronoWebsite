@@ -268,6 +268,20 @@ session_start();
         }
     }
 
+    if ($card_expire == "") {
+        $errMsg .= "<p>You must enter card expire.</p>";
+    }
+    elseif(!preg_match("/^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$/", $card_expire)){
+        echo"Card expire uses the wrong format.";
+    }
+
+    if ($card_cvv == "") {
+        $errMsg .= "<p>You must enter card cvv.</p>";
+    }
+    elseif(!preg_match("/^[0-9]{3, 4}$/", $card_cvv)){
+        echo"Card cvv must have 3 or 4 digits.";
+    }
+
 
     if ($errMsg != "") {
         echo "<p>$errMsg</p>";
