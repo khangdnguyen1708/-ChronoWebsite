@@ -58,7 +58,7 @@
   //connect to database
   require_once("settings.php");
   $sql_table = "";
-  $attr = "order_id, first_name, last_name, order_time, order_status, order_product, order_quantity, order_cost"
+  $attr = "order_id, first_name, last_name, order_time, order_status, order_product, order_quantity, order_cost";
 
   //verify connection
   if(!$conn) {
