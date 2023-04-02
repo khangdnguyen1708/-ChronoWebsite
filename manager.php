@@ -13,9 +13,8 @@
 
   <h1>Welcome ... to manager page</h1>
 
-  <form method="get" action="manager.php">
-    <input type="submit" name="add_manual_od" value="add order">
-    <input type="hidden" name="add_order">
+  <form method="get" action="payment.php">
+    <input type="submit" value="add order">
   </form>
 
   <form method="get" action="manager.php">
@@ -103,9 +102,6 @@
     } else {
       echo '<p class="err_mss">sth went wrong!</p>';
     }
-  }
-  if(isset($_GET["add_order"])) {
-    header("location: payment.php");  
   }
   if(isset($_GET["all_order"])) {
     $query = "SELECT $attr FROM $sql_table";
