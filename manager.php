@@ -9,7 +9,11 @@
 
 <body>
 
-<?php include("includes/header.html"); ?>
+<?php
+
+use function PHPSTORM_META\map;
+
+ include("includes/header.html"); ?>
 
   <h1>Welcome ... to manager page</h1>
 
@@ -23,6 +27,11 @@
     <input type="hidden" name="all_order">
   </form>
 
+  <form method="get" action="manager.php">    
+    <input type="hidden" name="pending_prod">
+    <input type="submit" value="view pending">
+  </form>
+
   <form method="get" action="manager.php">
     <fieldset>
       <label>Enter Customer's Name</label>
@@ -32,12 +41,12 @@
   </form>
 
   <form method="get" action="manager.php">
-  <fieldset>
-    <label>Enter Product Name</label>
-    <input type="text" name="sort_prod">
-    <input type="submit" value="search">
-  </fieldset>
-</form>
+    <fieldset>
+      <label>Enter Product Name</label>
+      <input type="text" name="sort_prod">
+      <input type="submit" value="search">
+    </fieldset>
+  </form>
 
 <?php
   //connect to database
@@ -110,15 +119,18 @@
   }
   if(isset($_GET["sort_name"])) {
     $search_query = $_GET["sort_name"];
-    $query = "SELECT * FROM cars WHERE CONCAT(model, ' ', price) LIKE '%$search_query%'";
+    $query = "SELECT * FROM $sql_table WHERE CONCAT(model, ' ', price) LIKE '%$search_query%'";
     $result = mysqli_query($conn, $query);
   }
   if(isset($_GET["sort_prod"])) {
     $search_query = $_GET["sort_prod"];
-    $query = "SELECT * FROM cars WHERE price LIKE '%$search_query%'";
+    $query = "SELECT * FROM $sql_table WHERE price LIKE '%$search_query%'";
     $result = mysqli_query($conn, $query);
   }
-
+  if(isset($_GET["pending_prod"])) {
+    $query = "SELECT * FROM $sql_table WHERE make='PENDING'";
+    $result = mysqli_query($conn, $query);
+  }
 
   if(!$result) {
     echo "<p>Something went wrong with $query</p>";
