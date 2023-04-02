@@ -21,12 +21,16 @@ session_start();
 <body>
     <?php
     require_once("settingslocal.php");
+    // Check onnection to database
     $conn = @mysqli_connect(
         $host,
         $user,
         $pwd,
         $sql_db
     );
+
+    // Initialize variable
+    $_SESSION['error_first_name'] = null;
 
     if (!$conn) {
         echo "<p>Database connection failure</p>";
@@ -49,13 +53,13 @@ session_start();
     } else {
         header("location: payment.php");
     }
-    
+
     if (isset($_POST["first_name"])) {
         $_SESSION['first_name'] = sanitise_input($_POST["first_name"]);
     } else {
         header("location: payment.php");
     }
-    
+
     if (isset($_POST["last_name"])) {
         $_SESSION['last_name'] = sanitise_input($_POST["last_name"]);
     } else {
@@ -73,7 +77,7 @@ session_start();
     } else {
         header("location: payment.php");
     }
-    
+
     if (isset($_POST["street_addr"])) {
         $_SESSION['street_addr'] = sanitise_input($_POST["street_addr"]);
     } else {
@@ -85,7 +89,7 @@ session_start();
     } else {
         header("location: payment.php");
     }
-    
+
     /*try {
         $customer_state_check = isset($_POST["customer_state"]);
         $checking = is_null($customer_state_check);
@@ -108,7 +112,7 @@ session_start();
     } else {
         header("location: payment.php");
     }
-    
+
     /*if (isset($_POST["order_product"])) {
         $order_product = $_POST["order_product"];
         $order_product = sanitise_input($order_product);
@@ -194,105 +198,96 @@ session_start();
     // Sanitise all inputs --MANH NGUYEN--
 
     // Check input format using Regex (need to check) --MANH NGUYEN--
-    echo "<p><br>start</p>";
+    echo "<p><br>START</p>";
     $errMsg = "";
 
-    echo "<p>Title is $title</p>";
-    if ($first_name == "") {
+    echo "<p>Title is " . $_SESSION['title'] . "</p>";
+    if ($_SESSION['first_name'] == "") {
         $errMsg .= "<p>You must enter your first name.</p>";
-    }
-    elseif (!preg_match("/^[a-zA-Z]*$/", $first_name)) {
+        $_SESSION['error_first_name'] = "You must enter your first name.";
+    } elseif (!preg_match("/^[a-zA-Z]*$/", $_SESSION['first_name'])) {
         $errMsg .= "<p>Only alpha letters allowed in your first name.</p>";
+        $_SESSION['error_first_name'] = "Only alpha letters allowed in your first name.";
     }
 
 
     if ($last_name == "") {
         $errMsg .= "<p>You must enter your last name.</p>";
-    }
-    elseif (!preg_match("/^[a-zA-Z-]*$/", $last_name)) {
+    } elseif (!preg_match("/^[a-zA-Z-]*$/", $last_name)) {
         $errMsg .= "<p>Only alpha letters and hyphen are allowed in your first name.</p>";
     }
 
 
     if ($email == "") {
         $errMsg .= "<p>You must enter your email.</p>";
-    }
-    elseif (!preg_match("/^\\S+@\\S+\\.\\S+$/", $email)) {
+    } elseif (!preg_match("/^\\S+@\\S+\\.\\S+$/", $email)) {
         $errMsg .= "<p>Your email must follow the following form: chrono@gmail.com</p>";
     }
 
     if ($phone_number == "") {
         $errMsg .= "<p>You must enter your phone number.</p>";
-    }
-    elseif (!preg_match("/^[0-9]{10}$/", $phone_number)) {
+    } elseif (!preg_match("/^[0-9]{10}$/", $phone_number)) {
         $errMsg .= "<p>Your phone number must have 10 digits.</p>";
     }
 
     if ($street_addr == "") {
         $errMsg .= "<p>You must enter your street address.</p>";
-    }
-    elseif (!preg_match("/^[a-zA-Z0-9 _]*$/", $street_addr)) {
+    } elseif (!preg_match("/^[a-zA-Z0-9 _]*$/", $street_addr)) {
         $errMsg .= "<p>Only your house number and street name.</p>";
     }
 
     if ($city == "") {
         $errMsg .= "<p>You must enter your city name.</p>";
-    }
-    elseif (!preg_match("/^[a-zA-Z ]*$/", $city)) {
+    } elseif (!preg_match("/^[a-zA-Z ]*$/", $city)) {
         $errMsg .= "<p>Only your city name.</p>";
     }
 
     if ($postcode == "") {
         $errMsg .= "<p>You must enter the post code of your city.</p>";
-    }
-    elseif (!preg_match("/^[0-9]{5}$/", $postcode)) {
+    } elseif (!preg_match("/^[0-9]{5}$/", $postcode)) {
         $errMsg .= "<p>Post code must have 5 digits</p>";
     }
 
     if ($order_quantity == "") {
         $errMsg .= "<p>You must enter the quantity of the product you want to buy.</p>";
-    }
-    elseif (!preg_match("/^[0-9]$/", $order_quantity)) {
+    } elseif (!preg_match("/^[0-9]$/", $order_quantity)) {
         $errMsg .= "<p>Quantity should not exceed 10</p>";
     }
 
     if ($card_name == "") {
         $errMsg .= "<p>You must enter the cardholder name.</p>";
-    }
-    elseif (!preg_match("/^[a-zA-Z ]*$/", $card_name)) {
+    } elseif (!preg_match("/^[a-zA-Z ]*$/", $card_name)) {
         $errMsg .= "<p>Only alpha letters allowed in the cardholder name.</p>";
     }
 
     if ($card_number == "") {
         $errMsg .= "<p>You must enter card number.</p>";
     }
-    if ($card_type === "Visa"){
-        if (!preg_match("/^(4)([0-9]{15})$/", $card_number)){
+    if ($card_type === "Visa") {
+        if (!preg_match("/^(4)([0-9]{15})$/", $card_number)) {
             $errMsg .= "<p>Visa number must have 16 digits and starts with number 4</p>";
         }
     }
-    if ($card_type === "Master"){
-        if (!preg_match("/^(5[1-5])([0-9]{14})$/", $card_number)){
+    if ($card_type === "Master") {
+        if (!preg_match("/^(5[1-5])([0-9]{14})$/", $card_number)) {
             $errMsg .= "<p>Master number must have 16 digits and starts with number 51 through to 55</p>";
         }
     }
-    if ($card_type === "AE"){
-        if (!preg_match("/^(3[4]|3[7])([0-9]{13})$/", $card_number)){
+    if ($card_type === "AE") {
+        if (!preg_match("/^(3[4]|3[7])([0-9]{13})$/", $card_number)) {
             $errMsg .= "<p>American Express number must have 15 digits and starts with number 34 or 37</p>";
         }
     }
 
     if ($card_expire == "") {
         $errMsg .= "<p>You must enter card expire.</p>";
-    }
-    elseif(!preg_match("/^[0-9]{1,2}-[0-9]{4}$/", $card_expire)){
+    } elseif (!preg_match("/^[0-9]{1,2}-[0-9]{4}$/", $card_expire)) {
         $errMsg .= "<p>Card expire must follow the following format: mm-yyyy.</p>";
     }
 
     if ($card_cvv == "") {
         $errMsg .= "<p>You must enter card cvv.</p>";
-    }
-    elseif(!preg_match("/^[0-9]{3, 4}$/", $card_cvv)){
+    } elseif (!preg_match("/^[0-9]{3, 4}$/", $card_cvv)) {
         $errMsg .= "<p>Card cvv must have 3 or 4 digits.</p>";
     }
 

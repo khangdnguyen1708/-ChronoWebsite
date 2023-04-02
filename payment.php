@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $_SESSION['username'] = "KHANGNGUYENDUY";
+    $_SESSION['error_first_name'] = null;
 ?>
 
 <!DOCTYPE html>
@@ -57,6 +57,7 @@
                 <div class="form_box">
                     <label for="first_name" class="main_label">FIRST NAME</label>
                     <input required id="first_name" name="first_name" type="text" pattern="[A-Za-z]{1,25}" title="maximum 25 alphabetical characters">
+                    <p class="error error_first_name"><?php echo $_SESSION['error_first_name'] ?></p>
                 </div>
                 <div class="form_box">
                     <label for="last_name" class="main_label">LAST NAME</label>
