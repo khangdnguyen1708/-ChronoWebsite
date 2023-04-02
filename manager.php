@@ -9,11 +9,7 @@
 
 <body>
 
-<?php
-
-use function PHPSTORM_META\map;
-
- include("includes/header.html"); ?>
+<?php include("includes/header.html"); ?>
 
   <h1>Welcome ... to manager page</h1>
 
