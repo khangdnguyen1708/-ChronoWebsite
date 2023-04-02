@@ -41,7 +41,7 @@
   <form method="get" action="manager.php">
     <fieldset>
       <label>Enter Customer's Name</label>
-      <input type="text" name="sort_name">
+      <input type="text" name="sort_name" required="required">
       <input type="submit" value="search">
     </fieldset>
   </form>
@@ -49,7 +49,7 @@
   <form method="get" action="manager.php">
     <fieldset>
       <label>Enter Product Name</label>
-      <input type="text" name="sort_prod">
+      <input type="text" name="sort_prod" required="required">
       <input type="submit" value="search">
     </fieldset>
   </form>
