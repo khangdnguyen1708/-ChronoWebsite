@@ -29,6 +29,16 @@
   </form>
 
   <form method="get" action="manager.php">
+    <input type="submit" name="cost_asc" value="cost ascending">
+    <input type="hidden" name="cost_asc">
+  </form>
+
+  <form method="get" action="manager.php">
+    <input type="submit" name="cost_desc" value="cost descending">
+    <input type="hidden" name="cost_desc">
+  </form>
+
+  <form method="get" action="manager.php">
     <fieldset>
       <label>Enter Customer's Name</label>
       <input type="text" name="sort_name">
@@ -53,19 +63,6 @@
   if(!$conn) {
     die("Connection failed: " . mysqli_connect_error());
   } 
-
-  function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-  }
-
-  // function query($con, $sql_stm, $errmss) {
-  //   if(isset($con)) {
-  //     $GLOBALS(x) = $con;
-  //   }
-  // }
 
   $query = "SELECT car_id, make, model, price FROM $sql_table";
   $result = mysqli_query($conn, $query);
@@ -127,6 +124,14 @@
     $query = "SELECT * FROM $sql_table WHERE make='PENDING'";
     $result = mysqli_query($conn, $query);
   }
+  if(isset($_GET["cost_asc"])) {
+    $query = "SELECT * FROM $sql_table ORDER BY price ASC";
+    $result = mysqli_query($conn, $query);
+  }
+  if(isset($_GET["cost_desc"])) {
+    $query = "SELECT * FROM $sql_table ORDER BY price DESC";
+    $result = mysqli_query($conn, $query);
+  }
 
   if(!$result) {
     echo "<p>Something went wrong with $query</p>";
@@ -146,6 +151,7 @@
 
     //retrieve current record pointed by the result pointer
     while($row = mysqli_fetch_assoc($result)) {
+    
       echo "<tr>\n";
       echo "<td>",$row["car_id"],"</td>";
       echo "<td>",$row["model"],"</td>";
