@@ -191,7 +191,16 @@ session_start();
         echo "<p>table personaltest exists</p>";
     } else {
         echo "<p>table personaltest not found2</p>";
-        $create_table_query = "CREATE TABLE personaltest ( title varchar(255) not null, first_name varchar(255) not null, last_name varchar(255) not null, email varchar(255) not null, phone_number int(10) not null PRIMARY KEY, street_addr varchar(255) not null, city varchar(255) not null, customer_state varchar(255) not null, postcode int(9) not null );";
+        $create_table_query = "CREATE TABLE personaltest ( 
+            title varchar(255) not null, 
+            first_name varchar(255) not null, 
+            last_name varchar(255) not null, 
+            email varchar(255) not null, 
+            hone_number int(10) not null PRIMARY KEY, 
+            street_addr varchar(255) not null, 
+            city varchar(255) not null, 
+            customer_state varchar(255) not null, p
+            ostcode int(9) not null);";
         $result = mysqli_query($conn, $create_table_query);
     }
 
