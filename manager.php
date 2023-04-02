@@ -13,42 +13,42 @@
 
   <h1>Welcome ... to manager page</h1>
 
-  <form method="get" action="payment.php">
+  <form method="get" action="payment.php" novalidate="novalidate">
     <input type="submit" value="add order">
   </form>
 
-  <form method="get" action="manager.php">
-    <input type="submit" value="view all">
+  <form method="get" action="manager.php" novalidate="novalidate">
+    <input type="submit" value="view all orders">
     <input type="hidden" name="all_order">
   </form>
 
-  <form method="get" action="manager.php">    
+  <form method="get" action="manager.php" novalidate="novalidate">    
     <input type="hidden" name="pending_prod">
     <input type="submit" value="view pending">
   </form>
 
-  <form method="get" action="manager.php">
+  <form method="get" action="manager.php" novalidate="novalidate">
     <input type="submit" name="cost_asc" value="cost ascending">
     <input type="hidden" name="cost_asc">
   </form>
 
-  <form method="get" action="manager.php">
+  <form method="get" action="manager.php" novalidate="novalidate">
     <input type="submit" name="cost_desc" value="cost descending">
     <input type="hidden" name="cost_desc">
   </form>
 
-  <form method="get" action="manager.php">
+  <form method="get" action="manager.php" novalidate="novalidate">
     <fieldset>
       <label>Enter Customer's Name</label>
-      <input type="text" name="sort_name" required="required">
+      <input type="text" name="sort_name">
       <input type="submit" value="search">
     </fieldset>
   </form>
 
-  <form method="get" action="manager.php">
+  <form method="get" action="manager.php" novalidate="novalidate">
     <fieldset>
       <label>Enter Product Name</label>
-      <input type="text" name="sort_prod" required="required">
+      <input type="text" name="sort_prod">
       <input type="submit" value="search">
     </fieldset>
   </form>
@@ -56,7 +56,7 @@
 <?php
   //connect to database
   require_once("settings.php");
-  $sql_table = "";
+  $sql_table = "orders";
   $attr = "order_id, first_name, last_name, order_time, order_status, order_product, order_quantity, order_cost";
 
   //verify connection
@@ -109,12 +109,21 @@
   }
   if(isset($_GET["sort_name"])) {
     $search_query = $_GET["sort_name"];
-    $query = "SELECT $attr FROM $sql_table WHERE CONCAT(model, ' ', price) LIKE '%$search_query%'";
-    $result = mysqli_query($conn, $query);
+    
+    if($sort_name == "") {
+      header("location: manager.php");
+
+
+      //PROBLEMS HERE
+      echo "<p class='err_mss'>You must enter information to search</p>"; 
+    } else {
+      $query = "SELECT $attr FROM $sql_table WHERE CONCAT(first_name, ' ', last_name) LIKE '%$search_query%'";
+      $result = mysqli_query($conn, $query);
+    }
   }
   if(isset($_GET["sort_prod"])) {
     $search_query = $_GET["sort_prod"];
-    $query = "SELECT $attr FROM $sql_table WHERE price LIKE '%$search_query%'";
+    $query = "SELECT $attr FROM $sql_table WHERE order_cost LIKE '%$search_query%'";
     $result = mysqli_query($conn, $query);
   }
   if(isset($_GET["pending_prod"])) {
@@ -122,11 +131,11 @@
     $result = mysqli_query($conn, $query);
   }
   if(isset($_GET["cost_asc"])) {
-    $query = "SELECT $attr FROM $sql_table ORDER BY price ASC";
+    $query = "SELECT $attr FROM $sql_table ORDER BY order_cost ASC";
     $result = mysqli_query($conn, $query);
   }
   if(isset($_GET["cost_desc"])) {
-    $query = "SELECT $attr FROM $sql_table ORDER BY price DESC";
+    $query = "SELECT $attr FROM $sql_table ORDER BY order_cost DESC";
     $result = mysqli_query($conn, $query);
   }
 
@@ -151,15 +160,16 @@
     
       echo "<tr>\n";
       echo "<td>",$row["order_id"],"</td>";
-      echo "<td>",$row["model"],"</td>";
-      echo "<td>",$row["price"],"</td>";
-      echo "<td>",$row["model"],"</td>";
-      echo "<td>",$row["price"],"</td>";
-      echo "<td>",$row["make"],"</td>";
-      echo "<td>",$row["make"],"</td>";
+      echo "<td>",$row["first_name"],"</td>";
+      echo "<td>",$row["last_name"],"</td>";
+      echo "<td>",$row["order_time"],"</td>";
+      echo "<td>",$row["order_product"],"</td>";
+      echo "<td>",$row["order_quantity"],"</td>";
+      echo "<td>",$row["order_cost"],"</td>";
+
 
       
-      echo '<td><form method="post" action="manager.php">';
+      echo '<td><form method="post" action="manager.php" novalidate="novalidate">';
       echo '<select name="upd_order_status">';
       echo '<option value="PENDING"' . ($row["order_status"] == 'PENDING' ? ' selected="selected"' : '') . '>PENDING</option>';
       echo '<option value="FULFILLED"' . ($row["order_status"] == 'FULFILLED' ? ' selected="selected"' : '') . '>FULFILLED</option>';
