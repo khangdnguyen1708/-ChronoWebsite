@@ -164,7 +164,19 @@ session_start();
         echo "<p>table orderstest exists</p>";
     } else {
         echo "<p>table orderstest not found1</p>";
-        $create_table_query = "CREATE TABLE orderstest (order_id int(3) not null PRIMARY KEY AUTO_INCREMENT, order_time date not null, order_status varchar(255) DEFAULT 'PENDING', order_product varchar(255) not null, order_quantity int(11) not null, order_cost int(20) not null, card_type varchar(255) not null, card_name varchar(255) not null, card_number int(16) not null, card_expire varchar(5) not null, card_cvv int(3) not null, order_phone_number int(10) not null);";
+        $create_table_query = "CREATE TABLE orderstest (
+            order_id int(3) not null PRIMARY KEY AUTO_INCREMENT, 
+            order_time date not null, 
+            order_status varchar(255) DEFAULT 'PENDING', 
+            order_product varchar(255) not null, 
+            order_quantity int(11) not null, 
+            order_cost int(20) not null, 
+            card_type varchar(255) not null, 
+            card_name varchar(255) not null, 
+            card_number int(16) not null, 
+            card_expire varchar(5) not null, 
+            card_cvv int(3) not null, 
+            order_phone_number int(10) not null);";
         $result = mysqli_query($conn, $create_table_query);
     }
 
