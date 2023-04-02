@@ -25,6 +25,12 @@ session_start();
     ?>
     <!--The header section ends-->
 
+    <?php
+        if ($_SESSION['error_first_name'] != null) {
+            ?> php <style>.error_first_name{display: block}</style> <?php
+        }
+    ?>
+
     <!--The form heading section starts-->
     <section id="enquire_intro">
         <h1>ORDER PAGE</h1>
