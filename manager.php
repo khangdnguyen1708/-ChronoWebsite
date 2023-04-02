@@ -123,8 +123,17 @@
   }
   if(isset($_GET["sort_prod"])) {
     $search_query = $_GET["sort_prod"];
-    $query = "SELECT $attr FROM $sql_table WHERE order_cost LIKE '%$search_query%'";
-    $result = mysqli_query($conn, $query);
+    
+    if($sort_prod == "") {
+      header("location: manager.php");
+
+
+      //PROBLEMS HERE
+      echo "<p class='err_mss'>You must enter information to search</p>"; 
+    } else {
+      $query = "SELECT $attr FROM $sql_table WHERE order_cost LIKE '%$search_query%'";
+      $result = mysqli_query($conn, $query);
+    }  
   }
   if(isset($_GET["pending_prod"])) {
     $query = "SELECT $attr FROM $sql_table WHERE order_status='PENDING'";
