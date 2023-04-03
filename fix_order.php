@@ -26,8 +26,51 @@ session_start();
     <!--The header section ends-->
 
     <?php
+        // Display the red error block if there is an error
         if ($_SESSION['error_first_name'] != null) {
             ?> <style>.error_first_name{display: block}</style> <?php
+        }
+        if ($_SESSION['error_last_name'] != null) {
+            ?> <style>.error_last_name{display: block}</style> <?php
+        }
+        if ($_SESSION['error_email'] != null) {
+            ?> <style>.error_email{display: block}</style> <?php
+        }
+        if ($_SESSION['error_phone_number'] != null) {
+            ?> <style>.error_phone_number{display: block}</style> <?php
+        }
+        if ($_SESSION['error_street_addr'] != null) {
+            ?> <style>.error_street_addr{display: block}</style> <?php
+        }
+        if ($_SESSION['error_city'] != null) {
+            ?> <style>.error_city{display: block}</style> <?php
+        }
+        if ($_SESSION['error_customer_state'] != null) {
+            ?> <style>.error_customer_state{display: block}</style> <?php
+        }
+        if ($_SESSION['error_postcode'] != null) {
+            ?> <style>.error_postcode{display: block}</style> <?php
+        }
+        if ($_SESSION['error_order_product'] != null) {
+            ?> <style>.error_order_product{display: block}</style> <?php
+        }
+        if ($_SESSION['error_order_quantity'] != null) {
+            ?> <style>.error_order_quantity{display: block}</style> <?php
+        }
+        if ($_SESSION['error_card_type'] != null) {
+            ?> <style>.error_card_type{display: block}</style> <?php
+        }
+        if ($_SESSION['error_card_name'] != null) {
+            ?> <style>.error_card_name{display: block}</style> <?php
+        }
+        if ($_SESSION['error_card_number'] != null) {
+            ?> <style>.error_card_number{display: block}</style> <?php
+        }
+        if ($_SESSION['error_card_expire'] != null) {
+            ?> <style>.error_card_expire{display: block}</style> <?php
+        }
+        if ($_SESSION['error_card_cvv'] != null) {
+            ?> <style>.error_card_cvv{display: block}</style> <?php
         }
     ?>
 
@@ -91,10 +134,12 @@ session_start();
                 <div class="form_box">
                     <label for="street_addr" class="main_label">STREET ADDRESS</label>
                     <input required id="street_addr" name="street_addr" type="text" pattern=".{1,40}" title="maximum 40 characters"  value="<?php echo $_SESSION['street_addr'] ?>">
+                    <p class="error error_street_addr"><?php echo $_SESSION['error_street_addr'] ?></p>
                 </div>
                 <div class="form_box">
                     <label for="city" class="main_label">CITY</label>
                     <input required id="city" name="city" type="text" pattern=".{1,20}" title="maximum 20 characters"  value="<?php echo $_SESSION['city'] ?>">
+                    <p class="error error_city"><?php echo $_SESSION['error_city'] ?></p>
                 </div>
             </div>
 
@@ -112,10 +157,12 @@ session_start();
                         <option value="illinois">Illinios</option>
                         <option value="newyork">New York</option>
                     </select>
+                    <p class="error error_customer_state"><?php echo $_SESSION['error_customer_state'] ?></p>
                 </div>
                 <div class="form_box">
                     <label for="postcode" class="main_label">POSTCODE</label>
                     <input required id="postcode" name="postcode" type="text" pattern="\d{4}" title="exactly 4 digits">
+                    <p class="error error_postcode"><?php echo $_SESSION['error_postcode'] ?></p>
                 </div>
             </div>
         </fieldset>
@@ -136,10 +183,12 @@ session_start();
                         <option value="">Luminary, $46,000</option>
                         <option value="">Odyssey, $51,000</option>
                     </select>
+                    <p class="error error_order_product"><?php echo $_SESSION['error_order_product'] ?></p>
                 </div>
                 <div class="form_box">
                     <label for="order_quantity" class="main_label">QUANTITY</label>
                     <input required id="order_quantity" name="order_quantity" type="text" pattern="">
+                    <p class="error error_order_quantity"><?php echo $_SESSION['error_order_quantity'] ?></p>
                 </div>
             </div>
         </fieldset>
@@ -155,26 +204,31 @@ session_start();
                         <option value="Master">Mastercard</option>
                         <option value="AE">American Express</option>
                     </select>
+                    <p class="error error_card_type"><?php echo $_SESSION['error_card_type'] ?></p>
                 </div>
             </div>
             <div class="form_line">
                 <div class="form_box">
                     <label for="card_name" class="main_label">CARDHOLDER NAME</label>
                     <input required id="card_name" name="card_name" type="text" pattern="">
+                    <p class="error error_card_name"><?php echo $_SESSION['error_card_name'] ?></p>
                 </div>
                 <div class="form_box">
                     <label for="card_number" class="main_label">CARD NUMBER</label>
                     <input required id="card_number" name="card_number" type="text" pattern="">
+                    <p class="error error_card_number"><?php echo $_SESSION['error_card_number'] ?></p>
                 </div>
             </div>
             <div class="form_line">
                 <div class="form_box">
                     <label for="card_expire" class="main_label">CARD EXPIRY DATE</label>
                     <input required id="card_expire" name="card_expire" type="text" pattern="">
+                    <p class="error error_card_expire"><?php echo $_SESSION['error_card_expire'] ?></p>
                 </div>
                 <div class="form_box">
                     <label for="card_cvv" class="main_label">CVV CODE</label>
                     <input required id="card_cvv" name="card_cvv" type="text" pattern="">
+                    <p class="error error_card_cvv"><?php echo $_SESSION['error_card_cvv'] ?></p>
                 </div>
             </div>
         </fieldset>

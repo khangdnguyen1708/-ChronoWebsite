@@ -113,13 +113,6 @@ session_start();
         header("location: payment.php");
     }
 
-    /*if (isset($_POST["order_product"])) {
-        $order_product = $_POST["order_product"];
-        $order_product = sanitise_input($order_product);
-    } else {
-        header("location: payment.php");
-    }*/
-
     $_SESSION['order_product'] = sanitise_input($_POST["order_product"]);
 
     if (isset($_POST["order_quantity"])) {
@@ -127,13 +120,6 @@ session_start();
     } else {
         header("location: payment.php");
     }
-
-    /*if (isset($_POST["card_type"])) {
-        $card_type = $_POST["card_type"];
-        $card_type = sanitise_input($card_type);
-    } else {
-        header("location: payment.php");
-    }*/
 
     $_SESSION['card_type'] = sanitise_input($_POST["card_type"]);
 
@@ -220,23 +206,29 @@ session_start();
     }
 
 
-    if ($last_name == "") {
+    if ($_SESSION['last_name'] == "") {
         $errMsg .= "<p>You must enter your last name.</p>";
-    } elseif (!preg_match("/^[a-zA-Z-]*$/", $last_name)) {
-        $errMsg .= "<p>Only alpha letters and hyphen are allowed in your first name.</p>";
+        $_SESSION['error_last_name'] = "You must enter your last name.";
+    } elseif (!preg_match("/^[a-zA-Z-]*$/", $_SESSION['last_name'])) {
+        $errMsg .= "<p>Only alpha letters and hyphen are allowed in your last name.</p>";
+        $_SESSION['error_last_name'] = "Only alpha letters allowed in your last name.";
     }
 
 
-    if ($email == "") {
+    if ($_SESSION['email'] == "") {
         $errMsg .= "<p>You must enter your email.</p>";
+        $_SESSION['error_email']= "You must enter your email.";
     } elseif (!preg_match("/^\\S+@\\S+\\.\\S+$/", $email)) {
         $errMsg .= "<p>Your email must follow the following form: chrono@gmail.com</p>";
+        $_SESSION['error_email']= "Your email must follow the following form: chrono@gmail.com";
     }
 
-    if ($phone_number == "") {
+    if ($_SESSION['phone_number'] == "") {
         $errMsg .= "<p>You must enter your phone number.</p>";
+        $_SESSION['error_phone_number'] = "You must enter your phone number.";
     } elseif (!preg_match("/^[0-9]{10}$/", $phone_number)) {
         $errMsg .= "<p>Your phone number must have 10 digits.</p>";
+        $_SESSION['error_phone_number'] = "Your phone number must have 10 digits.";
     }
 
     if ($street_addr == "") {
