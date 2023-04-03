@@ -218,7 +218,7 @@ session_start();
     if ($_SESSION['email'] == "") {
         $errMsg .= "<p>You must enter your email.</p>";
         $_SESSION['error_email']= "You must enter your email.";
-    } elseif (!preg_match("/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/", $email)) {
+    } elseif (!preg_match("/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/", $_SESSION['email'])) {
         $errMsg .= "<p>Your email must follow the following form: chrono@gmail.com</p>";
         $_SESSION['error_email']= "Your email must follow the following form: chrono@gmail.com";
     }
@@ -226,21 +226,25 @@ session_start();
     if ($_SESSION['phone_number'] == "") {
         $errMsg .= "<p>You must enter your phone number.</p>";
         $_SESSION['error_phone_number'] = "You must enter your phone number.";
-    } elseif (!preg_match("/^[0-9]{10}$/", $phone_number)) {
+    } elseif (!preg_match("/^[0-9]{10}$/", $_SESSION['phone_number'])) {
         $errMsg .= "<p>Your phone number must have 10 digits.</p>";
         $_SESSION['error_phone_number'] = "Your phone number must have 10 digits.";
     }
 
-    if ($street_addr == "") {
+    if ($_SESSION['street_addr'] == "") {
         $errMsg .= "<p>You must enter your street address.</p>";
-    } elseif (!preg_match("/^[a-zA-Z0-9 _]*$/", $street_addr)) {
-        $errMsg .= "<p>Only your house number and street name.</p>";
+        $_SESSION['error_street_addr'] = "You must enter your street address.";
+    } elseif (!preg_match("/^[a-zA-Z0-9 _]*$/", $_SESSION['street_addr'])) {
+        $errMsg .= "<p>Only your house address.</p>";
+        $_SESSION['error_street_addr'] = "Only your house address.";
     }
 
-    if ($city == "") {
+    if ($_SESSION['city'] == "") {
         $errMsg .= "<p>You must enter your city name.</p>";
-    } elseif (!preg_match("/^[a-zA-Z ]*$/", $city)) {
+        $_SESSION['error_city'] = "You must enter your city name.";
+    } elseif (!preg_match("/^[a-zA-Z]*$/", $_SESSION['city'])) {
         $errMsg .= "<p>Only your city name.</p>";
+        $_SESSION['error_city'] = "Only your city name.";
     }
 
     if ($postcode == "") {
