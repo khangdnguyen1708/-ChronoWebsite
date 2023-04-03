@@ -27,7 +27,7 @@ session_start();
 
     <?php
         if ($_SESSION['error_first_name'] != null) {
-            ?> php <style>.error_first_name{display: block}</style> <?php
+            ?> <style>.error_first_name{display: block}</style> <?php
         }
     ?>
 
