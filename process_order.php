@@ -259,8 +259,8 @@ session_start();
     if ($_SESSION['order_quantity'] == "") {
         $errMsg .= "<p>You must enter the quantity of the product you want to buy.</p>";
         $_SESSION['error_order_quantity'] = "";
-    } elseif (!preg_match("/^[0-9]$/", $_SESSION['order_quantity'])) {
-        $errMsg .= "<p>Quantity should not exceed 10</p>";
+    } elseif (!is_numeric($_SESSION['order_quantity'])) {
+        $errMsg .= "<p>Only numbers allowed in the quantity</p>";
         $_SESSION['error_order_quantity'] = "";
     } 
 
@@ -301,7 +301,7 @@ session_start();
     if ($_SESSION['card_expire'] == "") {
         $errMsg .= "<p>You must enter card expiry date.</p>";
         $_SESSION['error_card_expire'] = "You must enter card expiry date.";
-    } elseif (!preg_match("/^[0-9]{1,2}-[0-9]{4}$/", $_SESSION['card_expire'])) {
+    } elseif (!preg_match("/^[0-9]{2}-[0-9]{2}$/", $_SESSION['card_expire'])) {
         $errMsg .= "<p>Card expiry date must follow the following format: mm-yy.</p>";
         $_SESSION['error_card_expire'] = "Card expiry date must follow the following format: mm-yy.";
     }
@@ -310,8 +310,8 @@ session_start();
     if ($_SESSION['card_cvv'] == "") {
         $errMsg .= "<p>You must enter card verification value.</p>";
         $_SESSION['error_card_cvv'] = "You must enter card verification value.";
-    } elseif (!preg_match("/^[0-9]{3, 4}$/", $_SESSION['card_cvv'])) {
-        $errMsg .= "<p>Card cvv must have 3 digits only.</p>";
+    } elseif (!preg_match("/^[0-9]{3}$/", $_SESSION['card_cvv'])) {
+        $errMsg .= "<p>Card cvv must have 3 digits.</p>";
         $_SESSION['error_card_cvv'] = "Card cvv must have 3 digits only.";
     }
 
