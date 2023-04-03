@@ -310,6 +310,10 @@ session_start();
     // Add all inputs to tables --KHANG NGUYEN--
 
     echo "<p>end</p>";
+    if($errMsg == "") {
+        $insert_table_query = "";
+    }
+
     ?>
     <a href="fix_order.php">link to fix_order</a>
 </body>

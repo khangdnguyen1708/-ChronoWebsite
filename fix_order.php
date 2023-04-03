@@ -67,6 +67,7 @@ session_start();
                 <div class="form_box">
                     <label for="last_name" class="main_label">LAST NAME</label>
                     <input required id="last_name" name="last_name" type="text" pattern="[A-Za-z]{1,25}" title="maximum 25 alphabetical characters" value="<?php echo $_SESSION['last_name'] ?>">
+                    <p class="error error_last_name"><?php echo $_SESSION['error_last_name'] ?></p>
                 </div>
             </div>
 
@@ -74,10 +75,12 @@ session_start();
                 <div class="form_box">
                     <label for="email" class="main_label">EMAIL ADDRESS</label>
                     <input required id="email" name="email" type="email" value="<?php echo $_SESSION['email'] ?>">
+                    <p class="error error_email"><?php echo $_SESSION['error_email'] ?></p>
                 </div>
                 <div class="form_box">
                     <label for="phone_number" class="main_label">PHONE NUMBER</label>
                     <input required id="phone_number" name="phone_number" type="text" pattern="\d{1,10}]" title="maximum 10 digits" placeholder="038 748 2345" value="<?php echo $_SESSION['phone_number'] ?>">
+                    <p class="error error_phone_number"><?php echo $_SESSION['error_phone_number'] ?></p>
                 </div>
             </div>
         </fieldset>
@@ -115,26 +118,6 @@ session_start();
                     <input required id="postcode" name="postcode" type="text" pattern="\d{4}" title="exactly 4 digits">
                 </div>
             </div>
-
-            <!-- <div class="form_line">
-                <div class="form_box">
-                    <label class="main_label">PREFERRED CONTACT</label>
-                    <div id="radio_box">
-                        <div>
-                            <input required type="radio" id="prefercontact_email" name="prefercontact" value="email">
-                            <label>Email</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="prefercontact_post" name="prefercontact" value="post">
-                            <label>Post</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="prefercontact_phone" name="prefercontact" value="phone">
-                            <label>Phone</label>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
         </fieldset>
 
         <fieldset>
@@ -199,32 +182,7 @@ session_start();
         <div id="button_container">
             <button class="form_button" type="submit" value="book">CHECK OUT</button>
         </div>
-        <!-- <div class="form_line">
-            <label class="main_label">PRODUCT FEATURES</label>
-            <div id="checkbox_box">
-                <div>
-                    <input checked="checked" type="checkbox" id="material" name="features[]" value="material">
-                    <label>Material</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="water" name="features[]" value="water">
-                    <label>Water resistance</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="strap" name="features[]" value="strap">
-                    <label>Strap</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="movement" name="features[]" value="movement">
-                    <label>Watch movement</label>
-                </div>
-            </div>
-        </div>
 
-        <div id="button_container">
-            <button class="form_button" type="submit" value="book">SUBMIT</button>
-            <button class="form_button" type="reset" value="reset">RESET</button>
-        </div> -->
     </form>
     <!--The form section ends-->
 
