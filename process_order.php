@@ -185,8 +185,8 @@ session_start();
             hone_number int(10) not null PRIMARY KEY, 
             street_addr varchar(255) not null, 
             city varchar(255) not null, 
-            customer_state varchar(255) not null, p
-            ostcode int(9) not null);";
+            customer_state varchar(255) not null, 
+            postcode int(9) not null);";
         $result = mysqli_query($conn, $create_table_query);
     }
 
@@ -247,55 +247,73 @@ session_start();
         $_SESSION['error_city'] = "Only your city name.";
     }
 
-    if ($postcode == "") {
-        $errMsg .= "<p>You must enter the post code of your city.</p>";
-    } elseif (!preg_match("/^[0-9]{5}$/", $postcode)) {
-        $errMsg .= "<p>Post code must have 5 digits</p>";
+    if ($_SESSION['postcode'] == "") {
+        $errMsg .= "<p>You must enter the postcode of your city.</p>";
+        $_SESSION['error_postcode'] = "You must enter the postcode of your city.";
+    } elseif (!preg_match("/^[0-9]{9}$/", $_SESSION['postcode'])) {
+        $errMsg .= "<p>Your postcode must have less than 10 digits</p>";
+        $_SESSION['error_postcode'] = "Your postcode must have less than 10 digits";
     }
 
-    if ($order_quantity == "") {
+    // FIX: quantity unlimited, use is_numeric from processbooking.php to check digit 
+    if ($_SESSION['order_quantity'] == "") {
         $errMsg .= "<p>You must enter the quantity of the product you want to buy.</p>";
-    } elseif (!preg_match("/^[0-9]$/", $order_quantity)) {
+        $_SESSION['error_order_quantity'] = "";
+    } elseif (!preg_match("/^[0-9]$/", $_SESSION['order_quantity'])) {
         $errMsg .= "<p>Quantity should not exceed 10</p>";
-    }
+        $_SESSION['error_order_quantity'] = "";
+    } 
 
-    if ($card_name == "") {
+
+    if ($_SESSION['card_name'] == "") {
         $errMsg .= "<p>You must enter the cardholder name.</p>";
-    } elseif (!preg_match("/^[a-zA-Z ]*$/", $card_name)) {
+        $_SESSION['error_card_name'] = "You must enter the cardholder name.";
+    } elseif (!preg_match("/^[a-zA-Z ]*$/", $_SESSION['card_name'])) {
         $errMsg .= "<p>Only alpha letters allowed in the cardholder name.</p>";
+        $_SESSION['error_card_name'] = "Only alpha letters allowed in the cardholder name.";
     }
 
-    if ($card_number == "") {
+    if ($_SESSION['card_number'] == "") {
         $errMsg .= "<p>You must enter card number.</p>";
+        $_SESSION['error_card_number'] = "You must enter card number.";
     }
-    if ($card_type === "Visa") {
-        if (!preg_match("/^(4)([0-9]{15})$/", $card_number)) {
-            $errMsg .= "<p>Visa number must have 16 digits and starts with number 4</p>";
+
+    if ($_SESSION['card_type'] === "Visa") {
+        if (!preg_match("/^(4)([0-9]{15})$/", $_SESSION['card_type'])) {
+            $errMsg .= "<p>Visa card must have 16 digits and starts with number 4.</p>";
+            $_SESSION['error_card_number'] = "Visa card must have 16 digits and starts with number 4.";
         }
     }
-    if ($card_type === "Master") {
-        if (!preg_match("/^(5[1-5])([0-9]{14})$/", $card_number)) {
-            $errMsg .= "<p>Master number must have 16 digits and starts with number 51 through to 55</p>";
+    if ($_SESSION['card_type'] === "Master") {
+        if (!preg_match("/^(5[1-5])([0-9]{14})$/", $_SESSION['card_type'])) {
+            $errMsg .= "<p>MasterCard must have 16 digits and starts with number 51 through to 55.</p>";
+            $_SESSION['error_card_type'] = "MasterCard must have 16 digits and starts with number 51 through to 55.";
         }
     }
-    if ($card_type === "AE") {
-        if (!preg_match("/^(3[4]|3[7])([0-9]{13})$/", $card_number)) {
-            $errMsg .= "<p>American Express number must have 15 digits and starts with number 34 or 37</p>";
+    if ($_SESSION['card_type'] === "AE") {
+        if (!preg_match("/^(3[4]|3[7])([0-9]{13})$/", $_SESSION['card_type'])) {
+            $errMsg .= "<p>American Express card must have 15 digits and starts with number 34 or 37.</p>";
+            $_SESSION['error_card_type'] = "American Express card must have 15 digits and starts with number 34 or 37.";
         }
     }
 
-    if ($card_expire == "") {
-        $errMsg .= "<p>You must enter card expire.</p>";
-    } elseif (!preg_match("/^[0-9]{1,2}-[0-9]{4}$/", $card_expire)) {
-        $errMsg .= "<p>Card expire must follow the following format: mm-yyyy.</p>";
+    // FIX format always 2digits - 2digits
+    if ($_SESSION['card_expire'] == "") {
+        $errMsg .= "<p>You must enter card expiry date.</p>";
+        $_SESSION['error_card_expire'] = "You must enter card expiry date.";
+    } elseif (!preg_match("/^[0-9]{1,2}-[0-9]{4}$/", $_SESSION['card_expire'])) {
+        $errMsg .= "<p>Card expiry date must follow the following format: mm-yy.</p>";
+        $_SESSION['error_card_expire'] = "Card expiry date must follow the following format: mm-yy.";
     }
 
-    if ($card_cvv == "") {
-        $errMsg .= "<p>You must enter card cvv.</p>";
-    } elseif (!preg_match("/^[0-9]{3, 4}$/", $card_cvv)) {
-        $errMsg .= "<p>Card cvv must have 3 or 4 digits.</p>";
+    // FIX 3 digits only
+    if ($_SESSION['card_cvv'] == "") {
+        $errMsg .= "<p>You must enter card verification value.</p>";
+        $_SESSION['error_card_cvv'] = "You must enter card verification value.";
+    } elseif (!preg_match("/^[0-9]{3, 4}$/", $_SESSION['card_cvv'])) {
+        $errMsg .= "<p>Card cvv must have 3 digits only.</p>";
+        $_SESSION['error_card_cvv'] = "Card cvv must have 3 digits only.";
     }
-
 
     if ($errMsg != "") {
         echo "<p>$errMsg</p>";
