@@ -58,7 +58,7 @@
 <?php
   //connect to database
   require_once("settings.php");
-  $sql_table = "orders";
+  $ord_table = "orders";
   $attr = "order_id, first_name, last_name, order_time, order_status, order_product, order_quantity, order_cost";
 
   //verify connection
@@ -66,7 +66,7 @@
     die("Connection failed: " . mysqli_connect_error());
   } 
 
-  $query = "SELECT $attr FROM $sql_table";
+  $query = "SELECT $attr FROM $ord_table";
   $result = mysqli_query($conn, $query);
 
   //delete order on click
@@ -77,7 +77,7 @@
 
     if($order_status == "PENDING") {   
 
-      $sql_del = "DELETE FROM $sql_table WHERE order_id=$id";
+      $sql_del = "DELETE FROM $ord_table WHERE order_id=$id";
       $result = mysqli_query($conn,$sql_del); 
 
     
@@ -95,7 +95,7 @@
     $upd_order_status = $_POST["upd_order_status"];
     $upd_id = $_POST["upd_id"];
   
-    $sql_upd = "UPDATE $sql_table SET order_status='$upd_order_status' WHERE order_id=$upd_id";
+    $sql_upd = "UPDATE $ord_table SET order_status='$upd_order_status' WHERE order_id=$upd_id";
     $result = mysqli_query($conn,$sql_upd);
       
     if($result) {
@@ -106,7 +106,7 @@
     }
   }
   if(isset($_GET["all_order"])) {
-    $query = "SELECT $attr FROM $sql_table";
+    $query = "SELECT $attr FROM $ord_table";
     $result = mysqli_query($conn, $query);
   }
   if(isset($_GET["sort_name"])) {
@@ -119,7 +119,7 @@
       //PROBLEMS HERE
       echo "<p class='err_mss'>You must enter information to search</p>"; 
     } else {
-      $query = "SELECT $attr FROM $sql_table WHERE CONCAT(first_name, ' ', last_name) LIKE '%$search_query%'";
+      $query = "SELECT $attr FROM $ord_table WHERE CONCAT(first_name, ' ', last_name) LIKE '%$search_query%'";
       $result = mysqli_query($conn, $query);
     }
   }
@@ -133,20 +133,20 @@
       //PROBLEMS HERE
       echo "<p class='err_mss'>You must enter information to search</p>"; 
     } else {
-      $query = "SELECT $attr FROM $sql_table WHERE order_cost LIKE '%$search_query%'";
+      $query = "SELECT $attr FROM $ord_table WHERE order_cost LIKE '%$search_query%'";
       $result = mysqli_query($conn, $query);
     }  
   }
   if(isset($_GET["pending_prod"])) {
-    $query = "SELECT $attr FROM $sql_table WHERE order_status='PENDING'";
+    $query = "SELECT $attr FROM $ord_table WHERE order_status='PENDING'";
     $result = mysqli_query($conn, $query);
   }
   if(isset($_GET["cost_asc"])) {
-    $query = "SELECT $attr FROM $sql_table ORDER BY order_cost ASC";
+    $query = "SELECT $attr FROM $ord_table ORDER BY order_cost ASC";
     $result = mysqli_query($conn, $query);
   }
   if(isset($_GET["cost_desc"])) {
-    $query = "SELECT $attr FROM $sql_table ORDER BY order_cost DESC";
+    $query = "SELECT $attr FROM $ord_table ORDER BY order_cost DESC";
     $result = mysqli_query($conn, $query);
   }
 
