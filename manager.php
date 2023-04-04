@@ -13,29 +13,31 @@
 
   <h1>Welcome ... to manager page</h1>
 
-  <form method="get" action="payment.php" novalidate="novalidate">
-    <input type="submit" value="add order">
-  </form>
+  <section>
+    <form method="get" action="payment.php" novalidate="novalidate">
+      <input type="submit" value="add order">
+    </form>
 
-  <form method="get" action="manager.php" novalidate="novalidate">
-    <input type="submit" value="view all orders">
-    <input type="hidden" name="all_order">
-  </form>
+    <form method="get" action="manager.php" novalidate="novalidate">
+      <input type="submit" value="view all orders">
+      <input type="hidden" name="all_order">
+    </form>
 
-  <form method="get" action="manager.php" novalidate="novalidate">    
-    <input type="hidden" name="pending_prod">
-    <input type="submit" value="view pending">
-  </form>
+    <form method="get" action="manager.php" novalidate="novalidate">    
+      <input type="hidden" name="pending_prod">
+      <input type="submit" value="view pending">
+    </form>
 
-  <form method="get" action="manager.php" novalidate="novalidate">
-    <input type="submit" name="cost_asc" value="cost ascending">
-    <input type="hidden" name="cost_asc">
-  </form>
+    <form method="get" action="manager.php" novalidate="novalidate">
+      <input type="submit" name="cost_asc" value="cost ascending">
+      <input type="hidden" name="cost_asc">
+    </form>
 
-  <form method="get" action="manager.php" novalidate="novalidate">
-    <input type="submit" name="cost_desc" value="cost descending">
-    <input type="hidden" name="cost_desc">
-  </form>
+    <form method="get" action="manager.php" novalidate="novalidate">
+      <input type="submit" name="cost_desc" value="cost descending">
+      <input type="hidden" name="cost_desc">
+    </form>
+  </section>
 
   <form method="get" action="manager.php" novalidate="novalidate">
     <fieldset>
