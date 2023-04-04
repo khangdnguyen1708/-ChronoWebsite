@@ -55,19 +55,59 @@
     </fieldset>
   </form>
 
+
+
+<!-- orders (
+            order_id
+            order_time 
+            order_status 
+            order_product  
+            order_quantity 
+            order_cost 
+            card_type 
+            card_name
+            card_number 
+            card_expire
+            card_cvv
+            order_phone_number) -->
+<!-- customers ( 
+            title
+            first_name
+            last_name
+            email
+            phone_number
+            street_addr 
+            city
+            customer_state
+            postcode)-->
+
 <?php
   //connect to database
   require_once("settings.php");
+
   $ord_table = "orders";
-  $attr = "order_id, first_name, last_name, order_time, order_status, order_product, order_quantity, order_cost";
+  $ord_attr = "order_id, order_time, order_status, order_product, order_quantity, order_cost";
+  $cus_table = "customers";
+  $cus_attr = "first_name, last_name";
+  $show = "SELECT 
+    orders.order_id,
+    customers.first_name,
+    customer.last_name,
+    orders.order_time,
+    orders.order_product,
+    order.order_quantity,
+    order.order_cost,
+    order.order_status
+    FROM orders
+    LEFT JOIN customers
+    ON order.order_phone_number = customers.phone_number";
 
   //verify connection
   if(!$conn) {
     die("Connection failed: " . mysqli_connect_error());
   } 
 
-  $query = "SELECT $attr FROM $ord_table";
-  $result = mysqli_query($conn, $query);
+  $result = mysqli_query($conn, $show);
 
   //delete order on click
   if(isset($_GET["del_id"]) && isset($_GET["del_status"])) {
@@ -95,7 +135,9 @@
     $upd_order_status = $_POST["upd_order_status"];
     $upd_id = $_POST["upd_id"];
   
-    $sql_upd = "UPDATE $ord_table SET order_status='$upd_order_status' WHERE order_id=$upd_id";
+    $sql_upd = "UPDATE $ord_table 
+      SET order_status = '$upd_order_status' 
+      WHERE order_id = $upd_id";
     $result = mysqli_query($conn,$sql_upd);
       
     if($result) {
@@ -106,8 +148,7 @@
     }
   }
   if(isset($_GET["all_order"])) {
-    $query = "SELECT $attr FROM $ord_table";
-    $result = mysqli_query($conn, $query);
+    $result = mysqli_query($conn, $show);
   }
   if(isset($_GET["sort_name"])) {
     $search_query = $_GET["sort_name"];
@@ -119,13 +160,15 @@
       //PROBLEMS HERE
       echo "<p class='err_mss'>You must enter information to search</p>"; 
     } else {
-      $query = "SELECT $attr FROM $ord_table WHERE CONCAT(first_name, ' ', last_name) LIKE '%$search_query%'";
+      $query = "$show WHERE 
+        CONCAT($cus_table.first_name, ' ', $cus_table.last_name)
+        LIKE '%$search_query%'";
       $result = mysqli_query($conn, $query);
     }
   }
   if(isset($_GET["sort_prod"])) {
     $search_query = $_GET["sort_prod"];
-    
+  
     if($sort_prod == "") {
       header("location: manager.php");
 
@@ -133,20 +176,22 @@
       //PROBLEMS HERE
       echo "<p class='err_mss'>You must enter information to search</p>"; 
     } else {
-      $query = "SELECT $attr FROM $ord_table WHERE order_cost LIKE '%$search_query%'";
+      $query = "$show 
+        WHERE order.order_cost
+        LIKE '%$search_query%'";
       $result = mysqli_query($conn, $query);
     }  
   }
   if(isset($_GET["pending_prod"])) {
-    $query = "SELECT $attr FROM $ord_table WHERE order_status='PENDING'";
+    $query = "$show WHERE order_status='PENDING'";
     $result = mysqli_query($conn, $query);
   }
   if(isset($_GET["cost_asc"])) {
-    $query = "SELECT $attr FROM $ord_table ORDER BY order_cost ASC";
+    $query = "$show ORDER BY order_cost ASC";
     $result = mysqli_query($conn, $query);
   }
   if(isset($_GET["cost_desc"])) {
-    $query = "SELECT $attr FROM $ord_table ORDER BY order_cost DESC";
+    $query = "$show ORDER BY order_cost DESC";
     $result = mysqli_query($conn, $query);
   }
 
