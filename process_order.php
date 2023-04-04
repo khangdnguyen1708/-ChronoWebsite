@@ -351,7 +351,8 @@ session_start();
     }
 
     ?>
-    <a href="fix_order.php">link to fix_order</a>
+    <a href="fix_order.php">link to fix_order<br></a>
+    <a href="receipt.php">link to receipt</a>
 </body>
 
 </html>
