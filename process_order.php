@@ -30,7 +30,6 @@ session_start();
     );
 
     // Initialize variable
-    $_SESSION['error_first_name'] = null;
 
     if (!$conn) {
         echo "<p>Database connection failure</p>";
@@ -341,6 +340,7 @@ session_start();
         echo "<p>$errMsg</p>";
     } else {
         echo "<p>all inputs are good</p>";
+        // MANH -- insert to db
     }
 
     // Add all inputs to tables --KHANG NGUYEN--
