@@ -149,7 +149,7 @@ session_start();
                     <select required id="customer_state" name="customer_state">
                         <!-- disabled so that 'Please select' cannot be choose if select another option -->
                         <option value="" disabled selected>Please select</option>
-                        <option value="alabama">Alabama</option>
+                        <option value="alabama" <?php if ($_SESSION['customer_state'] == 'alabama') echo ' selected="selected"'; ?>>Alabama</option>
                         <option value="alaska">Alaska</option>
                         <option value="california">California</option>
                         <option value="florida">Florida</option>

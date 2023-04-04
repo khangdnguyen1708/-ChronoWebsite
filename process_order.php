@@ -203,6 +203,8 @@ session_start();
     } elseif (!preg_match("/^[a-zA-Z]*$/", $_SESSION['first_name'])) {
         $errMsg .= "<p>Only alpha letters allowed in your first name.</p>";
         $_SESSION['error_first_name'] = "Only alpha letters allowed in your first name.";
+    } else {
+        $_SESSION['error_first_name'] = null;
     }
 
 
@@ -212,6 +214,8 @@ session_start();
     } elseif (!preg_match("/^[a-zA-Z-]*$/", $_SESSION['last_name'])) {
         $errMsg .= "<p>Only alpha letters and hyphen are allowed in your last name.</p>";
         $_SESSION['error_last_name'] = "Only alpha letters allowed in your last name.";
+    } else {
+        $_SESSION['error_last_name'] = null;
     }
 
 
@@ -221,6 +225,8 @@ session_start();
     } elseif (!preg_match("/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/", $_SESSION['email'])) {
         $errMsg .= "<p>Your email must follow the following form: chrono@gmail.com</p>";
         $_SESSION['error_email']= "Your email must follow the following form: chrono@gmail.com";
+    } else {
+        $_SESSION['error_email'] = null;
     }
 
     if ($_SESSION['phone_number'] == "") {
@@ -229,6 +235,8 @@ session_start();
     } elseif (!preg_match("/^[0-9]{10}$/", $_SESSION['phone_number'])) {
         $errMsg .= "<p>Your phone number must have 10 digits.</p>";
         $_SESSION['error_phone_number'] = "Your phone number must have 10 digits.";
+    } else {
+        $_SESSION['error_phone_number'] = null;
     }
 
     if ($_SESSION['street_addr'] == "") {
@@ -245,6 +253,8 @@ session_start();
     } elseif (!preg_match("/^[a-zA-Z]*$/", $_SESSION['city'])) {
         $errMsg .= "<p>Only your city name.</p>";
         $_SESSION['error_city'] = "Only your city name.";
+    } else {
+        $_SESSION['error_city'] = null;
     }
 
     if ($_SESSION['postcode'] == "") {
