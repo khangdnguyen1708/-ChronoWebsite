@@ -105,6 +105,7 @@ session_start();
     }*/
 
     $_SESSION['customer_state'] = sanitise_input($_POST["customer_state"]);
+    echo "<p>My state is ".$_SESSION['customer_state']."</p>";
 
     if (isset($_POST["postcode"])) {
         $_SESSION['postcode'] = sanitise_input($_POST["postcode"]);
@@ -185,7 +186,7 @@ session_start();
             street_addr varchar(255) not null, 
             city varchar(255) not null, 
             customer_state varchar(255) not null, 
-            postcode int(9) not null);";
+            postcode varchar(9) not null);";
         $result = mysqli_query($conn, $create_table_query);
     }
 
@@ -195,7 +196,6 @@ session_start();
     echo "<p><br>START</p>";
     $errMsg = "";
 
-    echo "<p>Title is " . $_SESSION['title'] . "</p>";
     if ($_SESSION['first_name'] == "") {
         $errMsg .= "<p>You must enter your first name.</p>";
         $_SESSION['error_first_name'] = "You must enter your first name.";
@@ -258,14 +258,28 @@ session_start();
         $_SESSION['error_city'] = null;
     }
 
+    if ($_SESSION['customer_state'] == "default") {
+        $errMsg .= "<p>You must select your state.</p>";
+        $_SESSION['error_customer_state'] = "You must select your state.";
+    } else {
+        $_SESSION['error_customer_state'] = null;
+    }
+
     if ($_SESSION['postcode'] == "") {
         $errMsg .= "<p>You must enter the postcode of your city.</p>";
         $_SESSION['error_postcode'] = "You must enter the postcode of your city.";
     } elseif (!preg_match("/^[0-9]{5,9}$/", $_SESSION['postcode'])) {
-        $errMsg .= "<p>Your postcode must have less than 10 digits</p>";
-        $_SESSION['error_postcode'] = "Your postcode must have less than 10 digits";
+        $errMsg .= "<p>Your postcode must have from 5 to 9 digits ".$_SESSION['postcode']."</p>";
+        $_SESSION['error_postcode'] = "Your postcode must have from 5 to 9 digits";
     } else {
         $_SESSION['error_postcode'] = null;
+    }
+
+    if ($_SESSION['order_product'] == "default") {
+        $errMsg .= "<p>You must select your product.</p>";
+        $_SESSION['error_order_product'] = "You must select your product.";
+    } else {
+        $_SESSION['error_order_product'] = null;
     }
 
     if ($_SESSION['order_quantity'] == "") {
@@ -276,6 +290,13 @@ session_start();
         $_SESSION['error_order_quantity'] = "Only numbers allowed for the quantity.";
     } else {
         $_SESSION['error_order_quantity'] = null;
+    }
+    
+    if ($_SESSION['card_type'] == "default") {
+        $errMsg .= "<p>You must select your card type.</p>";
+        $_SESSION['error_card_type'] = "You must select your card type.";
+    } else {
+        $_SESSION['error_card_type'] = null;
     }
 
     if ($_SESSION['card_name'] == "") {
@@ -321,11 +342,13 @@ session_start();
     }
 
     if ($_SESSION['card_expire'] == "") {
-        $errMsg .= "<p>You must enter card expiry date.</p>";
+        $errMsg .= "<p>You must enter card expiry date following format: mm-yy.</p>";
         $_SESSION['error_card_expire'] = "You must enter card expiry date.";
     } elseif (!preg_match("/^[0-9]{2}-[0-9]{2}$/", $_SESSION['card_expire'])) {
         $errMsg .= "<p>Card expiry date must follow the following format: mm-yy.</p>";
         $_SESSION['error_card_expire'] = "Card expiry date must follow the following format: mm-yy.";
+    } else {
+        $_SESSION['error_card_expire'] = null;
     }
 
     if ($_SESSION['card_cvv'] == "") {
@@ -334,6 +357,8 @@ session_start();
     } elseif (!preg_match("/^[0-9]{3}$/", $_SESSION['card_cvv'])) {
         $errMsg .= "<p>Card cvv must have 3 digits.</p>";
         $_SESSION['error_card_cvv'] = "Card cvv must have 3 digits only.";
+    } else {
+        $_SESSION['error_card_cvv'] = null;
     }
 
     if ($errMsg != "") {
@@ -342,6 +367,7 @@ session_start();
         echo "<p>all inputs are good</p>";
         // MANH -- insert to db
 
+        // Why this part?? its 00:16am i hv no fking clue
         $sql_table = "personaltest";
         $title   = trim($_POST["title"]);
         $first_name  = trim($_POST["first_name"]);
