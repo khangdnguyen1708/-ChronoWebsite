@@ -251,7 +251,7 @@ session_start();
     if ($_SESSION['city'] == "") {
         $errMsg .= "<p>You must enter your city name.</p>";
         $_SESSION['error_city'] = "You must enter your city name.";
-    } elseif (!preg_match("/^[a-zA-Z]*$/", $_SESSION['city'])) {
+    } elseif (!preg_match("/^[a-zA-Z ]*$/", $_SESSION['city'])) {
         $errMsg .= "<p>Only your city name.</p>";
         $_SESSION['error_city'] = "Only your city name.";
     } else {
@@ -261,7 +261,7 @@ session_start();
     if ($_SESSION['postcode'] == "") {
         $errMsg .= "<p>You must enter the postcode of your city.</p>";
         $_SESSION['error_postcode'] = "You must enter the postcode of your city.";
-    } elseif (!preg_match("/^[0-9]{9}$/", $_SESSION['postcode'])) {
+    } elseif (!preg_match("/^[0-9]{5,9}$/", $_SESSION['postcode'])) {
         $errMsg .= "<p>Your postcode must have less than 10 digits</p>";
         $_SESSION['error_postcode'] = "Your postcode must have less than 10 digits";
     } else {
@@ -296,7 +296,7 @@ session_start();
     }
 
     if ($_SESSION['card_type'] === "Visa") {
-        if (!preg_match("/^(4)([0-9]{15})$/", $_SESSION['card_type'])) {
+        if (!preg_match("/^(4)([0-9]{15})$/", $_SESSION['card_number'])) {
             $errMsg .= "<p>Visa card must have 16 digits and starts with number 4.</p>";
             $_SESSION['error_card_number'] = "Visa card must have 16 digits and starts with number 4.";
         } else {
@@ -304,7 +304,7 @@ session_start();
         }
     }
     if ($_SESSION['card_type'] === "Master") {
-        if (!preg_match("/^(5[1-5])([0-9]{14})$/", $_SESSION['card_type'])) {
+        if (!preg_match("/^(5[1-5])([0-9]{14})$/", $_SESSION['card_number'])) {
             $errMsg .= "<p>MasterCard must have 16 digits and starts with number 51 through to 55.</p>";
             $_SESSION['error_card_type'] = "MasterCard must have 16 digits and starts with number 51 through to 55.";
         } else {
@@ -312,7 +312,7 @@ session_start();
         }
     }
     if ($_SESSION['card_type'] === "AE") {
-        if (!preg_match("/^(3[4]|3[7])([0-9]{13})$/", $_SESSION['card_type'])) {
+        if (!preg_match("/^(3[4]|3[7])([0-9]{13})$/", $_SESSION['card_number'])) {
             $errMsg .= "<p>American Express card must have 15 digits and starts with number 34 or 37.</p>";
             $_SESSION['error_card_type'] = "American Express card must have 15 digits and starts with number 34 or 37.";
         } else {
@@ -341,6 +341,31 @@ session_start();
     } else {
         echo "<p>all inputs are good</p>";
         // MANH -- insert to db
+
+        $sql_table = "personaltest";
+        $title   = trim($_POST["title"]);
+        $first_name  = trim($_POST["first_name"]);
+        $last_name  = trim($_POST["last_name"]);
+        $email    = trim($_POST["email"]);
+        $phone_number    = trim($_POST["phone_number"]);
+        $street_addr    = trim($_POST["street_addr"]);
+        $city    = trim($_POST["city"]);
+        $customer_state    = trim($_POST["customer_state"]);
+        $postcode    = trim($_POST["postcode"]);
+        
+
+        $query = "INSERT INTO $sql_table (title, first_name, last_name, email, phone_number, street_addr, city, customer_state, postcode) 
+        VALUES ('$title', '$first_name', '$last_name', '$email', '$phone_number', '$street_addr', '$city', '$customer_state', '$postcode')";
+
+        $result = mysqli_query($conn, $query);
+        if(!$result) {
+            echo "<p>Something is wrong with $query</p>";
+        } else {
+            echo "<p>Successfully added new information record</p>";
+        }
+
+        mysqli_close($conn);
+        
     }
 
     // Add all inputs to tables --KHANG NGUYEN--
