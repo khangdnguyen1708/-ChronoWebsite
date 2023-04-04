@@ -255,13 +255,12 @@ session_start();
         $_SESSION['error_postcode'] = "Your postcode must have less than 10 digits";
     }
 
-    // FIX: quantity unlimited, use is_numeric from processbooking.php to check digit 
     if ($_SESSION['order_quantity'] == "") {
         $errMsg .= "<p>You must enter the quantity of the product you want to buy.</p>";
-        $_SESSION['error_order_quantity'] = "";
+        $_SESSION['error_order_quantity'] = "You must enter the quantity of the product you want to buy.";
     } elseif (!is_numeric($_SESSION['order_quantity'])) {
-        $errMsg .= "<p>Only numbers allowed in the quantity</p>";
-        $_SESSION['error_order_quantity'] = "";
+        $errMsg .= "<p>Only numbers allowed for the quantity.</p>";
+        $_SESSION['error_order_quantity'] = "Only numbers allowed for the quantity.";
     } 
 
 
@@ -297,7 +296,6 @@ session_start();
         }
     }
 
-    // FIX format always 2digits - 2digits
     if ($_SESSION['card_expire'] == "") {
         $errMsg .= "<p>You must enter card expiry date.</p>";
         $_SESSION['error_card_expire'] = "You must enter card expiry date.";
@@ -306,7 +304,6 @@ session_start();
         $_SESSION['error_card_expire'] = "Card expiry date must follow the following format: mm-yy.";
     }
 
-    // FIX 3 digits only
     if ($_SESSION['card_cvv'] == "") {
         $errMsg .= "<p>You must enter card verification value.</p>";
         $_SESSION['error_card_cvv'] = "You must enter card verification value.";
