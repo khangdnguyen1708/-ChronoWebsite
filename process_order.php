@@ -182,7 +182,7 @@ session_start();
             first_name varchar(255) not null, 
             last_name varchar(255) not null, 
             email varchar(255) not null, 
-            hone_number int(10) not null PRIMARY KEY, 
+            phone_number int(10) not null PRIMARY KEY, 
             street_addr varchar(255) not null, 
             city varchar(255) not null, 
             customer_state varchar(255) not null, 
@@ -245,6 +245,8 @@ session_start();
     } elseif (!preg_match("/^[a-zA-Z0-9 _]*$/", $_SESSION['street_addr'])) {
         $errMsg .= "<p>Only your house address.</p>";
         $_SESSION['error_street_addr'] = "Only your house address.";
+    } else {
+        $_SESSION['error_street_addr'] = null;
     }
 
     if ($_SESSION['city'] == "") {
@@ -263,6 +265,8 @@ session_start();
     } elseif (!preg_match("/^[0-9]{9}$/", $_SESSION['postcode'])) {
         $errMsg .= "<p>Your postcode must have less than 10 digits</p>";
         $_SESSION['error_postcode'] = "Your postcode must have less than 10 digits";
+    } else {
+        $_SESSION['error_postcode'] = null;
     }
 
     if ($_SESSION['order_quantity'] == "") {
@@ -271,8 +275,9 @@ session_start();
     } elseif (!is_numeric($_SESSION['order_quantity'])) {
         $errMsg .= "<p>Only numbers allowed for the quantity.</p>";
         $_SESSION['error_order_quantity'] = "Only numbers allowed for the quantity.";
-    } 
-
+    } else {
+        $_SESSION['error_order_quantity'] = null;
+    }
 
     if ($_SESSION['card_name'] == "") {
         $errMsg .= "<p>You must enter the cardholder name.</p>";
@@ -280,29 +285,39 @@ session_start();
     } elseif (!preg_match("/^[a-zA-Z ]*$/", $_SESSION['card_name'])) {
         $errMsg .= "<p>Only alpha letters allowed in the cardholder name.</p>";
         $_SESSION['error_card_name'] = "Only alpha letters allowed in the cardholder name.";
+    } else {
+        $_SESSION['error_card_name'] = null;
     }
 
     if ($_SESSION['card_number'] == "") {
         $errMsg .= "<p>You must enter card number.</p>";
         $_SESSION['error_card_number'] = "You must enter card number.";
+    } else {
+        $_SESSION['error_card_number'] = null;
     }
 
     if ($_SESSION['card_type'] === "Visa") {
         if (!preg_match("/^(4)([0-9]{15})$/", $_SESSION['card_type'])) {
             $errMsg .= "<p>Visa card must have 16 digits and starts with number 4.</p>";
             $_SESSION['error_card_number'] = "Visa card must have 16 digits and starts with number 4.";
+        } else {
+            $_SESSION['error_card_type'] = null;
         }
     }
     if ($_SESSION['card_type'] === "Master") {
         if (!preg_match("/^(5[1-5])([0-9]{14})$/", $_SESSION['card_type'])) {
             $errMsg .= "<p>MasterCard must have 16 digits and starts with number 51 through to 55.</p>";
             $_SESSION['error_card_type'] = "MasterCard must have 16 digits and starts with number 51 through to 55.";
+        } else {
+            $_SESSION['error_card_type'] = null;
         }
     }
     if ($_SESSION['card_type'] === "AE") {
         if (!preg_match("/^(3[4]|3[7])([0-9]{13})$/", $_SESSION['card_type'])) {
             $errMsg .= "<p>American Express card must have 15 digits and starts with number 34 or 37.</p>";
             $_SESSION['error_card_type'] = "American Express card must have 15 digits and starts with number 34 or 37.";
+        } else {
+            $_SESSION['error_card_type'] = null;
         }
     }
 
