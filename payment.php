@@ -108,7 +108,7 @@
                     <label for="customer_state" class="main_label">STATE</label>
                     <select required id="customer_state" name="customer_state">
                         <!-- disabled so that 'Please select' cannot be choose if select another option -->
-                        <option value="" disabled selected>Please select</option>
+                        <option value="default" selected>Please select</option>
                         <option value="alabama">Alabama</option>
                         <option value="alaska">Alaska</option>
                         <option value="california">California</option>
@@ -131,7 +131,7 @@
                 <div class="form_box">
                     <label for="order_product" class="main_label">PRODUCT</label>
                     <select required id="order_product" name="order_product">
-                        <option value="" disabled selected>Please select</option>
+                        <option value="default" selected>Please select</option>
                         <option value="">Novelties, $45,000</option>
                         <option value="">Apex, $50,000</option>
                         <option value="">Zenith, $47,000</option>
@@ -155,7 +155,7 @@
                 <div class="form_box">
                     <label for="card_type" class="main_label">CARD TYPE</label>
                     <select required id="card_type" name="card_type">
-                        <option value="" disabled selected>Please select</option>
+                        <option value="default" selected>Please select</option>
                         <option value="Visa">Visa</option>
                         <option value="Master">Mastercard</option>
                         <option value="AE">American Express</option>

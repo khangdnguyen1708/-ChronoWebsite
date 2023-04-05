@@ -133,12 +133,12 @@ session_start();
             <div class="form_line">
                 <div class="form_box">
                     <label for="street_addr" class="main_label">STREET ADDRESS</label>
-                    <input required id="street_addr" name="street_addr" type="text" pattern=".{1,40}" title="maximum 40 characters"  value="<?php echo $_SESSION['street_addr'] ?>">
+                    <input required id="street_addr" name="street_addr" type="text" pattern=".{1,40}" title="maximum 40 characters" value="<?php echo $_SESSION['street_addr'] ?>">
                     <p class="error error_street_addr"><?php echo $_SESSION['error_street_addr'] ?></p>
                 </div>
                 <div class="form_box">
                     <label for="city" class="main_label">CITY</label>
-                    <input required id="city" name="city" type="text" pattern=".{1,20}" title="maximum 20 characters"  value="<?php echo $_SESSION['city'] ?>">
+                    <input required id="city" name="city" type="text" pattern=".{1,20}" title="maximum 20 characters" value="<?php echo $_SESSION['city'] ?>">
                     <p class="error error_city"><?php echo $_SESSION['error_city'] ?></p>
                 </div>
             </div>
@@ -148,20 +148,20 @@ session_start();
                     <label for="customer_state" class="main_label">STATE</label>
                     <select required id="customer_state" name="customer_state">
                         <!-- disabled so that 'Please select' cannot be choose if select another option -->
-                        <option value="" disabled selected>Please select</option>
+                        <option value="default" selected>Please select</option>
                         <option value="alabama" <?php if ($_SESSION['customer_state'] == 'alabama') echo ' selected="selected"'; ?>>Alabama</option>
-                        <option value="alaska">Alaska</option>
-                        <option value="california">California</option>
-                        <option value="florida">Florida</option>
-                        <option value="hawaii">Hawaii</option>
-                        <option value="illinois">Illinios</option>
-                        <option value="newyork">New York</option>
+                        <option value="alaska" <?php if ($_SESSION['customer_state'] == 'alaska') echo ' selected="selected"'; ?>>Alaska</option>
+                        <option value="california" <?php if ($_SESSION['customer_state'] == 'california') echo ' selected="selected"'; ?>>California</option>
+                        <option value="florida" <?php if ($_SESSION['customer_state'] == 'florida') echo ' selected="selected"'; ?>>Florida</option>
+                        <option value="hawaii" <?php if ($_SESSION['customer_state'] == 'hawaii') echo ' selected="selected"'; ?>>Hawaii</option>
+                        <option value="illinois" <?php if ($_SESSION['customer_state'] == 'illinois') echo ' selected="selected"'; ?>>Illinios</option>
+                        <option value="newyork" <?php if ($_SESSION['customer_state'] == 'newyork') echo ' selected="selected"'; ?>>New York</option>
                     </select>
                     <p class="error error_customer_state"><?php echo $_SESSION['error_customer_state'] ?></p>
                 </div>
                 <div class="form_box">
                     <label for="postcode" class="main_label">POSTCODE</label>
-                    <input required id="postcode" name="postcode" type="text" pattern="\d{4}" title="exactly 4 digits">
+                    <input required id="postcode" name="postcode" type="text" pattern="\d{4}" title="exactly 4 digits" value="<?php echo $_SESSION['postcode'] ?>">
                     <p class="error error_postcode"><?php echo $_SESSION['error_postcode'] ?></p>
                 </div>
             </div>
@@ -173,21 +173,21 @@ session_start();
                 <div class="form_box">
                     <label for="order_product" class="main_label">PRODUCT</label>
                     <select required id="order_product" name="order_product">
-                        <option value="" disabled selected>Please select</option>
-                        <option value="">Novelties, $45,000</option>
-                        <option value="">Apex, $50,000</option>
-                        <option value="">Zenith, $47,000</option>
-                        <option value="">Radiance, $49,000</option>
-                        <option value="">Empyrean, $58,000</option>
-                        <option value="">Horizon, $55,000</option>
-                        <option value="">Luminary, $46,000</option>
-                        <option value="">Odyssey, $51,000</option>
+                        <option value="default" selected>Please select</option>
+                        <option value="novelties" <?php if ($_SESSION['order_product'] == 'novelties') echo ' selected="selected"'; ?>>Novelties, $45,000</option>
+                        <option value="apex" <?php if ($_SESSION['order_product'] == 'apex') echo ' selected="selected"'; ?>>Apex, $50,000</option>
+                        <option value="zenith" <?php if ($_SESSION['order_product'] == 'zenith') echo ' selected="selected"'; ?>>Zenith, $47,000</option>
+                        <option value="radiance" <?php if ($_SESSION['order_product'] == 'radiance') echo ' selected="selected"'; ?>>Radiance, $49,000</option>
+                        <option value="empyrean" <?php if ($_SESSION['order_product'] == 'empyrean') echo ' selected="selected"'; ?>>Empyrean, $58,000</option>
+                        <option value="horizon" <?php if ($_SESSION['order_product'] == 'horizon') echo ' selected="selected"'; ?>>Horizon, $55,000</option>
+                        <option value="luminary" <?php if ($_SESSION['order_product'] == 'luminary') echo ' selected="selected"'; ?>>Luminary, $46,000</option>
+                        <option value="odyssey" <?php if ($_SESSION['order_product'] == 'odyssey') echo ' selected="selected"'; ?>>Odyssey, $51,000</option>
                     </select>
                     <p class="error error_order_product"><?php echo $_SESSION['error_order_product'] ?></p>
                 </div>
                 <div class="form_box">
                     <label for="order_quantity" class="main_label">QUANTITY</label>
-                    <input required id="order_quantity" name="order_quantity" type="text" pattern="">
+                    <input required id="order_quantity" name="order_quantity" type="text" pattern="" value="<?php echo $_SESSION['order_quantity'] ?>">
                     <p class="error error_order_quantity"><?php echo $_SESSION['error_order_quantity'] ?></p>
                 </div>
             </div>
@@ -199,10 +199,10 @@ session_start();
                 <div class="form_box">
                     <label for="card_type" class="main_label">CARD TYPE</label>
                     <select required id="card_type" name="card_type">
-                        <option value="" disabled selected>Please select</option>
-                        <option value="Visa">Visa</option>
-                        <option value="Master">Mastercard</option>
-                        <option value="AE">American Express</option>
+                        <option value="default" selected>Please select</option>
+                        <option value="Visa" <?php if ($_SESSION['card_type'] == 'Visa') echo ' selected="selected"'; ?>>Visa</option>
+                        <option value="Master" <?php if ($_SESSION['card_type'] == 'Master') echo ' selected="selected"'; ?>>Mastercard</option>
+                        <option value="AE" <?php if ($_SESSION['card_type'] == 'AE') echo ' selected="selected"'; ?>>American Express</option>
                     </select>
                     <p class="error error_card_type"><?php echo $_SESSION['error_card_type'] ?></p>
                 </div>
@@ -210,24 +210,24 @@ session_start();
             <div class="form_line">
                 <div class="form_box">
                     <label for="card_name" class="main_label">CARDHOLDER NAME</label>
-                    <input required id="card_name" name="card_name" type="text" pattern="">
+                    <input required id="card_name" name="card_name" type="text" pattern="" value="<?php echo $_SESSION['card_name'] ?>">
                     <p class="error error_card_name"><?php echo $_SESSION['error_card_name'] ?></p>
                 </div>
                 <div class="form_box">
                     <label for="card_number" class="main_label">CARD NUMBER</label>
-                    <input required id="card_number" name="card_number" type="text" pattern="">
+                    <input required id="card_number" name="card_number" type="text" pattern="" value="<?php echo $_SESSION['card_number'] ?>">
                     <p class="error error_card_number"><?php echo $_SESSION['error_card_number'] ?></p>
                 </div>
             </div>
             <div class="form_line">
                 <div class="form_box">
                     <label for="card_expire" class="main_label">CARD EXPIRY DATE</label>
-                    <input required id="card_expire" name="card_expire" type="text" pattern="">
+                    <input required id="card_expire" name="card_expire" type="text" pattern="" value="<?php echo $_SESSION['card_expire'] ?>">
                     <p class="error error_card_expire"><?php echo $_SESSION['error_card_expire'] ?></p>
                 </div>
                 <div class="form_box">
                     <label for="card_cvv" class="main_label">CVV CODE</label>
-                    <input required id="card_cvv" name="card_cvv" type="text" pattern="">
+                    <input required id="card_cvv" name="card_cvv" type="text" pattern="" value="<?php echo $_SESSION['card_cvv'] ?>">
                     <p class="error error_card_cvv"><?php echo $_SESSION['error_card_cvv'] ?></p>
                 </div>
             </div>
