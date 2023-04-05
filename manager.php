@@ -25,16 +25,16 @@
 
     <form class="form1" method="get" action="manager.php" novalidate="novalidate">    
       <input type="hidden" name="pending_prod">
-      <input class="sm_btn" type="submit" value="view pending">
+      <input class="sm_btn" type="submit" value="view pending order">
     </form>
 
     <form class="form1" method="get" action="manager.php" novalidate="novalidate">
-      <input class="sm_btn" type="submit" name="cost_asc" value="cost ascending">
+      <input class="sm_btn" type="submit" name="cost_asc" value="view cost ascending">
       <input type="hidden" name="cost_asc">
     </form>
 
     <form class="form1" method="get" action="manager.php" novalidate="novalidate">
-      <input class="sm_btn" type="submit" name="cost_desc" value="cost descending">
+      <input class="sm_btn" type="submit" name="cost_desc" value="view cost descending">
       <input type="hidden" name="cost_desc">
     </form>
   </section>
@@ -199,7 +199,7 @@
       ."<th scope='col'>Product</th>\n"
       ."<th scope='col'>Quantity</th>\n"
       ."<th scope='col'>Total Cost</th>\n"
-      ."<th scope='col'>order_status</th>\n"
+      ."<th scope='col'>Status</th>\n"
       ."</tr>\n";
 
     //retrieve current record pointed by the result pointer
