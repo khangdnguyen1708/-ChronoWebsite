@@ -14,27 +14,27 @@
   <h1>Welcome ... to manager page</h1>
 
   <section>
-    <form method="get" action="payment.php" novalidate="novalidate">
-      <input type="submit" value="add order">
+    <form class="form1" method="get" action="payment.php" novalidate="novalidate">
+      <input class="sm_btn" type="submit" value="add order">
     </form>
 
-    <form method="get" action="manager.php" novalidate="novalidate">
-      <input type="submit" value="view all orders">
+    <form class="form1" method="get" action="manager.php" novalidate="novalidate">
+      <input class="sm_btn" type="submit" value="view all orders">
       <input type="hidden" name="all_order">
     </form>
 
-    <form method="get" action="manager.php" novalidate="novalidate">    
+    <form class="form1" method="get" action="manager.php" novalidate="novalidate">    
       <input type="hidden" name="pending_prod">
-      <input type="submit" value="view pending">
+      <input class="sm_btn" type="submit" value="view pending">
     </form>
 
-    <form method="get" action="manager.php" novalidate="novalidate">
-      <input type="submit" name="cost_asc" value="cost ascending">
+    <form class="form1" method="get" action="manager.php" novalidate="novalidate">
+      <input class="sm_btn" type="submit" name="cost_asc" value="cost ascending">
       <input type="hidden" name="cost_asc">
     </form>
 
-    <form method="get" action="manager.php" novalidate="novalidate">
-      <input type="submit" name="cost_desc" value="cost descending">
+    <form class="form1" method="get" action="manager.php" novalidate="novalidate">
+      <input class="sm_btn" type="submit" name="cost_desc" value="cost descending">
       <input type="hidden" name="cost_desc">
     </form>
   </section>
@@ -92,15 +92,15 @@
   $show = "SELECT 
     orders.order_id,
     customers.first_name,
-    customer.last_name,
+    customers.last_name,
     orders.order_time,
     orders.order_product,
-    order.order_quantity,
-    order.order_cost,
-    order.order_status
+    orders.order_quantity,
+    orders.order_cost,
+    orders.order_status
     FROM orders
     LEFT JOIN customers
-    ON order.order_phone_number = customers.phone_number";
+    ON orders.order_phone_number = customers.phone_number";
 
   //verify connection
   if(!$conn) {
@@ -108,6 +108,18 @@
   } 
 
   $result = mysqli_query($conn, $show);
+
+  function search($formName, $queryFilter) {
+    global $conn, $show, $result;
+    if(isset($_GET["$formName"])) {
+      $query = $show . " " . $queryFilter;
+      $result = mysqli_query($conn, $query);
+    }
+  }
+
+  search("pendding_prod", "WHERE order_status='PENDING");
+  search("cost_acs", "ORDER BY order_cost ASC");
+  search("cost_desc", "ORDER BY order_cost DESC");
 
   //delete order on click
   if(isset($_GET["del_id"]) && isset($_GET["del_status"])) {
@@ -120,7 +132,6 @@
       $sql_del = "DELETE FROM $ord_table WHERE order_id=$id";
       $result = mysqli_query($conn,$sql_del); 
 
-    
       if($result) {
         header("location: manager.php");
         echo '<p class="succ_mss">delete successfully</p>';
@@ -153,11 +164,7 @@
   if(isset($_GET["sort_name"])) {
     $search_query = $_GET["sort_name"];
     
-    if($sort_name == "") {
-      header("location: manager.php");
-
-
-      //PROBLEMS HERE
+    if(empty($sort_name)) {
       echo "<p class='err_mss'>You must enter information to search</p>"; 
     } else {
       $query = "$show WHERE 
@@ -169,11 +176,7 @@
   if(isset($_GET["sort_prod"])) {
     $search_query = $_GET["sort_prod"];
   
-    if($sort_prod == "") {
-      header("location: manager.php");
-
-
-      //PROBLEMS HERE
+    if(empty($sort_prod)) {
       echo "<p class='err_mss'>You must enter information to search</p>"; 
     } else {
       $query = "$show 
@@ -181,18 +184,6 @@
         LIKE '%$search_query%'";
       $result = mysqli_query($conn, $query);
     }  
-  }
-  if(isset($_GET["pending_prod"])) {
-    $query = "$show WHERE order_status='PENDING'";
-    $result = mysqli_query($conn, $query);
-  }
-  if(isset($_GET["cost_asc"])) {
-    $query = "$show ORDER BY order_cost ASC";
-    $result = mysqli_query($conn, $query);
-  }
-  if(isset($_GET["cost_desc"])) {
-    $query = "$show ORDER BY order_cost DESC";
-    $result = mysqli_query($conn, $query);
   }
 
   if(!$result) {
@@ -237,7 +228,7 @@
       echo '</form>';
       
       echo "<td>"; echo '<button class="del_btn">';
-      echo '<a class="del_link" href="manager.php?del_id='.$row["order_id"].'&del_status='.$row["make"].'">Delete</a>';
+      echo '<a class="del_link" href="manager.php?del_id='.$row["order_id"].'&del_status='.$row["order_status"].'">Delete</a>';
       echo '</button>'; echo "</td>";
     }
     echo "</table>\n"; 
