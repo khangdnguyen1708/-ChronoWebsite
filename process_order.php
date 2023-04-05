@@ -367,8 +367,8 @@ session_start();
         echo "<p>all inputs are good</p>";
         // MANH -- insert to db
 
-        // Why this part?? its 00:16am i hv no fking clue
-        $sql_table = "personaltest";
+        // table perosonal 
+        $sql_table_personal = "personaltest";
         $title   = trim($_POST["title"]);
         $first_name  = trim($_POST["first_name"]);
         $last_name  = trim($_POST["last_name"]);
@@ -380,19 +380,44 @@ session_start();
         $postcode    = trim($_POST["postcode"]);
         
 
-        $query = "INSERT INTO $sql_table (title, first_name, last_name, email, phone_number, street_addr, city, customer_state, postcode) 
+        $query_personal = "INSERT INTO $sql_table_personal (title, first_name, last_name, email, phone_number, street_addr, city, customer_state, postcode) 
         VALUES ('$title', '$first_name', '$last_name', '$email', '$phone_number', '$street_addr', '$city', '$customer_state', '$postcode')";
 
-        $result = mysqli_query($conn, $query);
-        if(!$result) {
-            echo "<p>Something is wrong with $query</p>";
+        $result_personal = mysqli_query($conn, $query_personal);
+        if(!$result_personal) {
+            echo "<p>Something is wrong with $query_personal</p>";
         } else {
-            echo "<p>Successfully added new information record</p>";
+            echo "<p>Successfully added new information record1</p>";
+        }
+
+        // table order
+        $sql_table_order = "orderstest";
+        $order_id   = trim($_POST["order_id"]);
+        $order_time  = trim($_POST["order_time"]);
+        $order_status  = trim($_POST["order_status"]);
+        $order_product    = trim($_POST["order_product"]);
+        $order_quantity    = trim($_POST["order_quantity"]);
+        $order_cost    = trim($_POST["order_cost"]);
+        $card_type    = trim($_POST["card_type"]);
+        $card_name    = trim($_POST["card_name"]);
+        $card_number    = trim($_POST["card_number"]);
+        $card_expire    = trim($_POST["card_expire"]);
+        $card_cvv    = trim($_POST["card_cvv"]);
+        $order_phone_number    = trim($_POST["order_phone_number"]);
+        
+        $query_order = "INSERT TO $sql_table_order (order_id, order_time, order_status, order_product, order_quantity, order_cost, card_type, card_name, card_number, card_expire, card_cvv, order_phone_number)
+        VALUES ('$order_id', '$order_time', '$order_status', '$order_product', '$order_quantity', '$order_cost', '$card_type', '$card_name', '$card_number', '$card_expire, '$card_cvv', '$order_phone_number')";
+
+        $result_order = mysqli_query($conn, $query_order);
+        if(!$result_order) {
+            echo"<p>Something is wrong with $query_order</p>";
+        } else {
+            echo"<p>Successfully added new information record2</p>";
         }
 
         mysqli_close($conn);
-        
     }
+        
 
     // Add all inputs to tables --KHANG NGUYEN--
 
