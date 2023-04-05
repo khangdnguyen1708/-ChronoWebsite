@@ -156,7 +156,7 @@ session_start();
         echo "<p>table orderstest not found1</p>";
         $create_table_query = "CREATE TABLE orderstest (
             order_id int(3) not null PRIMARY KEY AUTO_INCREMENT, 
-            order_time date not null, 
+            order_time datetime not null, 
             order_status varchar(255) DEFAULT 'PENDING', 
             order_product varchar(255) not null, 
             order_quantity int(11) not null, 
@@ -392,7 +392,7 @@ session_start();
 
         // table order
         $sql_table_order = "orderstest";
-        $order_id   = trim($_POST["order_id"]);
+        // $order_id   = trim($_POST["order_id"]);
         $order_time  = trim($_POST["order_time"]);
         $order_status  = trim($_POST["order_status"]);
         $order_product    = trim($_POST["order_product"]);
@@ -405,8 +405,8 @@ session_start();
         $card_cvv    = trim($_POST["card_cvv"]);
         $order_phone_number    = trim($_POST["order_phone_number"]);
         
-        $query_order = "INSERT TO $sql_table_order (order_id, order_time, order_status, order_product, order_quantity, order_cost, card_type, card_name, card_number, card_expire, card_cvv, order_phone_number)
-        VALUES ('$order_id', '$order_time', '$order_status', '$order_product', '$order_quantity', '$order_cost', '$card_type', '$card_name', '$card_number', '$card_expire, '$card_cvv', '$order_phone_number')";
+        $query_order = "INSERT TO $sql_table_order (order_time, order_status, order_product, order_quantity, order_cost, card_type, card_name, card_number, card_expire, card_cvv, order_phone_number)
+        VALUES (CURRENT_TIMESTAMP(), '$order_status', '$order_product', '$order_quantity', '$order_cost', '$card_type', '$card_name', '$card_number', '$card_expire, '$card_cvv', '$order_phone_number')";
 
         $result_order = mysqli_query($conn, $query_order);
         if(!$result_order) {
