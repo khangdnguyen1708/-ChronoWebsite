@@ -11,7 +11,7 @@
 
 <?php include("includes/header.html"); ?>
 
-  <h1>Welcome ... to manager page</h1>
+  <h1>Welcome, admin!</h1>
 
   <section>
     <form class="form1" method="get" action="payment.php" novalidate="novalidate">
@@ -41,39 +41,13 @@
 
   <form class="form2" method="get" action="manager.php" novalidate="novalidate">    
     <input class="inp_txt" type="text" name="sort_name">
-    <input class="sm_btn2" type="submit" value="search by customer's name">
+    <input class="sm_btn2" type="submit" value="search by customers name">
   </form>
 
   <form class="form2" method="get" action="manager.php" novalidate="novalidate">
     <input class="inp_txt" type="text" name="sort_prod">
     <input class="sm_btn2" type="submit" value="search by product name">
-  </form>
-
-
-
-<!-- orders (
-            order_id
-            order_time 
-            order_status 
-            order_product  
-            order_quantity 
-            order_cost 
-            card_type 
-            card_name
-            card_number 
-            card_expire
-            card_cvv
-            order_phone_number) -->
-<!-- customers ( 
-            title
-            first_name
-            last_name
-            email
-            phone_number
-            street_addr 
-            city
-            customer_state
-            postcode)-->
+  </form>';  
 
 <?php
   //connect to database
@@ -230,7 +204,6 @@
 
   //free up memory
   mysqli_close($conn);
-
 ?>
 
 <?php include("includes/footer.html"); ?>
