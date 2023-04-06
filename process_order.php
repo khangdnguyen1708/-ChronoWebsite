@@ -46,6 +46,7 @@ session_start();
         return $data;
     }
 
+    
     // Checks if process was triggered by a form submit, if not return to payment.php
     if (isset($_POST["title"])) {
         $_SESSION['title'] = sanitise_input($_POST["title"]);
