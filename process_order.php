@@ -405,7 +405,7 @@ session_start();
         $card_cvv    = $_POST["card_cvv"];
         $order_phone_number    = trim($_POST["order_phone_number"]);
         
-        $query_order = "INSERT TO $sql_table_order (order_time, order_status, order_product, order_quantity, order_cost, card_type, card_name, card_number, card_expire, card_cvv, order_phone_number)
+        $query_order = "INSERT INTO $sql_table_order (order_time, order_status, order_product, order_quantity, order_cost, card_type, card_name, card_number, card_expire, card_cvv, order_phone_number)
         VALUES (CURRENT_TIMESTAMP(), '$order_status', '$order_product', '$order_quantity', '$order_cost', '$card_type', '$card_name', '$card_number', '$card_expire, '$card_cvv', '$order_phone_number')";
 
         $result_order = mysqli_query($conn, $query_order);
