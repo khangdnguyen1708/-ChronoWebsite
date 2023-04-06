@@ -39,20 +39,14 @@
     </form>
   </section>
 
-  <form method="get" action="manager.php" novalidate="novalidate">
-    <fieldset>
-      <label>Enter Customer's Name</label>
-      <input type="text" name="sort_name">
-      <input type="submit" value="search">
-    </fieldset>
+  <form class="form2" method="get" action="manager.php" novalidate="novalidate">    
+    <input class="inp_txt" type="text" name="sort_name">
+    <input class="sm_btn2" type="submit" value="search by customer's name">
   </form>
 
-  <form method="get" action="manager.php" novalidate="novalidate">
-    <fieldset>
-      <label>Enter Product Name</label>
-      <input type="text" name="sort_prod">
-      <input type="submit" value="search">
-    </fieldset>
+  <form class="form2" method="get" action="manager.php" novalidate="novalidate">
+    <input class="inp_txt" type="text" name="sort_prod">
+    <input class="sm_btn2" type="submit" value="search by product name">
   </form>
 
 
@@ -224,10 +218,10 @@
       echo '<option value="ARCHIVED"' . ($row["order_status"] == 'ARCHIVED' ? ' selected="selected"' : '') . '>ARCHIVED</option>';
       echo '</select>';
       echo '<input type="hidden" name="upd_id" value="' . $row["order_id"] . '"></td>';
-      echo '<td><input type="submit" name="upd_od" value="update"></td>';
+      echo '<td class="upd_btn"><input type="submit" name="upd_od" value="update"></td>';
       echo '</form>';
       
-      echo "<td>"; echo '<button class="del_btn">';
+      echo '<td class="upd_btn">'; echo '<button class="del_btn">';
       echo '<a class="del_link" href="manager.php?del_id='.$row["order_id"].'&del_status='.$row["order_status"].'">Delete</a>';
       echo '</button>'; echo "</td>";
     }
