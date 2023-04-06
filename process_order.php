@@ -105,7 +105,7 @@ session_start();
     }*/
 
     $_SESSION['customer_state'] = sanitise_input($_POST["customer_state"]);
-    echo "<p>My state is ".$_SESSION['customer_state']."</p>";
+    echo "<p>My state is " . $_SESSION['customer_state'] . "</p>";
 
     if (isset($_POST["postcode"])) {
         $_SESSION['postcode'] = sanitise_input($_POST["postcode"]);
@@ -220,10 +220,10 @@ session_start();
 
     if ($_SESSION['email'] == "") {
         $errMsg .= "<p>You must enter your email.</p>";
-        $_SESSION['error_email']= "You must enter your email.";
+        $_SESSION['error_email'] = "You must enter your email.";
     } elseif (!preg_match("/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/", $_SESSION['email'])) {
         $errMsg .= "<p>Your email must follow the following form: chrono@gmail.com</p>";
-        $_SESSION['error_email']= "Your email must follow the following form: chrono@gmail.com";
+        $_SESSION['error_email'] = "Your email must follow the following form: chrono@gmail.com";
     } else {
         $_SESSION['error_email'] = null;
     }
@@ -269,7 +269,7 @@ session_start();
         $errMsg .= "<p>You must enter the postcode of your city.</p>";
         $_SESSION['error_postcode'] = "You must enter the postcode of your city.";
     } elseif (!preg_match("/^[0-9]{5,9}$/", $_SESSION['postcode'])) {
-        $errMsg .= "<p>Your postcode must have from 5 to 9 digits ".$_SESSION['postcode']."</p>";
+        $errMsg .= "<p>Your postcode must have from 5 to 9 digits " . $_SESSION['postcode'] . "</p>";
         $_SESSION['error_postcode'] = "Your postcode must have from 5 to 9 digits";
     } else {
         $_SESSION['error_postcode'] = null;
@@ -291,7 +291,7 @@ session_start();
     } else {
         $_SESSION['error_order_quantity'] = null;
     }
-    
+
     if ($_SESSION['card_type'] == "default") {
         $errMsg .= "<p>You must select your card type.</p>";
         $_SESSION['error_card_type'] = "You must select your card type.";
@@ -367,7 +367,7 @@ session_start();
         echo "<p>all inputs are good</p>";
         // MANH -- insert to db
 
-        // table perosonal 
+        // table personal FIX all to session variable
         $sql_table_personal = "personaltest";
         $title   = $_POST["title"];
         $first_name  = $_POST["first_name"];
@@ -378,13 +378,13 @@ session_start();
         $city    = $_POST["city"];
         $customer_state    = $_POST["customer_state"];
         $postcode    = $_POST["postcode"];
-        
+
 
         $query_personal = "INSERT INTO $sql_table_personal (title, first_name, last_name, email, phone_number, street_addr, city, customer_state, postcode) 
         VALUES ('$title', '$first_name', '$last_name', '$email', '$phone_number', '$street_addr', '$city', '$customer_state', '$postcode')";
 
         $result_personal = mysqli_query($conn, $query_personal);
-        if(!$result_personal) {
+        if (!$result_personal) {
             echo "<p>Something is wrong with $query_personal</p>";
         } else {
             echo "<p>Successfully added new information record1</p>";
@@ -392,37 +392,61 @@ session_start();
 
         // table order
         $sql_table_order = "orderstest";
-        // $order_id   = trim($_POST["order_id"]);
-        $order_time  = $_POST["order_time"];
-        $order_status  = $_POST["order_status"];
-        $order_product    = $_POST["order_product"];
-        $order_quantity    = $_POST["order_quantity"];
-        $order_cost    = $_POST["order_cost"];
-        $card_type    = $_POST["card_type"];
-        $card_name    = $_POST["card_name"];
-        $card_number    = $_POST["card_number"];
-        $card_expire    = $_POST["card_expire"];
-        $card_cvv    = $_POST["card_cvv"];
-        $order_phone_number    = trim($_POST["order_phone_number"]);
-        
-        $query_order = "INSERT INTO $sql_table_order (order_time, order_status, order_product, order_quantity, order_cost, card_type, card_name, card_number, card_expire, card_cvv, order_phone_number)
-        VALUES (CURRENT_TIMESTAMP(), '$order_status', '$order_product', '$order_quantity', '$order_cost', '$card_type', '$card_name', '$card_number', '$card_expire, '$card_cvv', '$order_phone_number')";
+        $order_product = $_SESSION['order_product'];
+        $order_quantity = $_SESSION['order_quantity'];
+        switch ($_SESSION['order_product']) {
+            case "novelties":
+                $order_cost = 45000;
+                break;
+            case "apex":
+                $order_cost = 50000;
+                break;
+            case "zenith":
+                $order_cost = 47000;
+                break;
+            case "radiance":
+                $order_cost = 49000;
+                break;
+            case "empyrean":
+                $order_cost = 58000;
+                break;
+            case "horizon":
+                $order_cost = 55000;
+                break;
+            case "luminary":
+                $order_cost = 46000;
+                break;
+            case "odyssey":
+                $order_cost = 51000;
+                break;
+        }
+        $card_type = $_SESSION['card_type'];
+        $card_name = $_SESSION['card_name'];
+        $card_number = $_SESSION['card_number'];
+        $card_expire = $_SESSION['card_expire'];
+        $card_cvv = $_SESSION['card_cvv'];
+        $order_phone_number = $_SESSION['phone_number']; // wrong
+
+        //$query_order = "INSERT INTO $sql_table_order (order_time, order_status, order_product, order_quantity, order_cost, card_type, card_name, card_number, card_expire, card_cvv, order_phone_number) 
+        //VALUES (CURRENT_TIMESTAMP(), 'PENDING', '$order_product', '$order_quantity', '$order_cost', '$card_type', '$card_name', '$card_number', '$card_expire, '$card_cvv', '$order_phone_number')";
+
+        $query_order = "INSERT INTO $sql_table_order (`order_id`, `order_time`, `order_status`, `order_product`, `order_quantity`, `order_cost`, `card_type`, `card_name`, `card_number`, `card_expire`, `card_cvv`, `order_phone_number`) VALUES (NULL, CURRENT_TIMESTAMP(), 'PENDING', '$order_product', '$order_quantity', '$order_cost', '$card_type', '$card_name', '1234', '1', '1', '1');";
 
         $result_order = mysqli_query($conn, $query_order);
-        if(!$result_order) {
-            echo"<p>Something is wrong with $query_order</p>";
+        if (!$result_order) {
+            echo "<p>Something is wrong with $query_order</p>";
         } else {
-            echo"<p>Successfully added new information record2</p>";
+            echo "<p>Successfully added new information record2</p>";
         }
 
         mysqli_close($conn);
     }
-        
+
 
     // Add all inputs to tables --KHANG NGUYEN--
 
     echo "<p>end</p>";
-    if($errMsg == "") {
+    if ($errMsg == "") {
         $insert_table_query = "";
     }
 
