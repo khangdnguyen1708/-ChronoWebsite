@@ -369,15 +369,15 @@ session_start();
 
         // table perosonal 
         $sql_table_personal = "personaltest";
-        $title   = trim($_POST["title"]);
-        $first_name  = trim($_POST["first_name"]);
-        $last_name  = trim($_POST["last_name"]);
-        $email    = trim($_POST["email"]);
-        $phone_number    = trim($_POST["phone_number"]);
-        $street_addr    = trim($_POST["street_addr"]);
-        $city    = trim($_POST["city"]);
-        $customer_state    = trim($_POST["customer_state"]);
-        $postcode    = trim($_POST["postcode"]);
+        $title   = $_POST["title"];
+        $first_name  = $_POST["first_name"];
+        $last_name  = $_POST["last_name"];
+        $email    = $_POST["email"];
+        $phone_number    = $_POST["phone_number"];
+        $street_addr    = $_POST["street_addr"];
+        $city    = $_POST["city"];
+        $customer_state    = $_POST["customer_state"];
+        $postcode    = $_POST["postcode"];
         
 
         $query_personal = "INSERT INTO $sql_table_personal (title, first_name, last_name, email, phone_number, street_addr, city, customer_state, postcode) 
@@ -393,19 +393,19 @@ session_start();
         // table order
         $sql_table_order = "orderstest";
         // $order_id   = trim($_POST["order_id"]);
-        $order_time  = trim($_POST["order_time"]);
-        $order_status  = trim($_POST["order_status"]);
-        $order_product    = trim($_POST["order_product"]);
-        $order_quantity    = trim($_POST["order_quantity"]);
-        $order_cost    = trim($_POST["order_cost"]);
-        $card_type    = trim($_POST["card_type"]);
-        $card_name    = trim($_POST["card_name"]);
-        $card_number    = trim($_POST["card_number"]);
-        $card_expire    = trim($_POST["card_expire"]);
-        $card_cvv    = trim($_POST["card_cvv"]);
+        $order_time  = $_POST["order_time"];
+        $order_status  = $_POST["order_status"];
+        $order_product    = $_POST["order_product"];
+        $order_quantity    = $_POST["order_quantity"];
+        $order_cost    = $_POST["order_cost"];
+        $card_type    = $_POST["card_type"];
+        $card_name    = $_POST["card_name"];
+        $card_number    = $_POST["card_number"];
+        $card_expire    = $_POST["card_expire"];
+        $card_cvv    = $_POST["card_cvv"];
         $order_phone_number    = trim($_POST["order_phone_number"]);
         
-        $query_order = "INSERT TO $sql_table_order (order_time, order_status, order_product, order_quantity, order_cost, card_type, card_name, card_number, card_expire, card_cvv, order_phone_number)
+        $query_order = "INSERT INTO $sql_table_order (order_time, order_status, order_product, order_quantity, order_cost, card_type, card_name, card_number, card_expire, card_cvv, order_phone_number)
         VALUES (CURRENT_TIMESTAMP(), '$order_status', '$order_product', '$order_quantity', '$order_cost', '$card_type', '$card_name', '$card_number', '$card_expire, '$card_cvv', '$order_phone_number')";
 
         $result_order = mysqli_query($conn, $query_order);
