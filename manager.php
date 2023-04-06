@@ -11,7 +11,7 @@
 
 <?php include("includes/header.html"); ?>
 
-  <h1>Welcome ... to manager page</h1>
+  <h1>Welcome, manager!</h1>
 
   <section>
     <form class="form1" method="get" action="payment.php" novalidate="novalidate">
