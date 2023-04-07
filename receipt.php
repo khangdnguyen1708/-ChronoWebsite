@@ -1,83 +1,98 @@
 <?php
-if (!isset($_SERVER['HTTP_REFERER'])) {
-    header("location: payment.php");
-    exit;
-}
+// if (!isset($_SERVER['HTTP_REFERER'])) {
+//     header("location: index.php");
+//     exit;
+// }
 session_start()
-    ?>
+?>
 
 <!DOCTYPE html>
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="description" content="receipt">
-    <meta name="keywords" content="PHP">
-    <meta name="author" content="Minh Le Bani-Hashemi">
-    <link rel="stylesheet" href="styles/style.css">
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your Receipt">
+    <meta name="keywords" content="HTML5">
+    <meta name="author" content="Le Minh Bani-Hashemi">
+    <link href="styles/receipt.css" rel="stylesheet">
+    <link href="styles/header.css" rel="stylesheet">
+    <link href="styles/style.css" rel="stylesheet">
     <title>Receipt</title>
-
 </head>
 
 <body id="barney_receipt">
 
     <!-- The header section starts -->
+	
     <?php
     include("includes/header.html");
     ?>
+
     <!-- The header section ends -->
 
     <!-- The container section starts -->
 
-    <section id="barney_receipt_Container">
-        <h2>Thank you for ordering our watches! Have a good day!</h2>
+    <section id="barney_receipt_container">
+        <div id="Introduction">
+            <h2> RECEIPT PAGE </h2>
+            <p> Your order is on the way shortly </p>
+            <p> Order confirmation will be sent through email </p>
+        </div>
+
+        <div id="red_line"></div>
 
         <section id="barney_receipt_information">
-            <p>
-                <?= $_SESSION['values']['first_name'], " ", $_SESSION['values']['last_name']; ?>
-            </p>
-            <p>Address:
-                <?= $_SESSION['values']['street'], " ", $_SESSION['values']['state'], " ", $_SESSION['values']['post_code'] ?>
-            </p>
-            <p>Phone:
-                <?= $_SESSION['values']['phone'] ?>
-            </p>
-            <p>Email:
-                <?= $_SESSION['values']['email'] ?>
-            </p>
-            <p>CCNum:***************</p>
-            <p>CCExp: **/**</p>
-            <p>CVV:***</p>
-            <table id="barney_receipt_items">
-                <tbody>
-                    <tr>
-                        <td>
-                            <?= $_SESSION['values']['receipt_desc'] ?>
-                        </td>
-                        <td class="alignRight">
-                            <?= $_SESSION['values']['tickets_quantity'] ?>
-                        </td>
-                    </tr>
+            <dl>
+                <dt> Personal Information </dt>
+                <dd><span class="term">Name</span> <?= $_SESSION['first_name']; ?> </dd>
+                <dd><span class="term">Email</span> <?= $_SESSION['email']; ?> </dd>
+                <dd><span class="term">Phone Number</span> <?= $_SESSION['phone_number']; ?> </dd>
+            </dl>
 
-                    <tr id="total">
-                        <td>Total</td>
-                        <td class="alignRight">$
-                            <?= $_SESSION['values']['order_cost'] ?>.00
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <dl>
+                <dt> Shipping Information </dt>
+                <dd><span class="term">Address</span> <?= $_SESSION['street_addr']; ?> </dd>
+                <dd><span class="term">City</span> <?= $_SESSION['city']; ?> </dd>
+                <dd><span class="term">State</span> <?= $_SESSION['customer_state']; ?> </dd>
+                <dd><span class="term">Postcode</span> <?= $_SESSION['postcode']; ?> </dd>
+            </dl>
+
+            <dl>
+                <dt> Product </dt>
+                <dd><span class="term">Watch</span> <?= $_SESSION['order_product']; ?> </span></dd>
+                <dd><span class="term">Quantity</span> <?= $_SESSION['order_quantity']; ?> </dd>
+            </dl>
+
+            <dl>
+                <dt> Order </dt>
+                <dd><span class="term">Order ID</span> <?= $_SESSION['order_id']; ?> </dd>
+                <dd><span class="term">Order Status</span> <?= $_SESSION['order_status']; ?> </dd>
+                <dd><span class="term">Order Date</span> <?= $_SESSION['order_time']; ?> </dd>
+                <dd><span class="term">Card Name</span> <?= $_SESSION['card_name']; ?> </dd>
+                <dd><span class="term">Card Type</span> <?= $_SESSION['card_type']; ?> </dd>
+                <dd><span class="term">Card Number</span> <?= $_SESSION['card_number']; ?> </dd>
+            </dl>
+
         </section>
+
+        <div id="after_container">
+            <a class="button_type" type="submit" value="book" href="index.php">BACK TO HOMEPAGE</a>
+            <a class="button_type" type="submit" value="book" href="payment.php">CONTINUE SHOPPING</a>
+        </div>
 
         <!-- The container section starts -->
 
         <!--The footer section starts-->
+
         <?php
         include("includes/footer.html");
         ?>
+
         <!--The footer section ends-->
     </section>
+
 </body>
 
 </html>
