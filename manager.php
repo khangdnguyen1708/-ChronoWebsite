@@ -83,7 +83,7 @@
         </form>
       </section>';
       
-      //connect to database
+      //connect to database aaa
       require_once("settings2.php");
       $ord_table = "orders";
       $ord_attr = "order_id, order_time, order_status, order_product, order_quantity, order_cost";
