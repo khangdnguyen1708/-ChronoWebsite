@@ -83,7 +83,7 @@
         </form>
       </section>';
       
-      //connect to database aaa
+      //connect to database
       require_once("settings2.php");
       $ord_table = "orders";
       $ord_attr = "order_id, order_time, order_status, order_product, order_quantity, order_cost";
@@ -162,11 +162,12 @@
       if(isset($_POST["all_order"])) {
         $result = mysqli_query($conn, $show);
       }
+      
       if(isset($_POST["sort_name"])) {
         $search_query = $_POST["sort_name"];
-        
+
         if(empty($sort_name)) {
-          echo "<p class='err_mss'>You must enter information to search</p>"; 
+          // echo "<p class='err_mss'>You must enter information to search</p>"; 
         } else {
           $query = "$show WHERE 
             CONCAT($cus_table.first_name, ' ', $cus_table.last_name)
@@ -178,7 +179,7 @@
         $search_query = $_POST["sort_prod"];
       
         if(empty($sort_prod)) {
-          echo "<p class='err_mss'>You must enter information to search</p>"; 
+          // echo "<p class='err_mss'>You must enter information to search</p>"; 
         } else {
           $query = "$show 
             WHERE order.order_cost
@@ -208,7 +209,7 @@
         //retrieve current record pointed by the result pointer
     
         while($row = mysqli_fetch_assoc($result)) {
-        
+          $total_cost = $row["order_cost"] * $row["order_quantity"];
           echo "<tr>\n";
           echo "<td>",$row["order_id"],"</td>";
           echo "<td class='name'>",$row["first_name"],"</td>";
@@ -216,7 +217,7 @@
           echo "<td>",$row["order_time"],"</td>";
           echo "<td>",$row["order_product"],"</td>";
           echo "<td>",$row["order_quantity"],"</td>";
-          echo "<td>",$row["order_cost"],"</td>";
+          echo "<td>",$total_cost,"</td>";
 
 
           
@@ -232,7 +233,7 @@
           echo '<input type="hidden" name="upd_id" value="' . $row["order_id"] . '"></td>';
           echo '<input type="hidden" name="user" value="admin"></td>';
           echo '<input type="hidden" name="pass" value="admin"></td>';
-          echo '<td class="upd_btn"><input type="submit" name="upd_od" value="update"></td>';
+          echo '<td><input class="upd_btn" type="submit" name="upd_od" value="update"></td>';
           echo '</form>';
           
           echo '<form method="POST" action="manager.php">';
@@ -240,7 +241,7 @@
           echo '<input type="hidden" name="del_status" value="'.$row["order_status"].'">';
           echo '<input type="hidden" name="user" value="admin">';
           echo '<input type="hidden" name="pass" value="admin">';
-          echo '<td class="upd_btn">';
+          echo '<td>';
           echo '<button class="del_btn" type="submit">Delete</button>';
           echo '</form>';
         }

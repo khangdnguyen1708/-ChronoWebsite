@@ -149,13 +149,19 @@ fieldset {
 .err_mss {color: red;}
 
 .upd_btn {
+  background-color: #009879;
+  color: white;
+  padding: 12px 15px;
+  margin: 0px 20%;
   border: none;
+  cursor: pointer;
 }
 
 .del_btn {
   border: none;
+  color: yellow;
   background-color: red;
-  padding: 10px;
+  padding: 12px 15px;
 }
 
 .del_link {
@@ -173,10 +179,6 @@ fieldset {
   border-collapse: collapse;
   margin: 3em 10% 3em 10%;
   width: 80%;
-}
-
-.select {
-  border: none;
 }
 
 #login_form {
