@@ -163,7 +163,7 @@ session_start();
             order_cost int(20) not null, 
             card_type varchar(255) not null, 
             card_name varchar(255) not null, 
-            card_number int(16) not null, 
+            card_number varchar(20) not null, 
             card_expire varchar(5) not null, 
             card_cvv int(3) not null, 
             order_phone_number int(10) not null);";
@@ -430,7 +430,7 @@ session_start();
         //$query_order = "INSERT INTO $sql_table_order (order_time, order_status, order_product, order_quantity, order_cost, card_type, card_name, card_number, card_expire, card_cvv, order_phone_number) 
         //VALUES (CURRENT_TIMESTAMP(), 'PENDING', '$order_product', '$order_quantity', '$order_cost', '$card_type', '$card_name', '$card_number', '$card_expire, '$card_cvv', '$order_phone_number')";
 
-        $query_order = "INSERT INTO $sql_table_order (`order_id`, `order_time`, `order_status`, `order_product`, `order_quantity`, `order_cost`, `card_type`, `card_name`, `card_number`, `card_expire`, `card_cvv`, `order_phone_number`) VALUES (NULL, CURRENT_TIMESTAMP(), 'PENDING', '$order_product', '$order_quantity', '$order_cost', '$card_type', '$card_name', '1234', '1', '1', '1');";
+        $query_order = "INSERT INTO $sql_table_order (`order_id`, `order_time`, `order_status`, `order_product`, `order_quantity`, `order_cost`, `card_type`, `card_name`, `card_number`, `card_expire`, `card_cvv`, `order_phone_number`) VALUES (NULL, CURRENT_TIMESTAMP(), 'PENDING', '$order_product', '$order_quantity', '$order_cost', '$card_type', '$card_name', '$card_number', '1', '1', '1');";
 
         $result_order = mysqli_query($conn, $query_order);
         if (!$result_order) {
