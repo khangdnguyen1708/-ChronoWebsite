@@ -148,13 +148,13 @@ session_start();
     }
 
     // Check if table orders exist
-    $check_table = "orderstest";
+    $check_table = "orders";
     $result = mysqli_query($conn, "SHOW TABLES LIKE '$check_table'");
     if ($result->num_rows != 0) {
-        echo "<p>table orderstest exists</p>";
+        echo "<p>table orders exists</p>";
     } else {
-        echo "<p>table orderstest not found1</p>";
-        $create_table_query = "CREATE TABLE orderstest (
+        echo "<p>table orders not found1</p>";
+        $create_table_query = "CREATE TABLE orders (
             order_id int(3) not null PRIMARY KEY AUTO_INCREMENT, 
             order_time datetime not null, 
             order_status varchar(255) DEFAULT 'PENDING', 
@@ -171,13 +171,13 @@ session_start();
     }
 
     // Check if table personal exist
-    $check_table = "personaltest";
+    $check_table = "customers";
     $result = mysqli_query($conn, "SHOW TABLES LIKE '$check_table'");
     if ($result->num_rows != 0) {
-        echo "<p>table personaltest exists</p>";
+        echo "<p>table customers exists</p>";
     } else {
-        echo "<p>table personaltest not found2</p>";
-        $create_table_query = "CREATE TABLE personaltest ( 
+        echo "<p>table customers not found2</p>";
+        $create_table_query = "CREATE TABLE customers ( 
             title varchar(255) not null, 
             first_name varchar(255) not null, 
             last_name varchar(255) not null, 
@@ -368,7 +368,7 @@ session_start();
         // MANH -- insert to db
 
         // table personal FIX all to session variable
-        $sql_table_personal = "personaltest";
+        $sql_table_personal = "customers";
         $title   = $_POST["title"];
         $first_name  = $_POST["first_name"];
         $last_name  = $_POST["last_name"];
@@ -391,7 +391,7 @@ session_start();
         }
 
         // table order
-        $sql_table_order = "orderstest";
+        $sql_table_order = "orders";
         $order_product = $_SESSION['order_product'];
         $order_quantity = $_SESSION['order_quantity'];
         switch ($_SESSION['order_product']) {
