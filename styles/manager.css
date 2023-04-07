@@ -104,8 +104,10 @@ table, td, th {
 
 .err_mss, .succ_mss {
   text-align: center;
-  font-size: medium;
+  font-size: large;
 }
+
+.err_mss {color: red;}
 
 .upd_btn {
   border: none;
