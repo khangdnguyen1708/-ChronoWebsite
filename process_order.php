@@ -166,7 +166,7 @@ session_start();
             card_number varchar(20) not null, 
             card_expire varchar(5) not null, 
             card_cvv int(3) not null, 
-            order_phone_number int(10) not null);";
+            order_phone_number varchar(20) not null);";
         $result = mysqli_query($conn, $create_table_query);
     }
 
@@ -241,7 +241,7 @@ session_start();
     if ($_SESSION['street_addr'] == "") {
         $errMsg .= "<p>You must enter your street address.</p>";
         $_SESSION['error_street_addr'] = "You must enter your street address.";
-    } elseif (!preg_match("/^[a-zA-Z0-9 _]*$/", $_SESSION['street_addr'])) {
+    } elseif (!preg_match("/^[a-zA-Z0-9 _\/]*$/", $_SESSION['street_addr'])) {
         $errMsg .= "<p>Only your house address.</p>";
         $_SESSION['error_street_addr'] = "Only your house address.";
     } else {
