@@ -13,14 +13,17 @@
 
 <?php
 
-  function login() {
+  function login($valid) {
     echo '<form id="login_form" method="POST" action="manager.php">
-      <label class="login_lb" for="user">Username: </label>
+      <label class="login_lb" for="user">Username (enter "admin"): </label>
       <input class="login" type="text" name="user"></input><br/>
-      <label class="login_lb" for="pass">Password: </label>
-      <input class="login" type="password" name="pass"></input><br/>
-      <input id="login_sm" type="submit" name="submit" value="Log in"></input>
-      </form>';
+      <label class="login_lb" for="pass">Password (enter "admin"): </label>
+      <input class="login" type="password" name="pass"></input><br/>';
+    if($valid == "invalid") {
+      echo '<p class="err_mss">Incorrect username or password</p>';
+    }
+    echo '<input id="login_sm" type="submit" name="submit" value="Log in"></input>
+    </form>';
   }
 
   if(isset($_POST["user"]) && isset($_POST["pass"])) {
@@ -244,11 +247,10 @@
       //free up memory
       mysqli_close($conn);
     } else {
-      login();
-      echo 'Incorrect username or password';
+      login('invalid');
     }
   } else {
-    login();
+    login('');
   }
 ?>
 
