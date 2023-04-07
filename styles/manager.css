@@ -1,4 +1,6 @@
 
+
+
 h1 {
   border-top: 1px solid white;
   padding: 30px;
@@ -24,20 +26,56 @@ fieldset {
   margin: 20px;
 }
 
-table, td, th {
+/* table, td, th {
   border-top: 1px solid;
   text-align: center;
+} */
+
+.styled-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.styled-table thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
 }
 
 .sm_btn2 {
   border-radius: 2px;
-  background-color:goldenrod;
+  background-color:#009879;
   color: white;
   cursor: pointer;
   margin-left: -55px;
   height: 40px;
   width: 50px;
   border: 1px solid black;
+  border-radius: 10px;
 }
 
 .inp_txt {
@@ -54,6 +92,7 @@ table, td, th {
   height: 3em;
   padding-right: 50px;
   margin: 0.2em 0 3em 0;
+  border-radius: 10px;
 }
 
 .name {
@@ -75,12 +114,12 @@ table, td, th {
 
 .sm_btn {
   width: 100%;
-  background-color: #4CAF50;
+  background-color: #009879;
   color: white;
   padding: 14px 20px;
   margin: 30px 0;
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
   font-size: 1em;
 }
@@ -136,6 +175,10 @@ table, td, th {
   width: 80%;
 }
 
+.select {
+  border: none;
+}
+
 #login_form {
   border-radius: 5px;
   background-color: #f2f2f2;
@@ -144,7 +187,7 @@ table, td, th {
 }
 
 #login_sm {
-  background-color: #04AA6D;
+  background-color: #009879;
   color: white;
   padding: 14px 20px;
   margin: 20px 20%;

@@ -191,8 +191,8 @@
         echo "<p>Something went wrong with $query</p>";
       } else {
         //display retrieve records    
-        echo '<table id="tb" border=1>';
-        echo "<tr>\n"
+        echo '<table class="styled-table">';
+        echo "<thead><tr>\n"
           ."<th scope='col'>No.</th>\n"
           ."<th scope='col'>First Name</th>\n"
           ."<th scope='col'>Last Name</th>\n" 
@@ -201,9 +201,12 @@
           ."<th scope='col'>Quantity</th>\n"
           ."<th scope='col'>Total Cost</th>\n"
           ."<th scope='col'>Status</th>\n"
-          ."</tr>\n";
+          ."<th scope='col'></th>\n"
+          ."<th scope='col'></th>\n"
+          ."</tr></thead>\n";
 
         //retrieve current record pointed by the result pointer
+    
         while($row = mysqli_fetch_assoc($result)) {
         
           echo "<tr>\n";
@@ -220,7 +223,7 @@
           echo '<td><form method="POST" action="manager.php" novalidate="novalidate">
             <input type="hidden" name="user" value="admin">
             <input type="hidden" name="pass" value="admin">';
-          echo '<select name="upd_order_status">';
+          echo '<select class="select" name="upd_order_status">';
           echo '<option value="PENDING"' . ($row["order_status"] == 'PENDING' ? ' selected="selected"' : '') . '>PENDING</option>';
           echo '<option value="FULFILLED"' . ($row["order_status"] == 'FULFILLED' ? ' selected="selected"' : '') . '>FULFILLED</option>';
           echo '<option value="PAID"' . ($row["order_status"] == 'PAID' ? ' selected="selected"' : '') . '>PAID</option>';
