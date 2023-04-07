@@ -132,14 +132,14 @@
                     <label for="order_product" class="main_label">PRODUCT</label>
                     <select required id="order_product" name="order_product">
                         <option value="default" selected>Please select</option>
-                        <option value="">Novelties, $45,000</option>
-                        <option value="">Apex, $50,000</option>
-                        <option value="">Zenith, $47,000</option>
-                        <option value="">Radiance, $49,000</option>
-                        <option value="">Empyrean, $58,000</option>
-                        <option value="">Horizon, $55,000</option>
-                        <option value="">Luminary, $46,000</option>
-                        <option value="">Odyssey, $51,000</option>
+                        <option value="novelties">Novelties, $45,000</option>
+                        <option value="apex">Apex, $50,000</option>
+                        <option value="zenith">Zenith, $47,000</option>
+                        <option value="radiance">Radiance, $49,000</option>
+                        <option value="empyrean">Empyrean, $58,000</option>
+                        <option value="horizon">Horizon, $55,000</option>
+                        <option value="luminary">Luminary, $46,000</option>
+                        <option value="odyssey">Odyssey, $51,000</option>
                     </select>
                 </div>
                 <div class="form_box">
