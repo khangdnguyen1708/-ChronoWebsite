@@ -388,12 +388,12 @@ session_start();
                 VALUES ('$title', '$first_name', '$last_name', '$email', '$phone_number', '$street_addr', '$city', '$customer_state', '$postcode')";
         }
         
-        // $result_personal = mysqli_query($conn, $query_personal);
-        // if (!$result_personal) {
-        //     echo "<p>Something is wrong with $query_personal</p>";
-        // } else {
-        //     echo "<p>Successfully added new information record1</p>";
-        // }
+        $result_personal = mysqli_query($conn, $query_personal);
+        if (!$result_personal) {
+            echo "<p>Something is wrong with $query_personal</p>";
+        } else {
+            echo "<p>Successfully added new information record1</p>";
+        }
 
         // table order
         $sql_table_order = "orders";
