@@ -203,6 +203,10 @@ fieldset {
   width: 60%;
 }
 
+#glow {
+  border: 2px solid blue;
+  color: yellow;
+}
 
 
 

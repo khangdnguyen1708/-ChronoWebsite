@@ -57,7 +57,7 @@
         <form class="form1" method="POST" action="manager.php" novalidate="novalidate">
           <input type="hidden" name="user" value="admin">
           <input type="hidden" name="pass" value="admin">
-          <input class="sm_btn" type="submit" value="view all orders">
+          <input class="sm_btn" id='.$all.' type="submit" value="view all orders">
           <input type="hidden" name="all_order">
         </form>
 
@@ -161,9 +161,8 @@
 
       if(isset($_POST["all_order"])) {
         $result = mysqli_query($conn, $show);
+        $all = "glow";
       }
-      
-
 
       if(isset($_POST["sort_name"])) {
         $search_query_name = $_POST["sort_name"];
