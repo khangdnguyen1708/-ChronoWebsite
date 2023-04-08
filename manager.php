@@ -156,40 +156,44 @@
       }
 
       search("pendding_prod", "WHERE order_status='PENDING");
-      search("cost_acs", "ORDER BY order_cost ASC");
-      search("cost_desc", "ORDER BY order_cost DESC");
+      search("cost_acs", "ORDER BY (order_cost * order_quantity) ASC");
+      search("cost_desc", "ORDER BY (order_cost * order_quantity) DESC");
 
       if(isset($_POST["all_order"])) {
         $result = mysqli_query($conn, $show);
       }
       
-      if(isset($_POST["sort_name"])) {
-        $search_query = $_POST["sort_name"];
 
-        if(empty($sort_name)) {
-          // echo "<p class='err_mss'>You must enter information to search</p>"; 
+
+      if(isset($_POST["sort_name"])) {
+        $search_query_name = $_POST["sort_name"];
+        
+        if(empty($search_query_name)) {
+          echo "<p class='err_mss'>You must enter information to search</p>"; 
         } else {
           $query = "$show WHERE 
             CONCAT($cus_table.first_name, ' ', $cus_table.last_name)
-            LIKE '%$search_query%'";
+            LIKE '%$search_query_name%'";
           $result = mysqli_query($conn, $query);
         }
       }
       if(isset($_POST["sort_prod"])) {
-        $search_query = $_POST["sort_prod"];
+        $search_query_prod = $_POST["sort_prod"];        
       
-        if(empty($sort_prod)) {
-          // echo "<p class='err_mss'>You must enter information to search</p>"; 
+        if(empty($search_query_prod)) {
+          echo "<p class='err_mss'>You must enter information to search</p>"; 
         } else {
           $query = "$show 
-            WHERE order.order_cost
-            LIKE '%$search_query%'";
+            WHERE orders.order_product
+            LIKE '%$search_query_prod%'";
           $result = mysqli_query($conn, $query);
         }  
       }
 
       if(!$result) {
         echo "<p>Something went wrong with $query</p>";
+      } elseif($result->num_rows==0) {
+        echo '<p id="no_rs_mss">No result found</p>';
       } else {
         //display retrieve records    
         echo '<table class="styled-table">';
@@ -207,7 +211,6 @@
           ."</tr></thead>\n";
 
         //retrieve current record pointed by the result pointer
-    
         while($row = mysqli_fetch_assoc($result)) {
           $total_cost = $row["order_cost"] * $row["order_quantity"];
           echo "<tr>\n";
@@ -218,8 +221,6 @@
           echo "<td>",$row["order_product"],"</td>";
           echo "<td>",$row["order_quantity"],"</td>";
           echo "<td>",$total_cost,"</td>";
-
-
           
           echo '<td><form method="POST" action="manager.php" novalidate="novalidate">
             <input type="hidden" name="user" value="admin">

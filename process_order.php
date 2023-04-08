@@ -379,10 +379,15 @@ session_start();
         $customer_state    = $_POST["customer_state"];
         $postcode    = $_POST["postcode"];
 
+        $sql_new_cus_check = "SELECT phone_number FROM customers WHERE phone_number=$phone_number";
+        $cus_check_result = mysqli_query($conn, $sql_new_cus_check);
 
-        $query_personal = "INSERT INTO $sql_table_personal (title, first_name, last_name, email, phone_number, street_addr, city, customer_state, postcode) 
-        VALUES ('$title', '$first_name', '$last_name', '$email', '$phone_number', '$street_addr', '$city', '$customer_state', '$postcode')";
-
+        if($cus_check_result->num_rows==0) {
+            $query_personal = "INSERT INTO $sql_table_personal 
+                (title, first_name, last_name, email, phone_number, street_addr, city, customer_state, postcode) 
+                VALUES ('$title', '$first_name', '$last_name', '$email', '$phone_number', '$street_addr', '$city', '$customer_state', '$postcode')";
+        }
+        
         $result_personal = mysqli_query($conn, $query_personal);
         if (!$result_personal) {
             echo "<p>Something is wrong with $query_personal</p>";

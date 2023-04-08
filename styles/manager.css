@@ -141,9 +141,14 @@ fieldset {
   font-weight: 700;
 }
 
-.err_mss, .succ_mss {
+.err_mss, .succ_mss, #no_rs_mss {
   text-align: center;
   font-size: large;
+}
+
+#no_rs_mss {
+  margin-bottom: 3em;
+  color: red;
 }
 
 .err_mss {color: red;}
