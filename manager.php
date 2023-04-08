@@ -31,58 +31,7 @@
     $pass = $_POST["pass"];
 
     if($user == 'admin' && $pass == 'admin') {
-      echo '<h1>Welcome, admin!</h1>     
 
-      <form class="form2" method="POST" action="manager.php" novalidate="novalidate">
-        <input type="hidden" name="user" value="admin">
-        <input type="hidden" name="pass" value="admin">
-        <label class="lb" for="sort_name">Search by customer\'s name:</label>
-        <input class="inp_txt" type="text" name="sort_name">
-        <input class="sm_btn2" type="submit" value="GO">
-      </form>
-    
-      <form class="form2" method="POST" action="manager.php" novalidate="novalidate">
-        <input type="hidden" name="user" value="admin">
-        <input type="hidden" name="pass" value="admin">
-        <label class="lb" for="sort_prod">Search by product name:</label>
-        <input class="inp_txt" type="text" name="sort_prod">
-        <input class="sm_btn2" type="submit" value="GO">
-      </form>
-
-      <section>
-        <form class="form1" method="POST" action="payment.php" novalidate="novalidate">
-          <input class="sm_btn" type="submit" value="add order">
-        </form>
-
-        <form class="form1" method="POST" action="manager.php" novalidate="novalidate">
-          <input type="hidden" name="user" value="admin">
-          <input type="hidden" name="pass" value="admin">
-          <input class="sm_btn" id='.$all.' type="submit" value="view all orders">
-          <input type="hidden" name="all_order">
-        </form>
-
-        <form class="form1" method="POST" action="manager.php" novalidate="novalidate">
-          <input type="hidden" name="user" value="admin">
-          <input type="hidden" name="pass" value="admin">  
-          <input type="hidden" name="pending_prod">
-          <input class="sm_btn" type="submit" value="view pending order">
-        </form>
-
-        <form class="form1" method="POST" action="manager.php" novalidate="novalidate">
-          <input type="hidden" name="user" value="admin">
-          <input type="hidden" name="pass" value="admin">
-          <input class="sm_btn" type="submit" name="cost_asc" value="view cost ascending">
-          <input type="hidden" name="cost_asc">
-        </form>
-
-        <form class="form1" method="POST" action="manager.php" novalidate="novalidate">
-          <input type="hidden" name="user" value="admin">
-          <input type="hidden" name="pass" value="admin">
-          <input class="sm_btn" type="submit" name="cost_desc" value="view cost descending">
-          <input type="hidden" name="cost_desc">
-        </form>
-      </section>';
-      
       //connect to database
       require_once("settings2.php");
       $ord_table = "orders";
@@ -145,24 +94,79 @@
           echo '<p class="err_mss">sth went wrong!</p>';
         }
       }
-      $result = mysqli_query($conn, $show);
 
       function search($formName, $queryFilter) {
         global $conn, $show, $result;
         if(isset($_POST["$formName"])) {
           $query = $show . " " . $queryFilter;
           $result = mysqli_query($conn, $query);
-        }
+          return 'glow';
+        } 
       }
 
-      search("pendding_prod", "WHERE order_status='PENDING");
-      search("cost_acs", "ORDER BY (order_cost * order_quantity) ASC");
-      search("cost_desc", "ORDER BY (order_cost * order_quantity) DESC");
+      $result = mysqli_query($conn, $show);
+      $pend = search("pending_prod", "WHERE orders.order_status LIKE '%PENDING%'");
+      $asc = search("cost_asc", "ORDER BY (orders.order_cost * orders.order_quantity) ASC");
+      $desc = search("cost_desc", "ORDER BY (orders.order_cost * orders.order_quantity) DESC");
 
       if(isset($_POST["all_order"])) {
         $result = mysqli_query($conn, $show);
         $all = "glow";
+      } else {
+        $all = '';
       }
+      
+      echo '<h1>Welcome, admin!</h1>     
+
+      <form class="form2" method="POST" action="manager.php" novalidate="novalidate">
+        <input type="hidden" name="user" value="admin">
+        <input type="hidden" name="pass" value="admin">
+        <label class="lb" for="sort_name">Search by customer\'s name:</label>
+        <input class="inp_txt" type="text" name="sort_name">
+        <input class="sm_btn2" type="submit" value="GO">
+      </form>
+    
+      <form class="form2" method="POST" action="manager.php" novalidate="novalidate">
+        <input type="hidden" name="user" value="admin">
+        <input type="hidden" name="pass" value="admin">
+        <label class="lb" for="sort_prod">Search by product name:</label>
+        <input class="inp_txt" type="text" name="sort_prod">
+        <input class="sm_btn2" type="submit" value="GO">
+      </form>
+
+      <section>
+        <form class="form1" method="POST" action="payment.php" novalidate="novalidate">
+          <input class="sm_btn" type="submit" value="add order">
+        </form>
+
+        <form class="form1" method="POST" action="manager.php" novalidate="novalidate">
+          <input type="hidden" name="user" value="admin">
+          <input type="hidden" name="pass" value="admin">
+          <input class="sm_btn" id="'. $all .'" type="submit" value="view all orders">
+          <input type="hidden" name="all_order">
+        </form>
+
+        <form class="form1" method="POST" action="manager.php" novalidate="novalidate">
+          <input type="hidden" name="user" value="admin">
+          <input type="hidden" name="pass" value="admin">  
+          <input type="hidden" name="pending_prod">
+          <input class="sm_btn" id="'. $pend .'" type="submit" value="view pending order">
+        </form>
+
+        <form class="form1" method="POST" action="manager.php" novalidate="novalidate">
+          <input type="hidden" name="user" value="admin">
+          <input type="hidden" name="pass" value="admin">
+          <input class="sm_btn" id="'. $asc .'" type="submit" name="cost_asc" value="view cost ascending">
+          <input type="hidden" name="cost_asc">
+        </form>
+
+        <form class="form1" method="POST" action="manager.php" novalidate="novalidate">
+          <input type="hidden" name="user" value="admin">
+          <input type="hidden" name="pass" value="admin">
+          <input class="sm_btn" id="'. $desc .'" type="submit" name="cost_desc" value="view cost descending">
+          <input type="hidden" name="cost_desc">
+        </form>
+      </section>';
 
       if(isset($_POST["sort_name"])) {
         $search_query_name = $_POST["sort_name"];
@@ -188,7 +192,7 @@
           $result = mysqli_query($conn, $query);
         }  
       }
-
+      
       if(!$result) {
         echo "<p>Something went wrong with $query</p>";
       } elseif($result->num_rows==0) {
