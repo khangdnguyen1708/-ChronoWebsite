@@ -401,30 +401,31 @@ session_start();
         $order_quantity = $_SESSION['order_quantity'];
         switch ($_SESSION['order_product']) {
             case "novelties":
-                $order_cost = 45000;
+                $order_cost = 45000*(int)$order_quantity;
                 break;
             case "apex":
-                $order_cost = 50000;
+                $order_cost = 50000*(int)$order_quantity;
                 break;
             case "zenith":
-                $order_cost = 47000;
+                $order_cost = 47000*(int)$order_quantity;
                 break;
             case "radiance":
-                $order_cost = 49000;
+                $order_cost = 49000*(int)$order_quantity;
                 break;
             case "empyrean":
-                $order_cost = 58000;
+                $order_cost = 58000*(int)$order_quantity;
                 break;
             case "horizon":
-                $order_cost = 55000;
+                $order_cost = 55000*(int)$order_quantity;
                 break;
             case "luminary":
-                $order_cost = 46000;
+                $order_cost = 46000*(int)$order_quantity;
                 break;
             case "odyssey":
-                $order_cost = 51000;
+                $order_cost = 51000*(int)$order_quantity;
                 break;
         }
+        $_SESSION['order_cost'] = $order_cost;
         $card_type = $_SESSION['card_type'];
         $card_name = $_SESSION['card_name'];
         $card_number = $_SESSION['card_number'];

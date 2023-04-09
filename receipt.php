@@ -70,6 +70,7 @@ session_start()
                 <dd><span class="term">Order ID</span> <?= $_SESSION['order_id']; ?> </dd>
                 <dd><span class="term">Order Status</span> <?= $_SESSION['order_status']; ?> </dd>
                 <dd><span class="term">Order Date</span> <?= $_SESSION['order_time']; ?> </dd>
+                <dd><span class="term">Order Cost</span> <?= $_SESSION['order_cost']; ?> </dd>
                 <dd><span class="term">Card Name</span> <?= $_SESSION['card_name']; ?> </dd>
                 <dd><span class="term">Card Type</span> <?= $_SESSION['card_type']; ?> </dd>
                 <dd><span class="term">Card Number</span> <?= $_SESSION['card_number']; ?> </dd>
