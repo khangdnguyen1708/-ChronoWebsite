@@ -27,7 +27,7 @@ session_start()
     <!-- The header section starts -->
 	
     <?php
-    include("includes/header.html");
+    include("header.inc");
     ?>
 
     <!-- The header section ends -->
@@ -87,7 +87,7 @@ session_start()
         <!--The footer section starts-->
 
         <?php
-        include("includes/footer.html");
+        include("footer.inc");
         ?>
 
         <!--The footer section ends-->

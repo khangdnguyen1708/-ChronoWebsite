@@ -321,23 +321,23 @@ session_start();
             $errMsg .= "<p>Visa card must have 16 digits and starts with number 4.</p>";
             $_SESSION['error_card_number'] = "Visa card must have 16 digits and starts with number 4.";
         } else {
-            $_SESSION['error_card_type'] = null;
+            $_SESSION['error_card_number'] = null;
         }
     }
     if ($_SESSION['card_type'] === "Master") {
         if (!preg_match("/^(5[1-5])([0-9]{14})$/", $_SESSION['card_number'])) {
             $errMsg .= "<p>MasterCard must have 16 digits and starts with number 51 through to 55.</p>";
-            $_SESSION['error_card_type'] = "MasterCard must have 16 digits and starts with number 51 through to 55.";
+            $_SESSION['error_card_number'] = "MasterCard must have 16 digits and starts with number 51 through to 55.";
         } else {
-            $_SESSION['error_card_type'] = null;
+            $_SESSION['error_card_number'] = null;
         }
     }
     if ($_SESSION['card_type'] === "AE") {
         if (!preg_match("/^(3[4]|3[7])([0-9]{13})$/", $_SESSION['card_number'])) {
             $errMsg .= "<p>American Express card must have 15 digits and starts with number 34 or 37.</p>";
-            $_SESSION['error_card_type'] = "American Express card must have 15 digits and starts with number 34 or 37.";
+            $_SESSION['error_card_number'] = "American Express card must have 15 digits and starts with number 34 or 37.";
         } else {
-            $_SESSION['error_card_type'] = null;
+            $_SESSION['error_card_number'] = null;
         }
     }
 
@@ -369,25 +369,25 @@ session_start();
 
         // table personal FIX all to session variable
         $sql_table_personal = "customers";
-        $title   = $_POST["title"];
-        $first_name  = $_POST["first_name"];
-        $last_name  = $_POST["last_name"];
-        $email    = $_POST["email"];
-        $phone_number    = $_POST["phone_number"];
-        $street_addr    = $_POST["street_addr"];
-        $city    = $_POST["city"];
-        $customer_state    = $_POST["customer_state"];
-        $postcode    = $_POST["postcode"];
+        $title = $_POST["title"];
+        $first_name = $_POST["first_name"];
+        $last_name = $_POST["last_name"];
+        $email = $_POST["email"];
+        $phone_number = $_POST["phone_number"];
+        $street_addr = $_POST["street_addr"];
+        $city = $_POST["city"];
+        $customer_state = $_POST["customer_state"];
+        $postcode = $_POST["postcode"];
 
         $sql_new_cus_check = "SELECT phone_number FROM customers WHERE phone_number=$phone_number";
         $cus_check_result = mysqli_query($conn, $sql_new_cus_check);
 
-        if($cus_check_result->num_rows==0) {
+        if ($cus_check_result->num_rows == 0) {
             $query_personal = "INSERT INTO $sql_table_personal 
                 (title, first_name, last_name, email, phone_number, street_addr, city, customer_state, postcode) 
                 VALUES ('$title', '$first_name', '$last_name', '$email', '$phone_number', '$street_addr', '$city', '$customer_state', '$postcode')";
         }
-        
+
         $result_personal = mysqli_query($conn, $query_personal);
         if (!$result_personal) {
             echo "<p>Something is wrong with $query_personal</p>";
@@ -430,10 +430,7 @@ session_start();
         $card_number = $_SESSION['card_number'];
         $card_expire = $_SESSION['card_expire'];
         $card_cvv = $_SESSION['card_cvv'];
-        $order_phone_number = $_SESSION['phone_number']; // wrong
-
-        // $query_order = "INSERT INTO $sql_table_order (order_time, order_status, order_product, order_quantity, order_cost, card_type, card_name, card_number, card_expire, card_cvv, order_phone_number) 
-        // VALUES (CURRENT_TIMESTAMP(), 'PENDING', '$order_product', '$order_quantity', '$order_cost', '$card_type', '$card_name', '$card_number', '$card_expire, '$card_cvv', '$order_phone_number')";
+        $order_phone_number = $_SESSION['phone_number'];
 
         $query_order = "INSERT INTO $sql_table_order (`order_id`, `order_time`, `order_status`, `order_product`, `order_quantity`, `order_cost`, `card_type`, `card_name`, `card_number`, `card_expire`, `card_cvv`, `order_phone_number`) VALUES (NULL, CURRENT_TIMESTAMP(), 'PENDING', '$order_product', '$order_quantity', '$order_cost', '$card_type', '$card_name', '$card_number', '$card_expire', '$card_cvv', '$order_phone_number');";
 
@@ -444,11 +441,19 @@ session_start();
             echo "<p>Successfully added new information record2</p>";
         }
 
+        // query to select order_time from orders table
+        $query_order_time = "select order_id, order_time, order_status FROM orders WHERE order_phone_number = '$order_phone_number'";
+        $result = mysqli_query($conn, $query_order_time);
+        $row = mysqli_fetch_assoc($result);
+        $_SESSION['order_time'] = $row["order_time"];
+        $_SESSION['order_status'] = $row["order_status"];
+        $_SESSION['order_id'] = $row["order_id"];
+
+        // query to select order_id from orders table
+        $query_order_id = "";
+
         mysqli_close($conn);
     }
-
-
-    // Add all inputs to tables --KHANG NGUYEN--
 
     echo "<p>end</p>";
     if ($errMsg == "") {
