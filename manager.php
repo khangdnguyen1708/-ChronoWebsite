@@ -9,7 +9,7 @@
 
 <body>
 
-<?php include("includes/header.html"); ?>
+<?php include("includes/header.inc"); ?>
 
 <?php
 
@@ -262,7 +262,7 @@
   }
 ?>
 
-<?php include("includes/footer.html"); ?>
+<?php include("includes/footer.inc"); ?>
 
 </body>
 </html>
