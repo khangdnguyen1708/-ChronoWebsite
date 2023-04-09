@@ -11,7 +11,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Enquiry page">
     <meta name="keywords" content="HTML5/CSS/PHP">
-    <meta name="author" content="Duy Khang Nguyen">
+    <meta name="author" content="Duy Khang Nguyen, Nguyen Ho Duc Manh">
     <title>Payment page</title>
 
     <link href="styles/enquire.css" rel="stylesheet">
@@ -362,9 +362,9 @@ session_start();
     }
 
     if ($errMsg != "") {
-        echo "<p>$errMsg</p>";
+        header("location:fix_order.php");
     } else {
-        echo "<p>all inputs are good</p>";
+        header("location:receipt.php");
         // MANH -- insert to db
 
         // table personal FIX all to session variable
