@@ -19,7 +19,7 @@
 
 <body>
 
-<?php include("includes/header.inc"); ?>
+<?php include("header.inc"); ?>
     
     <!-- The main page starts -->
     <section id="section1">
@@ -101,7 +101,7 @@
     </section>
     <!-- The main page ends -->
 
-<?php include("includes/footer.inc"); ?>
+<?php include("footer.inc"); ?>
 
 </body>
 </html>
