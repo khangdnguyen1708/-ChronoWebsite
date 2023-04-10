@@ -194,7 +194,7 @@
   
   /* The product section starts */
   #product {
-    padding: 40px 80px;
+    /* padding: 40px 80px; */
     text-align: center;
     color: #1A001A;
   }
