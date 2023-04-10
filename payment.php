@@ -36,7 +36,7 @@
 <body>
     <!--The header section starts-->
     <?php
-    include("includes/header.html");
+    include("header.inc");
     ?>
     <!--The header section ends-->
 
@@ -185,7 +185,7 @@
         </fieldset>
 
         <div id="button_container">
-            <button class="form_button" type="submit" value="book">CHECK OUT</button>
+            <button class="form_button" type="submit">CHECK OUT</button>
         </div>
 
     </form>
@@ -193,7 +193,7 @@
 
     <!--The footer section starts-->
     <?php
-    include("includes/footer.html");
+    include("footer.inc");
     ?>
     <!--The footer section ends-->
 </body>

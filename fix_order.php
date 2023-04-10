@@ -21,7 +21,7 @@ session_start();
 <body>
     <!--The header section starts-->
     <?php
-    include("includes/header.html");
+    include("header.inc");
     ?>
     <!--The header section ends-->
 
@@ -234,7 +234,7 @@ session_start();
         </fieldset>
 
         <div id="button_container">
-            <button class="form_button" type="submit" value="book">CHECK OUT</button>
+            <button class="form_button" type="submit">CHECK OUT</button>
         </div>
 
     </form>
@@ -242,7 +242,7 @@ session_start();
 
     <!--The footer section starts-->
     <?php
-    include("includes/footer.html");
+    include("footer.inc");
     ?>
     <!--The footer section ends-->
 </body>
