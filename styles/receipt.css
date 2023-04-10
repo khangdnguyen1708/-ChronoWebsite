@@ -54,6 +54,7 @@
 }
 
 #barney_receipt_container #barney_receipt_information dd .term {
+    font-weight: bolder;
     font-family: serif;
     width: 200px;
     float: left;
