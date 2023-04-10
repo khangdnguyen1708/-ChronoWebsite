@@ -13,16 +13,6 @@
 
 <?php
 
-  function sanitise($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-  }
-  
-  foreach($POST as $key => $value) {
-    $POST[$key] = sanitise($value);
-  }
-
   function login($valid) {
     echo '<form id="login_form" method="POST" action="manager.php">
       <label class="login_lb" for="user">Username (enter "admin"): </label>
