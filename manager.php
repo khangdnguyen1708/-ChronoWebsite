@@ -12,6 +12,12 @@
 <?php include("header.inc"); ?>
 
 <?php
+  function sanitize($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+  }
 
   function login($valid) {
     echo '<form id="login_form" method="POST" action="manager.php">
@@ -169,7 +175,7 @@
       </section>';
 
       if(isset($_POST["sort_name"])) {
-        $search_query_name = $_POST["sort_name"];
+        $search_query_name = sanitize($_POST["sort_name"]);
         
         if(empty($search_query_name)) {
           echo "<p class='err_mss'>You must enter information to search</p>"; 
@@ -181,7 +187,7 @@
         }
       }
       if(isset($_POST["sort_prod"])) {
-        $search_query_prod = $_POST["sort_prod"];        
+        $search_query_prod = sanitize($_POST["sort_prod"]);        
       
         if(empty($search_query_prod)) {
           echo "<p class='err_mss'>You must enter information to search</p>"; 
