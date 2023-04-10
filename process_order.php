@@ -20,7 +20,7 @@ session_start();
 
 <body>
     <?php
-    require_once("settings2.php");
+    require_once("settings.php");
     // Check onnection to database
     $conn = @mysqli_connect(
         $host,
