@@ -31,7 +31,11 @@
                 <h6>COLLECTION</h6>
                 <hr id="hr1">
             </div>
-            <p id="desc1">SPIRIT OF BIG BANG TOURBILLON PURPLE SAPPHIRE 42 MM <a href="https://www.youtube.com/watch?v=HPIuY-stDkM">YOUTUBE VIDEO</a></p>
+            <p id="desc1">SPIRIT OF BIG BANG TOURBILLON PURPLE SAPPHIRE 42 MM 
+                <a href="https://www.youtube.com/watch?v=HPIuY-stDkM">YOUTUBE VIDEO for Ass1</a>
+                <a href="https://www.youtube.com/watch?v=Aln_md8Be24">YOUTUBE VIDEO for Ass2</a>
+            </p>
+            
         </div>
     </section>
 
